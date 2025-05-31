@@ -1,0 +1,83 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    background-image: url(./images/ghibli.jpg);
+    background-attachment: fixed;
+    background-size: 100vw 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo{
+    font-family: 'Roboto', sans-serif;
+    font-size: 39px;
+    color: black;
+    font-weight: 600;
+}
+
+.header{
+    display: flex;
+    padding: 15px;
+    justify-content: flex-start;
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1;
+    gap: 15px;
+}
+
+.options{
+    display: flex;
+    gap: 15px;
+}
+
+.state{
+    border: 1px solid black; 
+    background-color: transparent;
+    border-radius: 14px;
+    color: black;
+    padding: 8px;
+    width: 150px;
+    height: auto;
+    font-size: 16px;
+    font-weight: 800;
+}
+.timer{
+    font-size: 150px;
+    font-weight: 600;
+    color:black;
+}
+
+.activity-bar{
+    display: flex;
+    gap: 15px;
+    width: fit-content;
+}
+.start{
+    background: white;
+    border: 1px solid white;
+    border-radius: 14px;
+    padding: 8px 24px;
+    font-size: 24px;
+    font-weight: 600;
+    width: 135px;
+    height: auto;
+}
+.activity-right{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.footer{
+    width: 916px;
+    height: 85px;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0px 56px 56px 56px;
+}
