@@ -22,7 +22,8 @@ function calculateTimer(time){
 
     actualTimer = `${formattedMinutes}:${formattedSeconds}`; 
 }
-function showTimer(){
+
+startButton.addEventListener('click', () =>{
     clickCtr++;
     
     if(clickCtr % 2== 0){
@@ -43,15 +44,12 @@ function showTimer(){
             }, 1000)
             
         }
-        
- }
-  
-
-startButton.addEventListener('click', showTimer)
+})
 
 mainTimer.addEventListener('click', ()=>{
     timer.textContent = "25:00";
     clearInterval(timeInterval);
+    maxTimer = 1500;
     stateColorController(mainTimer, shortBreak, longBreak)
 })
 
@@ -59,6 +57,7 @@ shortBreak.addEventListener('click', ()=>{
     clearInterval(timeInterval);
     timer.textContent = "5:00";
     startButton.textContent ="start";
+    maxTimer = 300;
     stateColorController(shortBreak, mainTimer, longBreak)
 })
 
@@ -66,6 +65,7 @@ longBreak.addEventListener('click', ()=>{
     clearInterval(timeInterval);
     timer.textContent = "10:00";
     startButton.textContent ="start";
+    maxTimer = 600;
     stateColorController(longBreak, mainTimer, shortBreak)
 })
 
