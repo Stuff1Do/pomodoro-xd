@@ -19,6 +19,7 @@ let longBreakMinutes = "10:00";
 let maxTimer = pomodoroSeconds;
 let clickCtr = 0;
 let timeInterval = null;
+let currentState = "main_timer";
 
 
 function calculateTimer(time){
@@ -55,25 +56,38 @@ startButton.addEventListener('click', () =>{
             
         }
 })
-document.addEventListener('click', (e) => {
+document.addEventListener('click', function(e) { //this is so i can pass the event e
     if (e.target.closest('.reset-container')) {
-        clearInterval(timeInterval);
-        timer.textContent = pomodoroMinutes;
-        startButton.textContent ="start";
-        maxTimer = pomodoroSeconds;
-        clickCtr = 0; //resets clickctr so its odd when start button is clicked again
-        console.log(clickCtr);
+        console.log(currentState);
+        if(currentState == "main_timer"){ 
+            stateTimer(e, pomodoroMinutes, pomodoroSeconds);
+        }else if(currentState == "short_break"){
+            stateTimer(e, shortBreakMinutes, shortBreaKSeconds);
+        }else if(currentState == "long_break"){
+            stateTimer(e, longBreakMinutes, longBreakSeconds)
+        }
     }
+});
+
+
+function stateTimer(e, minutes, seconds) {
+    clearInterval(timeInterval);
+    timer.textContent = minutes;        
+    startButton.textContent ="start";
+    maxTimer = seconds;
+    clickCtr = 0; //resets clickctr so its odd when start button is clicked again
+    console.log(clickCtr);
+
     
     
-  });
+  }
 mainTimer.addEventListener('click', ()=>{
     //resets the timers already running and and shows the intended timer
     clearInterval(timeInterval);
     timer.textContent = pomodoroMinutes;
     startButton.textContent ="start";
     maxTimer = pomodoroSeconds;
-
+    currentState = "main_timer"
     stateColorController(mainTimer, shortBreak, longBreak)
 })
 
@@ -82,6 +96,7 @@ shortBreak.addEventListener('click', ()=>{
     timer.textContent = shortBreakMinutes;
     startButton.textContent ="start";
     maxTimer = shortBreaKSeconds; 
+    currentState ="short_break";
     stateColorController(shortBreak, mainTimer, longBreak)
 })
 
@@ -90,6 +105,7 @@ longBreak.addEventListener('click', ()=>{
     timer.textContent = longBreakMinutes;
     startButton.textContent ="start";
     maxTimer = longBreakSeconds ;
+    currentState = "long_break";
     stateColorController(longBreak, mainTimer, shortBreak)
 })
 
