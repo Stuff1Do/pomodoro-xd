@@ -6,11 +6,11 @@ const reset = document.querySelector('.reset')
 const mainTimer = document.querySelector('.pomodoro')
 const shortBreak = document.querySelector('.short-break')
 const longBreak = document.querySelector('.long-break')
-
+const resetContainer = document.querySelector('.reset-container')
 const MAXIMUM_TIMER_DIGITS = 2;
 const SECONDS_TO_MIN_FACTOR = 60;
 let shortBreaKSeconds = 300;
-let longBreakSeconds = 500;
+let longBreakSeconds = 600;
 let pomodoroSeconds = 1500;
 let pomodoroMinutes = "25:00";
 let shortBreakMinutes = "5:00";
@@ -33,16 +33,16 @@ function calculateTimer(time){
 
 startButton.addEventListener('click', () =>{
     clickCtr++;
-    
-    //handles button behavior when the user clicks and clicks again
-    if(clickCtr % 2== 0){ 
+    console.log(clickCtr);
+    //handles button behavior when the user clicks start and pause
+    if(clickCtr % 2 == 0){ 
         startButton.textContent = "start"; 
         clearInterval(timeInterval); //stops the timer if the user clicks pause
-    }else{
+    }else if(clickCtr % 2 == 1){
         startButton.textContent = "pause";
         timeInterval = setInterval(() =>{
                 let time = --maxTimer;
-                
+            
                 let actualTimer= calculateTimer(time);
                 
                 timer.textContent = actualTimer;
@@ -54,7 +54,17 @@ startButton.addEventListener('click', () =>{
             
         }
 })
-
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.reset-container')) {
+        clearInterval(timeInterval);
+        timer.textContent = pomodoroMinutes;
+        startButton.textContent ="start";
+        clickCtr = 0;
+        console.log(clickCtr);
+    }
+    
+    
+  });
 mainTimer.addEventListener('click', ()=>{
     clearInterval(timeInterval);
     timer.textContent = pomodoroMinutes;
