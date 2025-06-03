@@ -7,6 +7,18 @@ const mainTimer = document.querySelector('.pomodoro')
 const shortBreak = document.querySelector('.short-break')
 const longBreak = document.querySelector('.long-break')
 const resetContainer = document.querySelector('.reset-container')
+const modal = document.getElementById('settings-modal');
+const settingsContainer = document.querySelector('.settings-container')
+
+document.addEventListener('click', (e)=>{
+    if(e.target.closest('.settings-container')){
+        modal.classList.add("open");
+        
+    }
+})
+
+
+
 const MAXIMUM_TIMER_DIGITS = 2;
 const SECONDS_TO_MIN_FACTOR = 60;
 
@@ -51,6 +63,8 @@ startButton.addEventListener('click', () =>{
                 console.log(actualTimer);
                 if(maxTimer < 0){
                     clearInterval(timeInterval);
+                    maxTimer = 0;
+                    timer.textContent = "00:00";
                 }
             }, 1000)
             
@@ -58,7 +72,6 @@ startButton.addEventListener('click', () =>{
 })
 document.addEventListener('click', function(e) { //this is so i can pass the event e
     if (e.target.closest('.reset-container')) {
-        console.log(currentState);
         if(currentState == "main_timer"){ 
             stateTimer(e, pomodoroMinutes, pomodoroSeconds);
         }else if(currentState == "short_break"){
@@ -76,10 +89,6 @@ function stateTimer(e, minutes, seconds) {
     startButton.textContent ="start";
     maxTimer = seconds;
     clickCtr = 0; //resets clickctr so its odd when start button is clicked again
-    console.log(clickCtr);
-
-    
-    
   }
 mainTimer.addEventListener('click', ()=>{
     //resets the timers already running and and shows the intended timer

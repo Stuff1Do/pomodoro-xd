@@ -90,8 +90,45 @@ body{
     border: 0px;
 }
 
-.settings{
+.settings-container{
     font-size: 2.2em;
+    background: transparent;
+    border: 0px;
+}
+
+.settings-modal{
+    display: flex;
+   
+}
+
+.modal{
+    background: cyan;   
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+
+    
+}
+
+.modal.open{
+    opacity: 1;
+    z-index: 999;
+}
+.modal-dialog{
+    display: flex;
+    background: #310202;
+    
+    align-self: center;
+}
+.modal-content{
+    display: flex;
+    flex-direction: column;
+    color: white;
 }
 .footer{
     width: 916px;
