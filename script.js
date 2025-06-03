@@ -7,26 +7,35 @@ const mainTimer = document.querySelector('.pomodoro')
 const shortBreak = document.querySelector('.short-break')
 const longBreak = document.querySelector('.long-break')
 
-let maxTimer = 1500;
+const MAXIMUM_TIMER_DIGITS = 2;
+const SECONDS_TO_MIN_FACTOR = 60;
+let shortBreaKSeconds = 300;
+let longBreakSeconds = 500;
+let pomodoroSeconds = 1500;
+let pomodoroMinutes = "25:00";
+let shortBreakMinutes = "5:00";
+let longBreakMinutes = "10:00";
+let maxTimer = pomodoroSeconds;
 let clickCtr = 0;
 let timeInterval = null;
-let actualTimer;
+
 
 function calculateTimer(time){
-    let timeInMinutes = Math.floor(time / 60);
-    let timeInSeconds = time % 60;
+    let timeInMinutes = Math.floor(time / SECONDS_TO_MIN_FACTOR); 
+    let timeInSeconds = time % SECONDS_TO_MIN_FACTOR;
     
     //format single digit numbers to be padded with 0 at the start
-    let formattedMinutes = String(timeInMinutes).padStart(2, "0");
-    let formattedSeconds = String(timeInSeconds).padStart(2, "0");
+    let formattedMinutes = String(timeInMinutes).padStart(MAXIMUM_TIMER_DIGITS, "0");
+    let formattedSeconds = String(timeInSeconds).padStart(MAXIMUM_TIMER_DIGITS, "0");
 
-    actualTimer = `${formattedMinutes}:${formattedSeconds}`; 
+    return `${formattedMinutes}:${formattedSeconds}`; 
 }
 
 startButton.addEventListener('click', () =>{
     clickCtr++;
     
-    if(clickCtr % 2== 0){
+    //handles button behavior when the user clicks and clicks again
+    if(clickCtr % 2== 0){ 
         startButton.textContent = "start"; 
         clearInterval(timeInterval); //stops the timer if the user clicks pause
     }else{
@@ -34,7 +43,7 @@ startButton.addEventListener('click', () =>{
         timeInterval = setInterval(() =>{
                 let time = --maxTimer;
                 
-                calculateTimer(time);
+                let actualTimer= calculateTimer(time);
                 
                 timer.textContent = actualTimer;
                 
@@ -47,25 +56,26 @@ startButton.addEventListener('click', () =>{
 })
 
 mainTimer.addEventListener('click', ()=>{
-    timer.textContent = "25:00";
     clearInterval(timeInterval);
-    maxTimer = 1500;
+    timer.textContent = pomodoroMinutes;
+    startButton.textContent ="start";
+    maxTimer = pomodoroSeconds;
     stateColorController(mainTimer, shortBreak, longBreak)
 })
 
 shortBreak.addEventListener('click', ()=>{
     clearInterval(timeInterval);
-    timer.textContent = "5:00";
+    timer.textContent = shortBreakMinutes;
     startButton.textContent ="start";
-    maxTimer = 300;
+    maxTimer = shortBreaKSeconds; 
     stateColorController(shortBreak, mainTimer, longBreak)
 })
 
 longBreak.addEventListener('click', ()=>{
     clearInterval(timeInterval);
-    timer.textContent = "10:00";
+    timer.textContent = longBreakMinutes;
     startButton.textContent ="start";
-    maxTimer = 600;
+    maxTimer = longBreakSeconds ;
     stateColorController(longBreak, mainTimer, shortBreak)
 })
 
