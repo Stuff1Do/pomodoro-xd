@@ -115,7 +115,9 @@ body{
 }
 
 .sidebar{
-    color: white	;
+    color: white;
+    border-right: 1px solid #444;
+    padding-right: 5px;
 }
 
 .timer-settings{
@@ -125,7 +127,11 @@ body{
 
 .modal-inner{
     display: flex;
+}
+.modal-left{
+    display: flex;
     flex-direction: column;
+    width: 370px;
     height: 100%;
 }
 .modal-header{
@@ -156,12 +162,18 @@ body{
     width: 79px;
     background: gray;
     color: white;
+    border-radius: 4px;
+    border: 0;
+    font-size: 17px;
 }
 
-
+.timer-footer{
+    color: #9a9393;
+    font-size:12px;
+}
 .modal-footer{
     display: flex;
-    min-width: 400px;
+    
     
 }
 

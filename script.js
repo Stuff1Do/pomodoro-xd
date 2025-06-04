@@ -10,31 +10,53 @@ const resetContainer = document.querySelector('.reset-container')
 const modal = document.querySelector('#modal');
 const settingsContainer = document.querySelector('.settings-container')
 const closeModal = document.querySelector('.close-modal')
-document.addEventListener('click', (e)=>{
-    if(e.target.closest('.settings-container')){
-        modal.showModal();
-        
-    }
-})
-
-closeModal.addEventListener('click', ()=>{
-    modal.close();
-})
+const inputPomodoro = document.querySelector('#pomo-minutes');
+const inputShortBreak = document.querySelector('#short-minutes')
+const inputLongBreak = document.querySelector('#long-minutes');
+const submit = document.querySelector('.save-changes');
 
 
 const MAXIMUM_TIMER_DIGITS = 2;
 const SECONDS_TO_MIN_FACTOR = 60;
 
-let shortBreaKSeconds = 300;
-let longBreakSeconds = 600;
-let pomodoroSeconds = 1500;
-let pomodoroMinutes = "25:00";
-let shortBreakMinutes = "5:00";
-let longBreakMinutes = "10:00";
+
+submit.addEventListener('click', ()=>{
+    userInputPomodoro = inputPomodoro.value;
+    userInputShortBreak = inputShortBreak.value;
+    userInputLongBreak = inputLongBreak.value;
+    console.log(userInputPomodoro);
+    console.log(userInputShortBreak);
+    console.log(userInputLongBreak);
+    modal.close();
+})
+
+let userInputPomodoro = inputPomodoro.value;
+let userInputShortBreak = inputShortBreak.value;
+let userInputLongBreak = inputLongBreak.value;
+
+let userInputPomodoroSeconds = userInputPomodoro * 60;
+let userInputShortBreakSeconds = userInputShortBreak * 60;
+let userInputLongBreakSeconds = userInputLongBreak * 60;  
+
+function convertToString(num){
+    let str = +num  +':00';
+    console.log();
+    return str;
+}
+
+let shortBreakSeconds = userInputShortBreakSeconds;
+let longBreakSeconds = userInputLongBreakSeconds;
+let pomodoroSeconds = userInputPomodoroSeconds;
+let pomodoroMinutes = convertToString(userInputPomodoro);
+let shortBreakMinutes = convertToString(userInputShortBreak);
+let longBreakMinutes = convertToString(userInputLongBreak);
 let maxTimer = pomodoroSeconds;
 let clickCtr = 0;
 let timeInterval = null;
 let currentState = "main_timer";
+timer.textContent = pomodoroMinutes;
+
+
 
 
 function calculateTimer(time){
@@ -46,6 +68,25 @@ function calculateTimer(time){
     let formattedSeconds = String(timeInSeconds).padStart(MAXIMUM_TIMER_DIGITS, "0");
 
     return `${formattedMinutes}:${formattedSeconds}`; 
+}
+
+function stateTimer(e, minutes, seconds) {
+    clearInterval(timeInterval);
+    timer.textContent = minutes;        
+    startButton.textContent ="start";
+    maxTimer = seconds;
+    clickCtr = 0; //resets clickctr so its odd when start button is clicked again
+  }
+function stateColorController(currentTimer, timer1, timer2){
+    currentTimer.style.background = "white";
+    currentTimer.style.borderColor = "white";
+
+    timer1.style.background = "transparent";
+    timer1.style.borderColor = "black";
+
+    timer2.style.background = "transparent";
+    timer2.style.borderColor = "black";
+
 }
 
 startButton.addEventListener('click', () =>{
@@ -78,7 +119,7 @@ document.addEventListener('click', function(e) { //this is so i can pass the eve
         if(currentState == "main_timer"){ 
             stateTimer(e, pomodoroMinutes, pomodoroSeconds);
         }else if(currentState == "short_break"){
-            stateTimer(e, shortBreakMinutes, shortBreaKSeconds);
+            stateTimer(e, shortBreakMinutes, shortBreakSeconds);
         }else if(currentState == "long_break"){
             stateTimer(e, longBreakMinutes, longBreakSeconds)
         }
@@ -86,13 +127,18 @@ document.addEventListener('click', function(e) { //this is so i can pass the eve
 });
 
 
-function stateTimer(e, minutes, seconds) {
-    clearInterval(timeInterval);
-    timer.textContent = minutes;        
-    startButton.textContent ="start";
-    maxTimer = seconds;
-    clickCtr = 0; //resets clickctr so its odd when start button is clicked again
-  }
+document.addEventListener('click', (e)=>{
+    if(e.target.closest('.settings-container')){
+        modal.showModal();
+        
+    }
+})
+
+closeModal.addEventListener('click', ()=>{
+    modal.close();
+})
+
+
 mainTimer.addEventListener('click', ()=>{
     //resets the timers already running and and shows the intended timer
     clearInterval(timeInterval);
@@ -107,7 +153,7 @@ shortBreak.addEventListener('click', ()=>{
     clearInterval(timeInterval);
     timer.textContent = shortBreakMinutes;
     startButton.textContent ="start";
-    maxTimer = shortBreaKSeconds; 
+    maxTimer = shortBreakSeconds; 
     currentState ="short_break";
     stateColorController(shortBreak, mainTimer, longBreak)
 })
@@ -120,15 +166,3 @@ longBreak.addEventListener('click', ()=>{
     currentState = "long_break";
     stateColorController(longBreak, mainTimer, shortBreak)
 })
-
-function stateColorController(currentTimer, timer1, timer2){
-    currentTimer.style.background = "white";
-    currentTimer.style.borderColor = "white";
-
-    timer1.style.background = "transparent";
-    timer1.style.borderColor = "black";
-
-    timer2.style.background = "transparent";
-    timer2.style.borderColor = "black";
-
-}

@@ -20,7 +20,7 @@
             <button class="state short-break" type="button">short break</button>
             <button class="state long-break" type="button">long break</button>
         </div>
-        <div class="timer">25:00</div>
+        <div class="timer"></div>
         <div class="activity-bar">
             <button class="start" id="start" type="button">start</button>
             <div class="activity-right">
@@ -33,43 +33,52 @@
     <div class="footer"></div>
     <dialog id="modal" class="modal">
         <div class="modal-inner">
-            <div class="modal-header">
-               <div class="close-icon-modal">
-                    close
-               </div>
-            </div>
-            <div class="modal-body">
-                 <div class="sidebar">
-                    <p class="timer-settings">Timer</p>
-                    <p class="display-settings">Display</p>
-                    <p class="options-settings">Options</p>
-                 </div>
-                 <div class="main-settings">
-                    <div class="timer-page">
-                        <div class="timer-left">
-                            <p class="pomo-header">Pomodoro</p>
-                            <input class="pomo minutes"type="number">
-                        </div>
-                        <div class="timer-center">
-                            <p class="short-header">Short Break</p>
-                            <input type="number" class="short minutes">
-                        </div>
-                        <div class="timer-right">
-                            <p class="long-header">Long Break</p>
-                            <input type="number" class="long minutes">
-                        </div> 
+            <div class="modal-left">
+                <div class="modal-header">
+                    <div class="close-icon-modal">
+                         
                     </div>
                  </div>
+                 <div class="modal-body">
+                      <div class="sidebar">
+                         <p class="timer-settings">Timer</p>
+                         <p class="display-settings">Display</p>
+                         <p class="options-settings">Options</p>
+                      </div>
+                      <div class="main-settings">
+                         <div class="timer-page">
+                             <div class="timer-left">
+                                 <p class="pomo-header">Pomodoro</p>
+                                 <input id = "pomo-minutes"class="pomo minutes"type="number" value="25">
+                                 <p class="timer-footer">minutes</p>
+                             </div>
+                             <div class="timer-center">
+                                 <p class="short-header">Short Break</p>
+                                 <input id="short-minutes" type="number" class="short minutes" value="5">
+                                 <p class="timer-footer">minutes</p>
+                             </div>
+                             <div class="timer-right">
+                                 <p class="long-header">Long Break</p>
+                                 <input id="long-minutes"type="number" class="long minutes" value="10">
+                                 <p class="timer-footer">minutes</p>
+                             </div> 
+                         </div>
+                      </div>
+                 </div>
+                 <div class="modal-footer">
+                     <div class="footer-left">
+                         <button class="reset-all">reset</button>
+                     </div>
+                     <div class="footer-right">
+                         <button class="close-modal">close</button>
+                          <button class="save-changes">save changes</button> 
+                     </div>
+                 </div>  
             </div>
-            <div class="modal-footer">
-                <div class="footer-left">
-                    <button class="reset-all">reset</button>
-                </div>
-                <div class="footer-right">
-                    <button class="close-modal">close</button>
-                     <button class="save-changes">save changes</button> 
-                </div>
-            </div>     
+            <div class="modal-right">
+                close
+            </div>
+               
         </div>
 
     </dialog>
