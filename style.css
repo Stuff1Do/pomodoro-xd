@@ -1,3 +1,5 @@
+
+
 body{
     width: 100vw;
     height: 100vh;
@@ -39,6 +41,7 @@ body{
 }
 
 .state{
+    font-family: 'Roboto', sans-serif;
     border: 1px solid black; 
     background-color: transparent;
     border-radius: 14px;
@@ -64,6 +67,7 @@ body{
     display: flex;
     gap: 15px;
     width: fit-content;
+    font-family: 'Roboto', sans-serif;
 }
 .start{
     background: white;
@@ -98,6 +102,7 @@ body{
 
 
 .modal{
+    font-family: 'Roboto', sans-serif;
     background: black;  
     color: white; 
     position: fixed;
@@ -105,12 +110,23 @@ body{
     border: 0;
     border-radius: 14px;
     width: 400px;
-    height: 500px;
+    min-height: 200px;
     
 }
+
+.sidebar{
+    color: white	;
+}
+
+.timer-settings{
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+
 .modal-inner{
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 .modal-header{
     display: flex;
@@ -118,25 +134,35 @@ body{
 }
 .modal-body{
     display: flex;
-    
-    justify-content: center;
-    align-items: center;
+    width: auto;
+    height: auto;
     flex: 1;
-    
+    margin-bottom: 25px;
 }
 
 .main-settings{
     display: flex;
     flex-direction: column;
+    margin-left: 15px; 
     
-    justify-content: center;
 }
+.timer-page{
+    display: flex;
+    gap: 15px;
+}
+
+.minutes{
+    font-family: 'Times New Roman', sans-serif;
+    width: 79px;
+    background: gray;
+    color: white;
+}
+
+
 .modal-footer{
     display: flex;
+    min-width: 400px;
     
-    justify-content: flex-end;
-    
-
 }
 
 .footer-left{
@@ -147,17 +173,17 @@ body{
     background: black;
     color:red;
     border: 2px solid red;
-    border-radius: 14px;
+    border-radius: 24px;
     padding: 4px 10px;
     font-size: 15px;
     
 }
 .close-modal{
-    background: black;
+    background: gray;
     color: white;
     border-color: black;
-    border-radius: 14px;
-    padding: 8px;
+    border-radius: 24px;
+    padding: 8px 15px;
     font-size: 15px;
 }
 
@@ -165,8 +191,8 @@ body{
     background: white;
     color: black;
     border-color: white;
-    border-radius: 14px;
-    padding: 5px;
+    border-radius: 24px;
+    padding: 8px 15px;
     font-size: 15px;
 }
 
