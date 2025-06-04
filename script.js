@@ -19,17 +19,6 @@ const submit = document.querySelector('.save-changes');
 const MAXIMUM_TIMER_DIGITS = 2;
 const SECONDS_TO_MIN_FACTOR = 60;
 
-
-submit.addEventListener('click', ()=>{
-    userInputPomodoro = inputPomodoro.value;
-    userInputShortBreak = inputShortBreak.value;
-    userInputLongBreak = inputLongBreak.value;
-    console.log(userInputPomodoro);
-    console.log(userInputShortBreak);
-    console.log(userInputLongBreak);
-    modal.close();
-})
-
 let userInputPomodoro = inputPomodoro.value;
 let userInputShortBreak = inputShortBreak.value;
 let userInputLongBreak = inputLongBreak.value;
@@ -37,19 +26,16 @@ let userInputLongBreak = inputLongBreak.value;
 let userInputPomodoroSeconds = userInputPomodoro * 60;
 let userInputShortBreakSeconds = userInputShortBreak * 60;
 let userInputLongBreakSeconds = userInputLongBreak * 60;  
-
-function convertToString(num){
-    let str = +num  +':00';
-    console.log();
-    return str;
-}
+let pomodoroMinuteString = "25:00";
+let shortBreakMinuteString = "5:00";
+let longBreakMinuteString = "10:00";
 
 let shortBreakSeconds = userInputShortBreakSeconds;
 let longBreakSeconds = userInputLongBreakSeconds;
 let pomodoroSeconds = userInputPomodoroSeconds;
-let pomodoroMinutes = convertToString(userInputPomodoro);
-let shortBreakMinutes = convertToString(userInputShortBreak);
-let longBreakMinutes = convertToString(userInputLongBreak);
+let pomodoroMinutes = pomodoroMinuteString;
+let shortBreakMinutes = shortBreakMinuteString;
+let longBreakMinutes = longBreakMinuteString;
 let maxTimer = pomodoroSeconds;
 let clickCtr = 0;
 let timeInterval = null;
@@ -57,6 +43,35 @@ let currentState = "main_timer";
 timer.textContent = pomodoroMinutes;
 
 
+
+function convertToString(num){
+    
+    return `${num}:00`;
+}
+
+submit.addEventListener('click', ()=>{
+     userInputPomodoro = inputPomodoro.value;
+     userInputShortBreak = inputShortBreak.value;
+     userInputLongBreak = inputLongBreak.value;
+    
+    userInputPomodoroSeconds = userInputPomodoro * 60;
+    userInputShortBreakSeconds = userInputShortBreak * 60;
+    userInputLongBreakSeconds = userInputLongBreak * 60;  
+
+    pomodoroMinuteString = convertToString(+userInputPomodoro);
+    shortBreakMinuteString = convertToString(+userInputShortBreak);
+    longBreakMinuteString = convertToString(+userInputLongBreak);
+
+    pomodoroMinutes = pomodoroMinuteString;
+    shortBreakMinutes =shortBreakMinuteString;
+    longBreakMinutes = longBreakMinuteString;
+    
+    timer.textContent = pomodoroMinutes;
+    maxTimer = userInputPomodoroSeconds;
+    shortBreakSeconds = userInputShortBreakSeconds;
+    longBreakSeconds = userInputLongBreakSeconds;
+    modal.close();
+})
 
 
 function calculateTimer(time){
@@ -104,7 +119,7 @@ startButton.addEventListener('click', () =>{
                 let actualTimer= calculateTimer(time);
                 
                 timer.textContent = actualTimer;
-                console.log(actualTimer);
+                
                 if(maxTimer < 0){
                     clearInterval(timeInterval);
                     maxTimer = 0;
