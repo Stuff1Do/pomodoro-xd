@@ -31,19 +31,33 @@
         </div>
     </div>
     <div class="footer"></div>
-    <div id="settings-modal" class="modal">
+    <dialog id="modal" class="modal">
         <div class="modal-inner">
             <div class="modal-header">
-               asfsf
+               <div class="close-icon-modal">
+                    close
+               </div>
             </div>
             <div class="modal-body">
-                 fsafas
+                 <div class="sidebar">
+                    <p class="general-settings">General</p>
+                    <p class="timer-settings">Timers</p>
+                 </div>
+                 <div class="main-settings">
+                    Change Theme
+                 </div>
             </div>
             <div class="modal-footer">
-                 <button id="close-modal"></button>
+                <div class="footer-left">
+                    <button class="reset-all">reset</button>
+                </div>
+                <div class="footer-right">
+                    <button class="close-modal">close</button>
+                     <button class="save-changes">save changes</button> 
+                </div>
             </div>     
         </div>
 
-    </div>
+    </dialog>
 </body>
 </html>

@@ -7,16 +7,19 @@ const mainTimer = document.querySelector('.pomodoro')
 const shortBreak = document.querySelector('.short-break')
 const longBreak = document.querySelector('.long-break')
 const resetContainer = document.querySelector('.reset-container')
-const modal = document.getElementById('settings-modal');
+const modal = document.querySelector('#modal');
 const settingsContainer = document.querySelector('.settings-container')
-
+const closeModal = document.querySelector('.close-modal')
 document.addEventListener('click', (e)=>{
     if(e.target.closest('.settings-container')){
-        modal.classList.add("open");
+        modal.showModal();
         
     }
 })
 
+closeModal.addEventListener('click', ()=>{
+    modal.close();
+})
 
 
 const MAXIMUM_TIMER_DIGITS = 2;

@@ -96,40 +96,80 @@ body{
     border: 0px;
 }
 
-.settings-modal{
-    display: flex;
-   
-}
 
 .modal{
-    background: cyan;   
-    opacity: 0;
+    background: black;  
+    color: white; 
     position: fixed;
-    top: 0;
-    left:0;
-    right: 0;
-    bottom: 0;
-    transition: all 0.3s ease-in-out;
-    z-index: -1;
-
+    padding: 25px;
+    border: 0;
+    border-radius: 14px;
+    width: 400px;
+    height: 500px;
     
 }
-
-.modal.open{
-    opacity: 1;
-    z-index: 999;
-}
-.modal-dialog{
-    display: flex;
-    background: #310202;
-    
-    align-self: center;
-}
-.modal-content{
+.modal-inner{
     display: flex;
     flex-direction: column;
-    color: white;
 }
+.modal-header{
+    display: flex;
+    justify-content: flex-end;
+}
+.modal-body{
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    
+}
+
+.main-settings{
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+}
+.modal-footer{
+    display: flex;
+    
+    justify-content: flex-end;
+    
+
+}
+
+.footer-left{
+    display: flex;
+    margin-right: auto;
+}
+.reset-all{
+    background: black;
+    color:red;
+    border: 2px solid red;
+    border-radius: 14px;
+    padding: 4px 10px;
+    font-size: 15px;
+    
+}
+.close-modal{
+    background: black;
+    color: white;
+    border-color: black;
+    border-radius: 14px;
+    padding: 8px;
+    font-size: 15px;
+}
+
+.save-changes{
+    background: white;
+    color: black;
+    border-color: white;
+    border-radius: 14px;
+    padding: 5px;
+    font-size: 15px;
+}
+
 .footer{
     width: 916px;
     height: 85px;
