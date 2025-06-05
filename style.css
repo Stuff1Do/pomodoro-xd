@@ -178,16 +178,30 @@ body{
 }
 
 .footer-left{
-    display: flex;
+    display: flex;  
     margin-right: auto;
+    align-items: center;
 }
+
+.footer-right{
+    display: flex;
+    margin: 0;  
+}
+
+.footer-right-right{    
+    display: flex;
+    align-items: center;
+    font-size: 4px;
+    
+}   
 .reset-all{
-    background: black;
-    color:red;
-    border: 2px solid red;
+    background: #ea1a1a;
+    color: black;
+    border: 2px solid #ea1a1a;
     border-radius: 24px;
-    padding: 4px 10px;
+    padding: 8px 16px;  
     font-size: 15px;
+
     
 }
 .close-modal{
@@ -197,6 +211,7 @@ body{
     border-radius: 24px;
     padding: 8px 15px;
     font-size: 15px;
+    
 }
 
 .save-changes{
@@ -204,8 +219,9 @@ body{
     color: black;
     border-color: white;
     border-radius: 24px;
-    padding: 8px 15px;
+    padding: 8px 16px;
     font-size: 15px;
+    
 }
 
 .footer{
