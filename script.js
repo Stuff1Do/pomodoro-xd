@@ -1,21 +1,21 @@
-const startButton = document.querySelector('.start')
-const timer = document.querySelector('.timer')
-const reset = document.querySelector('.reset')
-const mainTimer = document.querySelector('.pomodoro')
-const shortBreak = document.querySelector('.short-break')
-const longBreak = document.querySelector('.long-break')
-const resetContainer = document.querySelector('.reset-container')
-const modal = document.querySelector('#modal')
-const settingsContainer = document.querySelector('.settings-container')
-const closeModal = document.querySelector('.close-modal')
-const inputPomodoro = document.querySelector('#pomo-minutes')
-const inputShortBreak = document.querySelector('#short-minutes')
-const inputLongBreak = document.querySelector('#long-minutes')
-const submit = document.querySelector('.save-changes')
-const alertInvalid = document.querySelector('.invalid-input')
+const startButton = document.querySelector('.start');
+const timer = document.querySelector('.timer');
+const reset = document.querySelector('.reset');
+const mainTimer = document.querySelector('.pomodoro');
+const shortBreak = document.querySelector('.short-break');
+const longBreak = document.querySelector('.long-break');
+const resetContainer = document.querySelector('.reset-container');
+const modal = document.querySelector('#modal');
+const settingsContainer = document.querySelector('.settings-container');
+const closeModal = document.querySelector('.close-modal');
+const inputPomodoro = document.querySelector('#pomo-minutes');
+const inputShortBreak = document.querySelector('#short-minutes');
+const inputLongBreak = document.querySelector('#long-minutes');
+const submit = document.querySelector('.save-changes');
+const alertInvalid = document.querySelector('.invalid-input');
 
 const MAXIMUM_TIMER_DIGITS = 2;
-const SECONDS_TO_MIN_FACTOR = 60;
+const CONVERSION_FACTOR = 60;
 
 const defaultPomodoroSeconds = 1500;
 const defaultShortBreakSeconds = 300;
@@ -41,10 +41,12 @@ let longBreakMinuteString = defaultLongBreakString;
 let shortBreakSeconds = userInputShortBreakSeconds;
 let longBreakSeconds = userInputLongBreakSeconds;
 let pomodoroSeconds = userInputPomodoroSeconds;
+let maxTimer = userInputPomodoroSeconds;
+
 let pomodoroMinutes = pomodoroMinuteString;
 let shortBreakMinutes = shortBreakMinuteString;
 let longBreakMinutes = longBreakMinuteString;
-let maxTimer = userInputPomodoroSeconds;
+
 let clickCtr = 0;
 let timeInterval = null;
 let currentState = "main_timer";
@@ -65,38 +67,62 @@ submit.addEventListener('click', ()=>{
         alertInvalid.style.color = "red";
     }else{
         userInputPomodoro = inputPomodoro.value;
-      userInputShortBreak = inputShortBreak.value;
-     userInputLongBreak = inputLongBreak.value;
+        userInputShortBreak = inputShortBreak.value;
+        userInputLongBreak = inputLongBreak.value;
     
-    userInputPomodoroSeconds = userInputPomodoro * 60;
-    userInputShortBreakSeconds = userInputShortBreak * 60;
-    userInputLongBreakSeconds = userInputLongBreak * 60;  
+        userInputPomodoroSeconds = userInputPomodoro * 60;
+        userInputShortBreakSeconds = userInputShortBreak * 60;
+        userInputLongBreakSeconds = userInputLongBreak * 60;  
 
-    pomodoroMinuteString = convertToString(+userInputPomodoro);
-    shortBreakMinuteString = convertToString(+userInputShortBreak);
-    longBreakMinuteString = convertToString(+userInputLongBreak);
+        pomodoroMinuteString =  (function(){
+            if (userInputPomodoro > 60) {
+                return calculateTimer(userInputPomodoroSeconds);
+            } else {
+                return convertToString(+userInputPomodoro);
+            }
+        })();
+        
+        shortBreakMinuteString = (function(){
+            if (userInputShortBreak > 60) {
+                return calculateTimer(userInputShortBreakSeconds);
+            } else {
+                return convertToString(+userInputShortBreak);
+            }
+        })();
+        
+        longBreakMinuteString = (function(){
+            if (userInputLongBreak > 60) {
+                return calculateTimer(userInputLongBreakSeconds);
+            } else {
+                return convertToString(+userInputLongBreak);
+            }
+        })();
 
-    pomodoroMinutes = pomodoroMinuteString;
-    shortBreakMinutes =shortBreakMinuteString;
-    longBreakMinutes = longBreakMinuteString;
+
+        pomodoroMinutes = pomodoroMinuteString;
+        shortBreakMinutes = shortBreakMinuteString;
+        longBreakMinutes = longBreakMinuteString;
+
+        if(currentState == "main_timer"){ 
+            stateTimer(pomodoroMinutes, userInputPomodoroSeconds);
+            maxTimer = userInputPomodoroSeconds;
+        }else if(currentState == "short_break"){
+            stateTimer(shortBreakMinutes, userInputShortBreakSeconds);
+            maxTimer = userInputShortBreakSeconds;
+        }else if(currentState == "long_break"){
+            stateTimer(longBreakMinutes, userInputLongBreakSeconds);
+            maxTimer = userInputLongBreakSeconds;       
+        }
     
-    if(currentState == "main_timer"){ 
-        stateTimer(pomodoroMinutes, userInputPomodoroSeconds);
-    }else if(currentState == "short_break"){
-        stateTimer(shortBreakMinutes, userInputShortBreakSeconds);
-    }else if(currentState == "long_break"){
-        stateTimer(longBreakMinutes, userInputLongBreakSeconds);
-    }
-    
-    maxTimer = userInputPomodoroSeconds;
-    shortBreakSeconds = userInputShortBreakSeconds;
-    longBreakSeconds = userInputLongBreakSeconds;
-    
-    inputFieldPomo = userInputPomodoro;
-    inputFieldShort = userInputShortBreak;
-    inputFieldLong = userInputLongBreak;
-    alertInvalid.textContent = '';
-    modal.close();
+        
+        shortBreakSeconds = userInputShortBreakSeconds;
+        longBreakSeconds = userInputLongBreakSeconds;
+        
+        inputFieldPomo = userInputPomodoro;
+        inputFieldShort = userInputShortBreak;
+        inputFieldLong = userInputLongBreak;
+        alertInvalid.textContent = '';
+        modal.close();
     }
 
      
@@ -111,14 +137,22 @@ closeModal.addEventListener('click', ()=>{
 })
 
 function calculateTimer(time){
-    let timeInMinutes = Math.floor(time / SECONDS_TO_MIN_FACTOR); 
-    let timeInSeconds = time % SECONDS_TO_MIN_FACTOR;
+    let totalMinutes = Math.floor(time / CONVERSION_FACTOR);
+    let timeInMinutes = totalMinutes % CONVERSION_FACTOR;
+    let timeInHours = Math.floor(totalMinutes/ CONVERSION_FACTOR);
+    let timeInSeconds = time % CONVERSION_FACTOR;
     
     //format single digit numbers to be padded with 0 at the start
     let formattedMinutes = String(timeInMinutes).padStart(MAXIMUM_TIMER_DIGITS, "0");
     let formattedSeconds = String(timeInSeconds).padStart(MAXIMUM_TIMER_DIGITS, "0");
+    console.log(formattedMinutes);
 
-    return `${formattedMinutes}:${formattedSeconds}`; 
+    if(!timeInHours || timeInHours === 0){
+        return `${formattedMinutes}:${formattedSeconds}`;
+    }else{
+        return `${timeInHours}:${formattedMinutes}:${formattedSeconds}`; 
+    }
+
 }
 
 
@@ -164,9 +198,9 @@ document.addEventListener('click', function(e) { //this is so i can pass the eve
         if(currentState == "main_timer"){ 
             stateTimer(pomodoroMinutes, userInputPomodoroSeconds);
         }else if(currentState == "short_break"){
-            stateTimer(shortBreakMinutes, userInputPomodoroSeconds);
+            stateTimer(shortBreakMinutes, userInputShortBreakSeconds);
         }else if(currentState == "long_break"){
-            stateTimer(longBreakMinutes, userInputPomodoroSeconds);
+            stateTimer(longBreakMinutes, userInputLongBreakSeconds);
         }
     }
 });
