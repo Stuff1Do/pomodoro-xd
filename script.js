@@ -22,6 +22,9 @@ const timerPage = document.querySelector('.timer-page');
 const displayPage = document.querySelector('.display-page');
 const optionPage = document.querySelector('.option-page');
 const inputBackground = document.querySelector('#bg-options');
+const inputSound = document.querySelector('#sound-options');
+const checkPomo = document.querySelector('#checkpomo');
+const checkAudio = document.querySelector('#checksound');
 
 const MAXIMUM_TIMER_DIGITS = 2;
 const CONVERSION_FACTOR = 60;
@@ -36,11 +39,16 @@ const defaultInputFieldPomodoro = 25;
 const defaultInputFieldShort = 5;
 const defaultInputFieldLong = 10;
 const defaultBackgroundImage = 'ghibli';
+const defaultSound = 'bellsound';
 
 let userInputPomodoro = inputPomodoro.value;
 let userInputShortBreak = inputShortBreak.value;
 let userInputLongBreak = inputLongBreak.value;
 let userInputBackground = inputBackground.value;
+let userInputSound = inputSound.value;
+let isCheckedAudio = checkAudio.checked;
+let isCheckedPomo = checkPomo.checked;
+
 
 let userInputPomodoroSeconds = userInputPomodoro * 60;
 let userInputShortBreakSeconds = userInputShortBreak * 60;
@@ -67,6 +75,8 @@ let inputFieldPomo = defaultInputFieldPomodoro;
 let inputFieldShort = defaultInputFieldShort;
 let inputFieldLong = defaultInputFieldLong;
 let inputSelectBackground = defaultBackgroundImage;
+let inputSelectSound = defaultSound;
+
 
 function convertToString(num){    
     return `${num}:00`;
@@ -162,7 +172,8 @@ submit.addEventListener('click', ()=>{
         inputFieldPomo = userInputPomodoro;
         inputFieldShort = userInputShortBreak;
         inputFieldLong = userInputLongBreak;
-
+        userInputSound = inputSound.value;
+        inputSelectSound = userInputSound;
         alertInvalid.textContent = '';
 
         modal.close();
@@ -175,8 +186,6 @@ inputBackground.addEventListener('change', ()=>{
     inputSelectBackground = userInputBackground;
     document.body.style.backgroundImage = `url(./images/${userInputBackground}.jpg)`;
 });
-
-
 
 resetAll.addEventListener('click', ()=>{
     shortBreakSeconds = defaultShortBreakSeconds;
@@ -204,13 +213,17 @@ closeModal.addEventListener('click', ()=>{
     inputPomodoro.value = inputFieldPomo;
     inputShortBreak.value = inputFieldShort;
     inputLongBreak.value = inputFieldLong;  
-   
+    inputSound.value = inputSelectSound;
+
+
     modal.close();
 })
 closeMark.addEventListener('click', ()=>{
     inputPomodoro.value = inputFieldPomo;
     inputShortBreak.value = inputFieldShort;
     inputLongBreak.value = inputFieldLong;
+    inputSound.value = inputSelectSound;
+
 
     modal.close();
 })
@@ -247,15 +260,44 @@ function stateColorController(currentTimer, timer1, timer2){
 
 }
 
-function playMusic(){
-    let audio = new Audio('./sounds/lofi.wav');
+ 
+
+function playMusic(sound){
+    let audio = new Audio(`./sounds/${sound}.wav`);
     audio.play();
     
     setTimeout(() => {
         audio.pause();
         audio.currentTime = 0; 
-      }, 5000); 
+      }, 10000); 
 }
+let checkPomoCtr = 0;
+checkPomo.addEventListener('click', ()=>{
+    checkPomoCtr++;
+    if(checkPomoCtr % 2 == 0){ 
+        isCheckedPomo = false;
+        checkPomoCtr = 0;
+    }else{
+        isCheckedPomo = true;
+    }
+    
+})
+
+let checkAudioCtr = 0;
+checkAudio.addEventListener('click', ()=>{
+    checkAudioCtr++;
+    if(checkAudioCtr % 2 == 0){
+        isCheckedAudio = false;
+        checkAudioCtr = 0;
+        console.log(isCheckedAudio);
+    }
+    else{
+        isCheckedAudio = true;
+        console.log(isCheckedAudio);
+
+    }
+    
+})
 
 startButton.addEventListener('click', () =>{
     clickCtr++;
@@ -278,7 +320,12 @@ startButton.addEventListener('click', () =>{
                 if(maxTimer < 0){
                     clearInterval(timeInterval);
                     maxTimer = 0;
-                    playMusic();
+                    
+                    if(isCheckedAudio){
+                        playMusic(userInputSound);
+                        console.log(userInputSound);
+                    }
+                    
                     timer.textContent = "00:00";
                     startButton.textContent = "start";
                     startButton.style.backgroundColor = "white";
