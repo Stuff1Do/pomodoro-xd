@@ -337,7 +337,7 @@ startButton.addEventListener('click', () =>{
                     timer.textContent = "00:00";
                     startButton.textContent = startString;
                     startButton.style.backgroundColor = "white";
-                    maxTimer = userInputPomodoroSeconds;    
+                    
                     clickCtr = 0;
                 }
             }, 1000)
