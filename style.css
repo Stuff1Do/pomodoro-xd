@@ -179,10 +179,7 @@ body{
     font-size: 17px;
 }
 
-.displayPage{
-    display: flex;
-    justify-content: center;
-}
+
 
 .option-page{
     display: flex;
@@ -241,16 +238,43 @@ input:checked + .button{
 input:checked + .button::before{
     transform: translateX(17px);
 }
+
+.display-page{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.background-display{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sound-display{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 .bg-options{
     display: flex;
     background: black;
     border: 1px solid white;
     font-size: 15px;
     color: white;
-    margin-top: 18px;   
     justify-content: center;
-    margin-left: 12px;
     width: 200px;          
+}
+
+.sound-options{
+    background: black;
+    color: white;   
+    border: 1px solid white;
+    font-size: 15px;
+    width: 200px;       
+    
 }
 
 .timer-footer{

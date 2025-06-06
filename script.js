@@ -247,6 +247,16 @@ function stateColorController(currentTimer, timer1, timer2){
 
 }
 
+function playMusic(){
+    let audio = new Audio('./sounds/lofi.wav');
+    audio.play();
+    
+    setTimeout(() => {
+        audio.pause();
+        audio.currentTime = 0; 
+      }, 5000); 
+}
+
 startButton.addEventListener('click', () =>{
     clickCtr++;
     console.log(clickCtr);
@@ -268,8 +278,10 @@ startButton.addEventListener('click', () =>{
                 if(maxTimer < 0){
                     clearInterval(timeInterval);
                     maxTimer = 0;
+                    playMusic();
                     timer.textContent = "00:00";
                     startButton.textContent = "start";
+                    startButton.style.backgroundColor = "white";
                     maxTimer = userInputPomodoroSeconds;    
                     clickCtr = 0;
                 }
