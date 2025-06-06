@@ -59,6 +59,9 @@ body{
     font-size: 16px;
     font-weight: 800;
 }
+.state:hover{
+    background-color: white !important;
+}
 
 .pomodoro{
     background: white;
@@ -89,7 +92,7 @@ body{
 }
 
 .start:hover{
-    background-color: transparent;
+    background-color: transparent !important;
 }
 .activity-right{
     display: flex;
@@ -104,7 +107,10 @@ body{
     color: white;
     background: transparent;
     border: 0px;
+    cursor: pointer;
+   
 }
+
 
 .settings-container{
     font-size: 2.2em;
@@ -113,7 +119,14 @@ body{
     color: white;
 }
 
+@keyframes  spin{
+    from{transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
+}
 
+.rotate{
+    animation: spin 0.8s ease;
+}
 .modal{
     background: black;  
     color: white; 

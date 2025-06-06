@@ -119,8 +119,8 @@ optionSettings.addEventListener('click', ()=>{
 
 
 submit.addEventListener('click', ()=>{
-    if(!inputPomodoro.value || !inputShortBreak.value || !inputLongBreak.value || inputPomodoro.value < 1 || 
-        inputShortBreak.value < 1 || inputLongBreak.value < 1){
+    if(!inputPomodoro.value || !inputShortBreak.value || !inputLongBreak.value || inputPomodoro.value ==0 || 
+        inputShortBreak.value == 0 || inputLongBreak.value < 1 ){
         alertInvalid.textContent = "invalid!"
         alertInvalid.style.color = "red";
     }else{
@@ -156,7 +156,6 @@ submit.addEventListener('click', ()=>{
                 return convertToString(+userInputLongBreak);
             }
         })();
-
 
         pomodoroMinutes = pomodoroMinuteString;
         shortBreakMinutes = shortBreakMinuteString;
@@ -282,10 +281,10 @@ let checkPomoCtr = 0;
 checkPomo.addEventListener('click', ()=>{
     checkPomoCtr++;
     if(checkPomoCtr % 2 == 0){ 
-        isCheckedPomo = false;
+        isCheckedPomo = true;
         checkPomoCtr = 0;
     }else{
-        isCheckedPomo = true;
+        isCheckedPomo = false;
     }
     
 })
@@ -296,11 +295,11 @@ checkAudio.addEventListener('click', ()=>{
     if(checkAudioCtr % 2 == 0){
         isCheckedAudio = false;
         checkAudioCtr = 0;
-        console.log(isCheckedAudio);
+        
     }
     else{
         isCheckedAudio = true;
-        console.log(isCheckedAudio);
+        
 
     }
     
@@ -323,17 +322,18 @@ startButton.addEventListener('click', () =>{
                 let actualTimer= calculateTimer(time);
                 
                 timer.textContent = actualTimer;
-                
+                document.title = `${actualTimer} | studyxd`
                 if(maxTimer < 0){
                     clearInterval(timeInterval);
                     maxTimer = 0;
-                    
+                    document.title =  `studyxd`;
                     if(isCheckedAudio){
                         playMusic(userInputSound);
-                        console.log(userInputSound);
                     }
 
-                    
+                    if(isCheckedPomo){
+                        startCurrentTimer(longBreakMinutes, pauseString, userInputShortBreakSeconds, transButton, stateShortBreak);
+                    }
                     timer.textContent = "00:00";
                     startButton.textContent = startString;
                     startButton.style.backgroundColor = "white";
@@ -353,6 +353,9 @@ document.addEventListener('click', function(e) { //this is so i can pass the eve
         }else if(currentState == "long_break"){
             stateTimer(longBreakMinutes, userInputLongBreakSeconds);
         }
+        resetContainer.classList.remove('rotate');
+        void resetContainer.offsetWidth;           
+        resetContainer.classList.add('rotate');   
     }
 });
 function stateTimer(minutes, seconds) {
@@ -372,11 +375,13 @@ document.addEventListener('click', (e)=>{
 })
 
 mainTimer.addEventListener('click', () => {
+    clearInterval(timeInterval);
     startCurrentTimer(pomodoroMinutes, startString, userInputPomodoroSeconds, whiteButton, stateMainTimer);
     stateColorController(mainTimer, shortBreak, longBreak);
 });
 
 shortBreak.addEventListener('click', ()=>{
+    clearInterval(timeInterval);
     startCurrentTimer(shortBreakMinutes, startString, userInputShortBreakSeconds,whiteButton, stateShortBreak);
     stateColorController(shortBreak, mainTimer, longBreak);
 });
@@ -384,12 +389,12 @@ shortBreak.addEventListener('click', ()=>{
    
 
 longBreak.addEventListener('click', ()=>{
+    clearInterval(timeInterval);
     startCurrentTimer(longBreakMinutes, startString, userInputLongBreakSeconds, whiteButton, stateLongBreak);
     stateColorController(longBreak, mainTimer, shortBreak);
 });
 
 function startCurrentTimer(minutes, buttonstring, seconds, color, nowstate){
-    clearInterval(timeInterval);
     timer.textContent = minutes;
     startButton.textContent = buttonstring;
     startButton.style.background = color;
