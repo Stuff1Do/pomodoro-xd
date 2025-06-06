@@ -40,6 +40,13 @@ const defaultInputFieldShort = 5;
 const defaultInputFieldLong = 10;
 const defaultBackgroundImage = 'ghibli';
 const defaultSound = 'bellsound';
+const startString = "start";
+const pauseString = "pause";
+const stateMainTimer = "main_timer";
+const stateShortBreak = "short_break";
+const stateLongBreak = "long_break";
+const whiteButton = "white";
+const transButton = "transparent";
 
 let userInputPomodoro = inputPomodoro.value;
 let userInputShortBreak = inputShortBreak.value;
@@ -112,8 +119,8 @@ optionSettings.addEventListener('click', ()=>{
 
 
 submit.addEventListener('click', ()=>{
-    if(!inputPomodoro.value || !inputShortBreak.value || !inputLongBreak.value || inputPomodoro.value == 0 || 
-        inputShortBreak.value == 0 || inputLongBreak.value == 0){
+    if(!inputPomodoro.value || !inputShortBreak.value || !inputLongBreak.value || inputPomodoro.value < 1 || 
+        inputShortBreak.value < 1 || inputLongBreak.value < 1){
         alertInvalid.textContent = "invalid!"
         alertInvalid.style.color = "red";
     }else{
@@ -304,12 +311,12 @@ startButton.addEventListener('click', () =>{
     console.log(clickCtr);
     //handles button behavior when the user clicks start and pause
     if(clickCtr % 2 == 0){ 
-        startButton.textContent = "start"; 
-        startButton.style.backgroundColor = "white";
+        startButton.textContent = startString; 
+        startButton.style.backgroundColor = whiteButton;
         clearInterval(timeInterval); 
     }else {
-        startButton.textContent = "pause";
-        startButton.style.backgroundColor = "transparent";
+        startButton.textContent = pauseString;
+        startButton.style.backgroundColor = transButton;
         timeInterval = setInterval(() =>{
                 let time = --maxTimer; //decrement each second
             
@@ -325,9 +332,10 @@ startButton.addEventListener('click', () =>{
                         playMusic(userInputSound);
                         console.log(userInputSound);
                     }
+
                     
                     timer.textContent = "00:00";
-                    startButton.textContent = "start";
+                    startButton.textContent = startString;
                     startButton.style.backgroundColor = "white";
                     maxTimer = userInputPomodoroSeconds;    
                     clickCtr = 0;
@@ -363,30 +371,28 @@ document.addEventListener('click', (e)=>{
     }
 })
 
-mainTimer.addEventListener('click', ()=>{
-    //resets the timers already running and and shows the intended timer
-    clearInterval(timeInterval);
-    timer.textContent = pomodoroMinutes;
-    startButton.textContent ="start";
-    maxTimer = userInputPomodoroSeconds;
-    currentState = "main_timer"
-    stateColorController(mainTimer, shortBreak, longBreak)
-})
+mainTimer.addEventListener('click', () => {
+    startCurrentTimer(pomodoroMinutes, startString, userInputPomodoroSeconds, whiteButton, stateMainTimer);
+    stateColorController(mainTimer, shortBreak, longBreak);
+});
 
 shortBreak.addEventListener('click', ()=>{
-    clearInterval(timeInterval);
-    timer.textContent = shortBreakMinutes;
-    startButton.textContent ="start";
-    maxTimer = userInputShortBreakSeconds; 
-    currentState ="short_break";
-    stateColorController(shortBreak, mainTimer, longBreak)
-})
+    startCurrentTimer(shortBreakMinutes, startString, userInputShortBreakSeconds,whiteButton, stateShortBreak);
+    stateColorController(shortBreak, mainTimer, longBreak);
+});
+                                                      
+   
 
 longBreak.addEventListener('click', ()=>{
+    startCurrentTimer(longBreakMinutes, startString, userInputLongBreakSeconds, whiteButton, stateLongBreak);
+    stateColorController(longBreak, mainTimer, shortBreak);
+});
+
+function startCurrentTimer(minutes, buttonstring, seconds, color, nowstate){
     clearInterval(timeInterval);
-    timer.textContent = longBreakMinutes;
-    startButton.textContent ="start";
-    maxTimer = userInputLongBreakSeconds ;
-    currentState = "long_break";
-    stateColorController(longBreak, mainTimer, shortBreak)
-})
+    timer.textContent = minutes;
+    startButton.textContent = buttonstring;
+    startButton.style.background = color;
+    maxTimer = seconds;
+    currentState = nowstate;
+}
