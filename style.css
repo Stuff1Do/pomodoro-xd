@@ -215,7 +215,7 @@ body{
 .button{
     display: flex;
     background-color: #d2d2d2;
-    width: 30px;
+    width: 38px;
     border-radius: 12px;
     height: 20px;
     cursor: pointer;
@@ -239,7 +239,7 @@ input:checked + .button{
     background-color: #608fed;
 }
 input:checked + .button::before{
-    transform: translateX(10px);
+    transform: translateX(17px);
 }
 .bg-options{
     display: flex;

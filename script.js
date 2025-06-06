@@ -243,7 +243,7 @@ function stateColorController(currentTimer, timer1, timer2){
     timer1.style.borderColor = "white";
 
     timer2.style.background = "transparent";
-    timer2.style.borderColor = "black";
+    timer2.style.borderColor = "white";
 
 }
 
