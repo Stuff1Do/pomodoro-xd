@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/19fe17faac.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
     <title>studyxd</title>
 </head>
@@ -35,15 +36,13 @@
         <div class="modal-inner">
             <div class="modal-left">
                 <div class="modal-header">
-                    <div class="close-icon-modal">
-                         
-                    </div>
+
                  </div>
                  <div class="modal-body">
                       <div class="sidebar">
                          <p class="timer-settings">Timer</p>
                          <p class="display-settings">Display</p>
-                         <p class="options-settings">Options</p>
+                         <p class="option-settings">Options</p>
                       </div>
                       <div class="main-settings">
                          <div class="timer-page">
@@ -63,6 +62,25 @@
                                  <p class="timer-footer">minutes</p>
                              </div> 
                          </div>
+                          <div class="display-page">
+                                <select name="backgrounds" id="bg-options" class="bg-options">
+                                    <option value="ghibli" class="ghibli">ghibli</option>
+                                    <option value="cats">cats</option>
+                                    <option value="cat2">cats2</option>
+                                    <option value="cat3">cat3</option>
+                                    <option value="cabin">cabin</option>    
+                                    <option value="spiritedaway">spirited away</option>
+                                    <option value="totoro">totoro</option>
+                                    <option value="totoro2">totoro2</option>
+                                    <option value="totoro3">totoro3</option>
+                                    <option value="firewatch">firewatch</option>
+                                    <option value="firewatchsunset">firewatch sunset</option>
+                                    <option value="forest">forest</option>
+                                </select>
+                          </div>
+                          <div class="option-page">
+
+                          </div>
                       </div>
                  </div>
                  <div class="modal-footer">
@@ -82,7 +100,7 @@
                  </div>  
             </div>
             <div class="modal-right">
-                close
+                <div class="close-modal-mark"><i class="fa-solid fa-circle-xmark"></i></div>
             </div>
                
         </div>

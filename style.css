@@ -1,4 +1,11 @@
-
+*{
+    
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        
+          
+          
+      
+}
 
 body{
     width: 100vw;
@@ -41,8 +48,8 @@ body{
 }
 
 .state{
-    font-family: 'Roboto', sans-serif;
-    border: 1px solid black; 
+    
+    border: 1px solid white; 
     background-color: transparent;
     border-radius: 14px;
     color: black;
@@ -59,19 +66,20 @@ body{
 }
 .timer{
     font-size: 150px;
-    font-weight: 600;
     color:black;
+    font-weight: 800;
+    color: white;
 }
 
 .activity-bar{
     display: flex;
     gap: 15px;
     width: fit-content;
-    font-family: 'Roboto', sans-serif;
 }
 .start{
     background: white;
     border: 1px solid white;
+    color: black;
     border-radius: 14px;
     padding: 8px 24px;
     font-size: 24px;
@@ -89,7 +97,7 @@ body{
 
 .reset-container{
     font-size: 2.2em;
-    color: black;
+    color: white;
     background: transparent;
     border: 0px;
 }
@@ -98,11 +106,11 @@ body{
     font-size: 2.2em;
     background: transparent;
     border: 0px;
+    color: white;
 }
 
 
 .modal{
-    font-family: 'Roboto', sans-serif;
     background: black;  
     color: white; 
     position: fixed;
@@ -111,12 +119,13 @@ body{
     border-radius: 14px;
     width: 400px;
     min-height: 200px;
+    padding-right: 0;
     
 }
 
 .sidebar{
     color: white;
-    border-right: 1px solid #444;
+    border-right: 2px solid #444;
     padding-right: 5px;
 }
 
@@ -158,23 +167,38 @@ body{
 }
 
 .minutes{
-    font-family: 'Times New Roman', sans-serif;
     width: 79px;
-    background: gray;
+    background: black;
     color: white;
     border-radius: 4px;
-    border: 0;
+    border: 1px solid white;
     font-size: 17px;
+}
+
+.displayPage{
+    display: flex;
+    justify-content: center;
+}
+.bg-options{
+    display: flex;
+    background: black;
+    border: 1px solid white;
+    font-size: 15px;
+    color: white;
+    margin-top: 18px;   
+    justify-content: center;
+    margin-left: 12px;
+    width: 200px;          
 }
 
 .timer-footer{
     color: #9a9393;
     font-size:12px;
 }
+
+
 .modal-footer{
     display: flex;
-    
-    
 }
 
 .footer-left{
@@ -213,7 +237,9 @@ body{
     font-size: 15px;
     
 }
-
+.close-modal-mark{
+    color: gray;    
+}
 .save-changes{
     background: white;
     color: black;

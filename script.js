@@ -13,6 +13,15 @@ const inputShortBreak = document.querySelector('#short-minutes');
 const inputLongBreak = document.querySelector('#long-minutes');
 const submit = document.querySelector('.save-changes');
 const alertInvalid = document.querySelector('.invalid-input');
+const resetAll = document.querySelector('.reset-all');
+const closeMark = document.querySelector('.close-modal-mark');
+const timerSettings = document.querySelector('.timer-settings');
+const displaySettings = document.querySelector('.display-settings');
+const optionSettings =  document.querySelector('.option-settings');
+const timerPage = document.querySelector('.timer-page');
+const displayPage = document.querySelector('.display-page');
+const optionPage = document.querySelector('.option-page');
+const inputBackground = document.querySelector('#bg-options');
 
 const MAXIMUM_TIMER_DIGITS = 2;
 const CONVERSION_FACTOR = 60;
@@ -25,11 +34,13 @@ const defaultShortBreakString = "5:00";
 const defaultLongBreakString = "10:00";
 const defaultInputFieldPomodoro = 25;
 const defaultInputFieldShort = 5;
-const defaultInputFieldLong =10;
+const defaultInputFieldLong = 10;
+const defaultBackgroundImage = 'ghibli';
 
 let userInputPomodoro = inputPomodoro.value;
 let userInputShortBreak = inputShortBreak.value;
 let userInputLongBreak = inputLongBreak.value;
+let userInputBackground = inputBackground.value;
 
 let userInputPomodoroSeconds = userInputPomodoro * 60;
 let userInputShortBreakSeconds = userInputShortBreak * 60;
@@ -55,10 +66,40 @@ timer.textContent = pomodoroMinutes;
 let inputFieldPomo = defaultInputFieldPomodoro;
 let inputFieldShort = defaultInputFieldShort;
 let inputFieldLong = defaultInputFieldLong;
+let inputSelectBackground = defaultBackgroundImage;
 
 function convertToString(num){    
     return `${num}:00`;
 }
+displayPage.style.display = 'none';
+optionPage.style.display = 'none';
+timerSettings.addEventListener('click', ()=>{
+    timerPage.style.display = 'flex';
+    displayPage.style.display = 'none';
+    optionPage.style.display = 'none';
+    timerSettings.style.textDecoration = 'underline';
+    displaySettings.style.textDecoration = 'none';
+    optionSettings.style.textDecoration = 'none';
+})
+
+displaySettings.addEventListener('click', ()=>{
+    timerPage.style.display = 'none';
+    optionPage.style.display = 'none';
+    displayPage.style.display = 'flex';
+    timerSettings.style.textDecoration = 'none';
+    displaySettings.style.textDecoration = 'underline';
+    optionSettings.style.textDecoration = 'none';
+})
+
+optionSettings.addEventListener('click', ()=>{
+    timerPage.style.display = 'none';
+    optionPage.style.display = 'flex';
+    displayPage.style.display = 'none';
+    timerSettings.style.textDecoration = 'none';
+    displaySettings.style.textDecoration = 'none';
+    optionSettings.style.textDecoration = 'underline';
+})
+
 
 submit.addEventListener('click', ()=>{
     if(!inputPomodoro.value || !inputShortBreak.value || !inputLongBreak.value || inputPomodoro.value == 0 || 
@@ -69,6 +110,7 @@ submit.addEventListener('click', ()=>{
         userInputPomodoro = inputPomodoro.value;
         userInputShortBreak = inputShortBreak.value;
         userInputLongBreak = inputLongBreak.value;
+        userInputBackground = inputBackground.value;
     
         userInputPomodoroSeconds = userInputPomodoro * 60;
         userInputShortBreakSeconds = userInputShortBreak * 60;
@@ -113,7 +155,6 @@ submit.addEventListener('click', ()=>{
             stateTimer(longBreakMinutes, userInputLongBreakSeconds);
             maxTimer = userInputLongBreakSeconds;       
         }
-    
         
         shortBreakSeconds = userInputShortBreakSeconds;
         longBreakSeconds = userInputLongBreakSeconds;
@@ -121,21 +162,58 @@ submit.addEventListener('click', ()=>{
         inputFieldPomo = userInputPomodoro;
         inputFieldShort = userInputShortBreak;
         inputFieldLong = userInputLongBreak;
+
         alertInvalid.textContent = '';
+
         modal.close();
     }
 
      
 })
+inputBackground.addEventListener('change', ()=>{
+    userInputBackground = inputBackground.value;
+    inputSelectBackground = userInputBackground;
+    document.body.style.backgroundImage = `url(./images/${userInputBackground}.jpg)`;
+});
+
+
+
+resetAll.addEventListener('click', ()=>{
+    shortBreakSeconds = defaultShortBreakSeconds;
+    longBreakSeconds = defaultLongBreakSeconds;
+    pomodoroSeconds = defaultPomodoroSeconds;
+    maxTimer = defaultPomodoroSeconds;
+
+    pomodoroMinutes = defaultPomodoroString;
+    shortBreakMinutes = defaultShortBreakString;
+    longBreakMinutes = defaultLongBreakString;
+    inputBackground.value = defaultBackgroundImage  ;   
+    userInputBackground = defaultBackgroundImage;
+    inputSelectBackground = userInputBackground;
+    
+    document.body.style.backgroundImage = `url(./images/${userInputBackground}.jpg)`;
+
+     console.log(userInputBackground);
+    inputPomodoro.value = 25;
+    inputShortBreak.value = 5;
+    inputLongBreak.value = 10;
+    
+})
 
 closeModal.addEventListener('click', ()=>{
     inputPomodoro.value = inputFieldPomo;
     inputShortBreak.value = inputFieldShort;
-    inputLongBreak.value = inputFieldLong;
+    inputLongBreak.value = inputFieldLong;  
    
     modal.close();
 })
+closeMark.addEventListener('click', ()=>{
+    inputPomodoro.value = inputFieldPomo;
+    inputShortBreak.value = inputFieldShort;
+    inputLongBreak.value = inputFieldLong;
 
+    modal.close();
+})
 function calculateTimer(time){
     let totalMinutes = Math.floor(time / CONVERSION_FACTOR);
     let timeInMinutes = totalMinutes % CONVERSION_FACTOR;
@@ -159,9 +237,10 @@ function calculateTimer(time){
 function stateColorController(currentTimer, timer1, timer2){
     currentTimer.style.background = "white";
     currentTimer.style.borderColor = "white";
+    currentTimer.style.color = "black";
 
     timer1.style.background = "transparent";
-    timer1.style.borderColor = "black";
+    timer1.style.borderColor = "white";
 
     timer2.style.background = "transparent";
     timer2.style.borderColor = "black";
@@ -218,9 +297,6 @@ document.addEventListener('click', (e)=>{
         
     }
 })
-
-
-
 
 mainTimer.addEventListener('click', ()=>{
     //resets the timers already running and and shows the intended timer
