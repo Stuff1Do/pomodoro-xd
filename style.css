@@ -87,6 +87,10 @@ body{
     width: 135px;
     height: auto;
 }
+
+.start:hover{
+    background-color: transparent;
+}
 .activity-right{
     display: flex;
     align-items: center;
@@ -184,6 +188,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 15px;
 }
 
 .pomoauto-container{
@@ -213,9 +218,29 @@ body{
     width: 30px;
     border-radius: 12px;
     height: 20px;
-    
+    cursor: pointer;
+    position: relative;
 }
 
+.button::before{
+    
+    margin-top: 2px;
+    margin-left: 2px;
+    position: absolute;
+    content: '';
+    background-color: #fff;
+    width: 15px;
+    height: 15px;
+    border-radius: 100px;
+    transition: 0.2s;
+}
+
+input:checked + .button{
+    background-color: #608fed;
+}
+input:checked + .button::before{
+    transform: translateX(10px);
+}
 .bg-options{
     display: flex;
     background: black;

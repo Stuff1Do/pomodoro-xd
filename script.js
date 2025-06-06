@@ -253,9 +253,11 @@ startButton.addEventListener('click', () =>{
     //handles button behavior when the user clicks start and pause
     if(clickCtr % 2 == 0){ 
         startButton.textContent = "start"; 
+        startButton.style.backgroundColor = "white";
         clearInterval(timeInterval); 
     }else {
         startButton.textContent = "pause";
+        startButton.style.backgroundColor = "transparent";
         timeInterval = setInterval(() =>{
                 let time = --maxTimer; //decrement each second
             
@@ -290,6 +292,7 @@ function stateTimer(minutes, seconds) {
     clearInterval(timeInterval);
     timer.textContent = minutes;        
     startButton.textContent ="start";
+    startButton.style.backgroundColor = "white";
     maxTimer = seconds;
     clickCtr = 0; //resets clickctr so its odd when start button is clicked again
 }
