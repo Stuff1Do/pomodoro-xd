@@ -179,6 +179,43 @@ body{
     display: flex;
     justify-content: center;
 }
+
+.option-page{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pomoauto-container{
+    display: flex;
+    margin-left: -25px;
+    align-items: center ;
+    gap: 8px;
+    font-size: 15px;
+}
+
+.playsound-container{
+    display: flex;
+    margin-left: -25px;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+}
+#checkpomo{
+    opacity: 0;
+}
+#checksound{
+    opacity: 0;
+}
+.button{
+    display: flex;
+    background-color: #d2d2d2;
+    width: 30px;
+    border-radius: 12px;
+    height: 20px;
+    
+}
+
 .bg-options{
     display: flex;
     background: black;

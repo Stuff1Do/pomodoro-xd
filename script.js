@@ -267,6 +267,9 @@ startButton.addEventListener('click', () =>{
                     clearInterval(timeInterval);
                     maxTimer = 0;
                     timer.textContent = "00:00";
+                    startButton.textContent = "start";
+                    maxTimer = userInputPomodoroSeconds;    
+                    clickCtr = 0;
                 }
             }, 1000)
             
