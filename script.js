@@ -25,6 +25,7 @@ const inputBackground = document.querySelector('#bg-options');
 const inputSound = document.querySelector('#sound-options');
 const checkPomo = document.querySelector('#checkpomo');
 const checkAudio = document.querySelector('#checksound');
+const footer = document.querySelector('.footer');
 
 const MAXIMUM_TIMER_DIGITS = 2;
 const CONVERSION_FACTOR = 60;
@@ -119,7 +120,7 @@ optionSettings.addEventListener('click', ()=>{
 
 
 submit.addEventListener('click', ()=>{
-    if(!inputPomodoro.value || !inputShortBreak.value || !inputLongBreak.value || inputPomodoro.value < 1 || 
+    if(!inputPomodoro.value || !inputShortBreak.value || !inputLongBreak.value || inputPomodoro.value == 0 || 
         inputShortBreak.value < 1 || inputLongBreak.value  < 1 ){
         alertInvalid.textContent = "invalid!"
         alertInvalid.style.color = "red";
@@ -315,6 +316,8 @@ function startCurrentTimer(minutes, buttonstring, seconds, color, nowstate){
 
 let pomoCtr = 0;
 let mainTimerClicked = true;
+
+
 startButton.addEventListener('click', () =>{
     clickCtr++;
     //handles button behavior when the user clicks start and pause
@@ -336,6 +339,10 @@ startButton.addEventListener('click', () =>{
                     if(mainTimerClicked){
                         pomoCtr++;
                     }
+                    if(pomoCtr > 0){
+                        footer.textContent = `Pomodoros Completed: ${pomoCtr}!`;
+                    }
+                    console.log(pomoCtr);
                     clearInterval(timeInterval);
                     maxTimer = 0;
                     document.title =  `studyxd`;
