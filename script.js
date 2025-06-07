@@ -119,8 +119,8 @@ optionSettings.addEventListener('click', ()=>{
 
 
 submit.addEventListener('click', ()=>{
-    if(!inputPomodoro.value || !inputShortBreak.value || !inputLongBreak.value || inputPomodoro.value ==0 || 
-        inputShortBreak.value == 0 || inputLongBreak.value < 1 ){
+    if(!inputPomodoro.value || !inputShortBreak.value || !inputLongBreak.value || inputPomodoro.value < 1 || 
+        inputShortBreak.value < 1 || inputLongBreak.value  < 1 ){
         alertInvalid.textContent = "invalid!"
         alertInvalid.style.color = "red";
     }else{
@@ -208,7 +208,6 @@ resetAll.addEventListener('click', ()=>{
     
     document.body.style.backgroundImage = `url(./images/${userInputBackground}.jpg)`;
 
-     console.log(userInputBackground);
     inputPomodoro.value = 25;
     inputShortBreak.value = 5;
     inputLongBreak.value = 10;
@@ -242,7 +241,7 @@ function calculateTimer(time){
     //format single digit numbers to be padded with 0 at the start
     let formattedMinutes = String(timeInMinutes).padStart(MAXIMUM_TIMER_DIGITS, "0");
     let formattedSeconds = String(timeInSeconds).padStart(MAXIMUM_TIMER_DIGITS, "0");
-    console.log(formattedMinutes);
+    
 
     if(!timeInHours || timeInHours === 0){
         return `${formattedMinutes}:${formattedSeconds}`;
@@ -305,9 +304,19 @@ checkAudio.addEventListener('click', ()=>{
     
 })
 
+function startCurrentTimer(minutes, buttonstring, seconds, color, nowstate){
+    timer.textContent = minutes;
+    startButton.textContent = buttonstring;
+    startButton.style.background = color;
+    maxTimer = seconds;
+    currentState = nowstate;
+}
+
+
+let pomoCtr = 0;
+let mainTimerClicked = true;
 startButton.addEventListener('click', () =>{
     clickCtr++;
-    console.log(clickCtr);
     //handles button behavior when the user clicks start and pause
     if(clickCtr % 2 == 0){ 
         startButton.textContent = startString; 
@@ -318,27 +327,58 @@ startButton.addEventListener('click', () =>{
         startButton.style.backgroundColor = transButton;
         timeInterval = setInterval(() =>{
                 let time = --maxTimer; //decrement each second
-            
+
                 let actualTimer= calculateTimer(time);
                 
                 timer.textContent = actualTimer;
-                document.title = `${actualTimer} | studyxd`
+                document.title = `${actualTimer} | studyxd`;
                 if(maxTimer < 0){
+                    if(mainTimerClicked){
+                        pomoCtr++;
+                    }
                     clearInterval(timeInterval);
                     maxTimer = 0;
                     document.title =  `studyxd`;
+                    
                     if(isCheckedAudio){
                         playMusic(userInputSound);
                     }
 
-                    if(isCheckedPomo){
-                        startCurrentTimer(longBreakMinutes, pauseString, userInputShortBreakSeconds, transButton, stateShortBreak);
+                    if(isCheckedPomo){     
+                                                                     
+                        if(pomoCtr >= 4 && pomoCtr % 4 == 0){
+                            longBreak.click();
+                            startCurrentTimer(longBreakMinutes, startString, userInputLongBreakSeconds, whiteButton, stateLongBreak);
+                            clickCtr = 0;
+                            pomoCtr = 0;
+                            mainTimerClicked = false;
+                            
+                        }else if(mainTimerClicked){
+                            shortBreak.click();
+                            startCurrentTimer(shortBreakMinutes, startString, userInputShortBreakSeconds, whiteButton, stateShortBreak);
+                            clickCtr = 0;
+                            mainTimerClicked = false;
+                            console.log(mainTimerClicked);
+
+                        }else if(!mainTimerClicked){
+                            mainTimer.click();
+                            startCurrentTimer(pomodoroMinutes, startString, userInputPomodoroSeconds, whiteButton, stateMainTimer);
+                            mainTimerClicked = true; 
+                            clickCtr = 0;
+                        }               
+                       
+                            
+                        
+                    }else{
+                        
+                        timer.textContent=`0:00`;
+                        startButton.textContent = startString;
+                        startButton.style.backgroundColor = whiteButton;
+                        clickCtr = 0;
                     }
-                    timer.textContent = "00:00";
-                    startButton.textContent = startString;
-                    startButton.style.backgroundColor = "white";
+                   
                     
-                    clickCtr = 0;
+                    
                 }
             }, 1000)
             
@@ -361,8 +401,8 @@ document.addEventListener('click', function(e) { //this is so i can pass the eve
 function stateTimer(minutes, seconds) {
     clearInterval(timeInterval);
     timer.textContent = minutes;        
-    startButton.textContent ="start";
-    startButton.style.backgroundColor = "white";
+    startButton.textContent = startString;
+    startButton.style.backgroundColor = whiteButton;
     maxTimer = seconds;
     clickCtr = 0; //resets clickctr so its odd when start button is clicked again
 }
@@ -375,29 +415,26 @@ document.addEventListener('click', (e)=>{
 })
 
 mainTimer.addEventListener('click', () => {
+    mainTimerClicked = true;
     clearInterval(timeInterval);
     startCurrentTimer(pomodoroMinutes, startString, userInputPomodoroSeconds, whiteButton, stateMainTimer);
     stateColorController(mainTimer, shortBreak, longBreak);
 });
 
 shortBreak.addEventListener('click', ()=>{
+    mainTimerClicked = false;
     clearInterval(timeInterval);
     startCurrentTimer(shortBreakMinutes, startString, userInputShortBreakSeconds,whiteButton, stateShortBreak);
     stateColorController(shortBreak, mainTimer, longBreak);
+    
 });
                                                       
    
 
 longBreak.addEventListener('click', ()=>{
+    mainTimerClicked = false;
     clearInterval(timeInterval);
     startCurrentTimer(longBreakMinutes, startString, userInputLongBreakSeconds, whiteButton, stateLongBreak);
     stateColorController(longBreak, mainTimer, shortBreak);
 });
 
-function startCurrentTimer(minutes, buttonstring, seconds, color, nowstate){
-    timer.textContent = minutes;
-    startButton.textContent = buttonstring;
-    startButton.style.background = color;
-    maxTimer = seconds;
-    currentState = nowstate;
-}
