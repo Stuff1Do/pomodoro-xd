@@ -230,7 +230,6 @@ closeMark.addEventListener('click', ()=>{
     inputLongBreak.value = inputFieldLong;
     inputSound.value = inputSelectSound;
 
-
     modal.close();
 })
 function calculateTimer(time){
