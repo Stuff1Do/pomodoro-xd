@@ -5,6 +5,7 @@
 }
 
 body{
+    background-color: #444;
     width: 100vw;
     height: 100vh;
     background-image: url(./images/ghibli.jpg);
@@ -15,6 +16,7 @@ body{
     padding: 0;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 
@@ -347,7 +349,7 @@ input:checked + .button::before{
 }
 
 
-@media only screen and (max-width: 550px){
+@media only screen and (max-width: 500px){
     body{
         height: 100vh;
     }
@@ -361,7 +363,7 @@ input:checked + .button::before{
         padding: 8px;
         width: 100px;
         font-size: 0.8rem;
-        font-weight: 400px;
+        font-weight: 800px;
       }
     
       .timer {
@@ -370,7 +372,7 @@ input:checked + .button::before{
     
       .modal {
         font-size: 9px;
-        min-width: 50px;
+        width: 100px;
         height: 200px;
       }
       .start{
@@ -386,5 +388,13 @@ input:checked + .button::before{
       }
       .settings-container{
         font-size: 32px;
+      }
+
+      .timer-page{
+        font-size: 14px;
+      }
+
+      .clock{
+        width: 18px;
       }
  }

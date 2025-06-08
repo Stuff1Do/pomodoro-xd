@@ -338,9 +338,7 @@ startButton.addEventListener('click', () =>{
                     if(mainTimerClicked){
                         pomoCtr++;
                     }
-                    if(pomoCtr > 0){
-                        footer.textContent = `Pomodoros Completed: ${pomoCtr}!`;
-                    }
+                    
                     console.log(pomoCtr);
                     clearInterval(timeInterval);
                     maxTimer = 0;
@@ -443,4 +441,3 @@ longBreak.addEventListener('click', ()=>{
     startCurrentTimer(longBreakMinutes, startString, userInputLongBreakSeconds, whiteButton, stateLongBreak);
     stateColorController(longBreak, mainTimer, shortBreak);
 });
-
