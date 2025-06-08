@@ -17,31 +17,8 @@ body{
     flex-direction: column;
 }
 
-@media only screen and (max-width :800px){
-   body{
-       background-size: cover;
-   }
-   .content{
-        
-   }
-   .state{
-    color: black;
-    padding: 8px;
-    width: 100px;
-    height: auto;
-    font-size: 8px;
-    font-weight: 400;
-   }
-   .timer{
-    font-size: 85px;
-   }
-   .modal{
-        font-size: 39px;
-        min-width: 800px;
-        height: 800px;
-   }
 
-}
+
 
 
 .flex-container{
@@ -368,3 +345,46 @@ input:checked + .button::before{
     font-size: 15px;
 
 }
+
+
+@media only screen and (max-width: 550px){
+    body{
+        height: 100vh;
+    }
+    .content {
+        width: 80%;
+        max-width: 900px;
+      }
+    
+      .state {
+        color: black;
+        padding: 8px;
+        width: 100px;
+        font-size: 0.8rem;
+        font-weight: 400px;
+      }
+    
+      .timer {
+        font-size: 6rem;
+      }
+    
+      .modal {
+        font-size: 9px;
+        min-width: 50px;
+        height: 200px;
+      }
+      .start{
+        padding: 4px 8px;
+        font-size: 21px;
+        font-weight: 800;
+        width: 6.5rem;
+        height: auto;
+      }
+
+      .reset-container{
+        font-size: 32px;
+      }
+      .settings-container{
+        font-size: 32px;
+      }
+ }
