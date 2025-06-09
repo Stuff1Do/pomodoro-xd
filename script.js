@@ -12,7 +12,7 @@ const inputPomodoro = document.querySelector('#pomo-minutes');
 const inputShortBreak = document.querySelector('#short-minutes');
 const inputLongBreak = document.querySelector('#long-minutes');
 const submit = document.querySelector('.save-changes');
-const alertInvalid = document.querySelector('.invalid-input');
+const alertInvalid = document.querySelector('.show-invalid');
 const resetAll = document.querySelector('.reset-all');
 const closeMark = document.querySelector('.close-modal-mark');
 const timerSettings = document.querySelector('.timer-settings');
@@ -26,7 +26,10 @@ const inputSound = document.querySelector('#sound-options');
 const checkPomo = document.querySelector('#checkpomo');
 const checkAudio = document.querySelector('#checksound');
 const footer = document.querySelector('.footer');
+const invalidSave = document.querySelector('.invalid-save');
 modal.style.display = 'none';
+alertInvalid.style.display = 'none';
+invalidSave.style.margin = '0';
 const MAXIMUM_TIMER_DIGITS = 2;
 const CONVERSION_FACTOR = 60;
 
@@ -122,8 +125,10 @@ optionSettings.addEventListener('click', ()=>{
 submit.addEventListener('click', ()=>{
     if(!inputPomodoro.value || !inputShortBreak.value || !inputLongBreak.value || inputPomodoro.value == 0 || 
         inputShortBreak.value < 1 || inputLongBreak.value  < 1 ){
+        alertInvalid.style.display = 'block';
         alertInvalid.textContent = "invalid!"
         alertInvalid.style.color = "red";
+        
     }else{
         userInputPomodoro = inputPomodoro.value;
         userInputShortBreak = inputShortBreak.value;
@@ -182,8 +187,8 @@ submit.addEventListener('click', ()=>{
         userInputSound = inputSound.value;
         inputSelectSound = userInputSound;
         alertInvalid.textContent = '';
-
         modal.close();
+        modal.style.display = 'none';
     }
 
      
@@ -208,7 +213,7 @@ resetAll.addEventListener('click', ()=>{
     inputSelectBackground = userInputBackground;
     
     document.body.style.backgroundImage = `url(./images/${userInputBackground}.jpg)`;
-
+    alertInvalid.style.display = 'none';
     inputPomodoro.value = 25;
     inputShortBreak.value = 5;
     inputLongBreak.value = 10;
@@ -224,6 +229,7 @@ closeModal.addEventListener('click', ()=>{
 
     modal.close();
     modal.style.display = 'none';
+    alertInvalid.style.display = 'none';
 })
 closeMark.addEventListener('click', ()=>{
     inputPomodoro.value = inputFieldPomo;
@@ -232,6 +238,8 @@ closeMark.addEventListener('click', ()=>{
     inputSound.value = inputSelectSound;
 
     modal.close();
+    modal.style.display = 'none';
+    alertInvalid.style.display = 'none';
 })
 function calculateTimer(time){
     let totalMinutes = Math.floor(time / CONVERSION_FACTOR);
@@ -259,9 +267,11 @@ function stateColorController(currentTimer, timer1, timer2){
     currentTimer.style.color = "black";
 
     timer1.style.background = "transparent";
+    timer1.style.color = 'white';
     timer1.style.borderColor = "white";
 
     timer2.style.background = "transparent";
+    timer2.style.color = 'white';
     timer2.style.borderColor = "white";
 
 }

@@ -59,6 +59,13 @@ body{
     font-size: 16px;
     font-weight: 800;
 }
+
+.short-break{
+    color: white;
+}
+.long-break{
+    color: white;
+}
 .state:hover{
     background-color: white !important;
 }
@@ -292,6 +299,8 @@ input:checked + .button::before{
 .timer-footer{
     color: #9a9393;
     font-size:12px;
+    margin: 0;
+    
 }
 
 
@@ -307,7 +316,7 @@ input:checked + .button::before{
 
 .footer-right{
     display: flex;
-    margin: 0;  
+    
 }
 
 .footer-right-right{    
@@ -347,9 +356,26 @@ input:checked + .button::before{
     font-size: 15px;
 
 }
+.invalid-save{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
 
+.show-invalid{
+    margin-top: -20px;
+    margin-left: 32px;
+    font-size: 12px;
+}
 
-@media only screen and (max-width: 500px){
+.rect{
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+@media only screen and (max-width: 490px){
     body{
         height: 100vh;
     }
@@ -441,4 +467,6 @@ input:checked + .button::before{
     .footer-right-right{
         margin-right: 20px;
     }
+
+    
  }  
