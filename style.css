@@ -217,10 +217,10 @@ body{
     font-size: 15px;
 }
 #checkpomo{
-    opacity: 0;
+    display: none;
 }
 #checksound{
-    opacity: 0;
+    display: none;
 }
 .button{
     display: flex;
@@ -297,11 +297,11 @@ input:checked + .button::before{
 
 .modal-footer{
     display: flex;
+    justify-content: space-between;
 }
 
 .footer-left{
-    display: flex;  
-    margin-right: auto;
+    display: flex; 
     align-items: center;
 }
 
@@ -370,10 +370,27 @@ input:checked + .button::before{
         font-size: 6rem;
       }
     
-      .modal {
-        font-size: 9px;
-        width: 100px;
-        height: 200px;
+
+      .modal{
+        max-width: 320px;
+        min-height:180px;
+        display: flex;
+        flex-direction: column;
+      } 
+
+      .modal-body{
+        display: flex;
+        flex: 1;
+      }
+
+      .modal-footer{
+        display: flex;
+        
+
+      }
+      .modal-left{
+        min-width: 100px;
+        max-height: 40px;
       }
       .start{
         padding: 4px 8px;
@@ -382,7 +399,10 @@ input:checked + .button::before{
         width: 6.5rem;
         height: auto;
       }
-
+      .minutes{
+        width: 50px;
+        font-size: 15px;
+      }
       .reset-container{
         font-size: 32px;
       }
@@ -395,6 +415,30 @@ input:checked + .button::before{
       }
 
       .clock{
-        width: 18px;
+        font-size: 12px;
       }
- }
+
+      .reset-all{
+        padding: 6px 12px;  
+        font-size: 14px;
+    
+    
+    }
+    .close-modal{
+        padding: 6px 12px;
+        font-size: 14px;
+    
+    }
+
+    .close-modal-mark{
+        display: none;  
+    }
+    .save-changes{
+        padding: 6px 12px;
+        font-size: 14px;
+    
+    }
+    .footer-right-right{
+        margin-right: 20px;
+    }
+ }  

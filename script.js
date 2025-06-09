@@ -26,7 +26,7 @@ const inputSound = document.querySelector('#sound-options');
 const checkPomo = document.querySelector('#checkpomo');
 const checkAudio = document.querySelector('#checksound');
 const footer = document.querySelector('.footer');
-
+modal.style.display = 'none';
 const MAXIMUM_TIMER_DIGITS = 2;
 const CONVERSION_FACTOR = 60;
 
@@ -223,6 +223,7 @@ closeModal.addEventListener('click', ()=>{
 
 
     modal.close();
+    modal.style.display = 'none';
 })
 closeMark.addEventListener('click', ()=>{
     inputPomodoro.value = inputFieldPomo;
@@ -414,7 +415,7 @@ function stateTimer(minutes, seconds) {
 document.addEventListener('click', (e)=>{
     if(e.target.closest('.settings-container')){
         modal.showModal();
-        
+        modal.style.display = 'flex';
     }
 })
 
