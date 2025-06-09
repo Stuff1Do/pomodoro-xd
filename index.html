@@ -12,30 +12,26 @@
     <title>studyxd</title>
 </head>
 <body>
-    <div class="header">
-        <div class="logo"></div>
-    </div>
-    <div class="content">
-        <div class="options">
-            <button class="state pomodoro" type="button">pomodoro</button>
-            <button class="state short-break" type="button">short break</button>
-            <button class="state long-break" type="button">long break</button>
-        </div>
-        <div class="timer"></div>
-        <div class="activity-bar">
-            <button class="start" id="start" type="button">start</button>
-            <div class="activity-right">
-                <button class="reset-container"><i class="fa-sharp fa-solid fa-rotate-right"></i></button>
-                <button class="settings-container"><i class="fa-solid fa-gear"></i></div>
+    <div class="flex-container">
+        <div class="content">
+            <div class="options">
+                <button class="state pomodoro" type="button">pomodoro</button>
+                <button class="state short-break" type="button">short break</button>
+                <button class="state long-break" type="button">long break</button>
+            </div>
+            <div class="timer"></div>
+            <div class="activity-bar">
+                <button class="start" id="start" type="button">start</button>
+                <div class="activity-right">
+                    <button class="reset-container"><i class="fa-sharp fa-solid fa-rotate-right"></i></button>
+                    <button class="settings-container"><i class="fa-solid fa-gear"></i></buttons>
+                </div>
             </div>
         </div>
     </div>
-    <div class="footer"></div>
     <dialog id="modal" class="modal">
         <div class="modal-inner">
             <div class="modal-left">
-                <div class="modal-header">
-                 </div>
                  <div class="modal-body">
                       <div class="sidebar">
                          <p class="timer-settings">Timer</p>
@@ -44,18 +40,18 @@
                       </div>
                       <div class="main-settings">
                          <div class="timer-page">
-                             <div class="timer-left">
-                                 <p class="pomo-header">Pomodoro</p>
+                             <div class="timer-left rect">
+                                 <p class="pomo-header clock">Pomodoro</p>
                                  <input id = "pomo-minutes"class="pomo minutes"type="number" value="25">
                                  <p class="timer-footer">minutes</p>
                              </div>
-                             <div class="timer-center">
-                                 <p class="short-header">Short Break</p>
+                             <div class="timer-center rect">
+                                 <p class="short-header clock">Short Break</p>
                                  <input id="short-minutes" type="number" class="short minutes" value="5">
                                  <p class="timer-footer">minutes</p>
                              </div>
-                             <div class="timer-right">
-                                 <p class="long-header">Long Break</p>
+                             <div class="timer-right rect">
+                                 <p class="long-header clock">Long Break</p>
                                  <input id="long-minutes"type="number" class="long minutes" value="10">
                                  <p class="timer-footer">minutes</p>
                              </div> 
@@ -64,23 +60,23 @@
                             <div class="background-display">
                                 <label class = "bg-label"for="bg-options">Select background:</label>
                                 <select name="backgrounds" id="bg-options" class="bg-options">
-                                    <option value="ghibli" class="ghibli">ghibli</option>
-                                    <option value="cats">cats</option>
-                                    <option value="cat2">cats2</option>
-                                    <option value="cat3">cat3</option>
-                                    <option value="cabin">cabin</option>    
-                                    <option value="spiritedaway">spirited away</option>
-                                    <option value="totoro">totoro</option>
-                                    <option value="totoro">totoro2</option>
-                                    <option value="firewatch">firewatch</option>
-                                    <option value="firewatchsunset">firewatch sunset</option>
+                                    <option value="ghibli" class="ghibli">Ghibli</option>
+                                    <option value="cats">Cats</option>
+                                    <option value="cat2">Cats2</option>
+                                    <option value="cat3">Cat3</option>
+                                    <option value="cabin">Cabin</option>    
+                                    <option value="spiritedaway">8-bit Spirited Away</option>
+                                    <option value="totoro">Totoro</option>
+                                    <option value="totoro">Totoro2</option>
+                                    <option value="firewatch">Firewatch</option>
+                                    <option value="firewatchsunset">Firewatch Sunset</option>
                                 </select>
                             </div>
                             <div class="sound-display">
                                 <label for="sound-options">Select sound:</label>
                                 <select name="sounds" id="sound-options" class="sound-options">
-                                    <option value="bellsound">bell</option>
-                                    <option value="lofi">lofi</option>  
+                                    <option value="bellsound">Bell</option>
+                                    <option value="lofi">Lofi</option>  
                                 </select>
                             </div>     
                           </div>
@@ -105,11 +101,11 @@
                      <div class="footer-right">
                         <div class="footer-right-right">
                             <button class="close-modal">close</button>
-                            <button class="save-changes">save changes</button> 
-                        </div>
-                        <div class="footer-right-left">
-                            <p class="invalid-input"></p>
-                        </div>                          
+                            <div class="invalid-save">
+                                <label for="save-changes" class="show-invalid">invalid!</label>
+                                <button class="save-changes">save changes</button> 
+                            </div>
+                        </div>                         
                      </div>
                  </div>  
             </div>
