@@ -124,7 +124,9 @@ optionSettings.addEventListener('click', ()=>{
 
 submit.addEventListener('click', ()=>{
     if(!inputPomodoro.value || !inputShortBreak.value || !inputLongBreak.value || inputPomodoro.value == 0 || 
-        inputShortBreak.value < 1 || inputLongBreak.value  < 1 ){
+        inputShortBreak.value < 1 || inputLongBreak.value  < 1 || inputPomodoro.value % 1 != 0  ||  inputShortBreak.value % 1 != 0 
+        ||  inputLongBreak.value % 1 != 0 || inputPomodoro.value > 300  ||  inputShortBreak.value > 300
+        ||  inputLongBreak.value > 300){
         alertInvalid.style.display = 'block';
         alertInvalid.textContent = "invalid!"
         alertInvalid.style.color = "red";
