@@ -365,7 +365,7 @@ input:checked + .button::before{
 .show-invalid{
     margin-top: -20px;
     margin-left: 32px;
-    font-size: 12px;
+    font-size: 17px;
 }
 
 .rect{
@@ -375,6 +375,112 @@ input:checked + .button::before{
     gap: 4px;
 }
 
+.header-taskbar{
+    display: flex;
+   justify-content: center; 
+}
+
+.minimize-expand{
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+    font-size: 16px;
+}
+
+.taskbar-container{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #ebe8e8;
+    padding: 8px;
+    margin-top: 8px;
+    margin-left: 8px;
+    border-radius: 8px;
+    resize: both;
+    overflow: auto;
+    min-width: 170px;
+    min-height: 110px;
+    max-width: 362px;
+    max-height: 500px;
+    opacity: 0.7;
+    overflow: hidden;
+}
+
+.taskbar-container:hover{
+    opacity: 1;
+
+    .list{
+        font-size: 15px;
+    }
+
+    .to-do-label{
+        font-size: 14px;
+    }
+}
+.to-do-label{
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-size: 12px;
+}
+
+
+.list-task{
+    margin-top: -5px;
+    height: 30px;
+    
+    
+}
+
+.garbage{
+    
+}
+.todo-task{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    gap: 7px;
+}
+
+.list{
+    display: flex;
+    background-color: lightgray;
+    border-radius: 8px;
+    padding: 4px;
+    margin: 0; 
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.list-item{
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+.add-task-container{
+    display: flex;
+    gap: 5px;
+}
+
+.input-task{
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+    border: 0px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    resize: none;
+    width: 100%;
+    height: 24px;
+    
+}
+
+.fa-plus{
+    background-color: #70fd0a;
+    border-radius: 20px;
+    padding: 6px;
+}
 @media only screen and (max-width: 490px){
     body{
         height: 100vh;
@@ -468,4 +574,15 @@ input:checked + .button::before{
     }
 
     
+    .taskbar-container{
+        align-self: center;
+        margin-left: 0;
+        min-width: 160px;
+        max-width: 240px;
+        min-height: 100px;
+        max-height: 300px;
+        font-size: 14px;
+    }
+    
+
  }  
