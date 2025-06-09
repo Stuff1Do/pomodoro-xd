@@ -67,7 +67,7 @@ body{
     color: white;
 }
 .state:hover{
-    background-color: white !important;
+    background-color: #fbfafa !important;
 }
 
 .pomodoro{
@@ -385,7 +385,6 @@ input:checked + .button::before{
       }
     
       .state {
-        color: black;
         padding: 8px;
         width: 100px;
         font-size: 0.8rem;
