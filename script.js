@@ -194,7 +194,6 @@ let inputSelectBackground = defaultBackgroundImage;
 let inputSelectPhoneBackground = defaultPhoneBackground;
 let inputSelectSound = defaultSound;
 
-console.log(userInputPhoneBackground);
 function convertToString(num){    
     return `${num}:00`;
 }
