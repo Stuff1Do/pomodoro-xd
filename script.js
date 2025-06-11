@@ -35,7 +35,6 @@ const minimizeButton = document.querySelector('.minimize-button');
 const listContainer = document.querySelector('.list-task');
 const listHolder = document.querySelector('.todo-task');
 const expandButton = document.querySelector('.expand-button');
-const individualList = document.querySelector('.list');
 const addTask = document.querySelector('.add-task');
 const garbageIcon = document.querySelector('.garbage');
 const taskBarLabel = document.querySelector('.to-do-label');
@@ -48,14 +47,6 @@ minimizeButton.addEventListener('click', ()=>{
 
 })
 
-expandButton.addEventListener('click', ()=>{
-    addTaskContainer.style.display = 'flex';
-    listContainer.style.display = 'flex';
-    taskContainer.style.minHeight = '110px';
-    taskBarLabel.style.fontSize = '12px';
-    individualList.style.justifyContent = 'space-between';
-    console.log(individualList.style.justifyContent);
-})
 
 addTask.addEventListener('click', ()=>{
     if(inputArea.textContent = ''){
@@ -70,7 +61,6 @@ addTask.addEventListener('click', ()=>{
         icon.classList.add('fa-solid', 'fa-trash-can');
         div.classList.add('garbage');
         span.textContent = inputArea.value;
-        
         list.appendChild(span);
         div.appendChild(icon);
         list.appendChild(div);
@@ -82,6 +72,15 @@ addTask.addEventListener('click', ()=>{
         list.addEventListener('click', ()=>{
             span.style.textDecoration = 'line-through';
         })
+
+        expandButton.addEventListener('click', ()=>{
+            addTaskContainer.style.display = 'flex';
+            listContainer.style.display = 'flex';
+            taskContainer.style.minHeight = '110px';
+            taskBarLabel.style.fontSize = '12px';
+            list.style.width = '167px';
+            taskContainer.style.minHeight = '91px';
+        })
     }
 })
 
@@ -92,10 +91,28 @@ inputArea.addEventListener('keydown', (e)=>{
     }
 });
 
+let offsetX;
+let offsetY;
+
+const move = (e) =>{  
+  const x = e.clientX - offsetX;
+  const y = e.clientY - offsetY;
+  taskContainer.style.left = `${x}px`;
+  taskContainer.style.top = `${y}px`;
+}
 
 
+taskBarLabel.addEventListener('mousedown',(e)=>{
+    e.preventDefault();
+    offsetX = e.clientX - taskContainer.offsetLeft;
+    offsetY = e.clientY - taskContainer.offsetTop;
+    document.addEventListener('mousemove', move);
+});
 
 
+document.addEventListener('mouseup', ()=>{
+    document.removeEventListener('mousemove', move);
+});
 
 modal.style.display = 'none';
 alertInvalid.style.display = 'none';

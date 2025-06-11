@@ -426,6 +426,7 @@ input:checked + .button::before{
     justify-content: center;
     color: black;
     font-size: 12px;
+    cursor: grab;
 }
 
 
@@ -450,6 +451,7 @@ input:checked + .button::before{
     margin: 0; 
     justify-content: space-between;
     font-size: 12px;
+    width: 167px;
     
 }
 
