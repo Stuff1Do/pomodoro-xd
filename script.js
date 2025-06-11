@@ -38,20 +38,23 @@ const expandButton = document.querySelector('.expand-button');
 const individualList = document.querySelector('.list');
 const addTask = document.querySelector('.add-task');
 const garbageIcon = document.querySelector('.garbage');
+const taskBarLabel = document.querySelector('.to-do-label');
 
 minimizeButton.addEventListener('click', ()=>{
     addTaskContainer.style.display = 'none';
     listContainer.style.display = 'none';
     taskContainer.style.minHeight = '22px';
+    taskBarLabel.style.fontSize = '14px';
 
 })
 
 expandButton.addEventListener('click', ()=>{
     addTaskContainer.style.display = 'flex';
     listContainer.style.display = 'flex';
-    individualList.style.display = 'flex';
-    individualList.style.justifyContent = 'space-between';
     taskContainer.style.minHeight = '110px';
+    taskBarLabel.style.fontSize = '12px';
+    individualList.style.justifyContent = 'space-between';
+    console.log(individualList.style.justifyContent);
 })
 
 addTask.addEventListener('click', ()=>{
