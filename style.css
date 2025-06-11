@@ -451,7 +451,8 @@ input:checked + .button::before{
     margin: 0; 
     justify-content: space-between;
     font-size: 12px;
-    width: 167px;
+    min-width: 167px;
+    max-width: 362px;
     
 }
 

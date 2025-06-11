@@ -44,13 +44,22 @@ minimizeButton.addEventListener('click', ()=>{
     listContainer.style.display = 'none';
     taskContainer.style.minHeight = '22px';
     taskBarLabel.style.fontSize = '14px';
-
-})
-
-
+    taskContainer.style.resize = 'none';
+    
+});
+let expandFunctionality = function(){
+    addTaskContainer.style.display = 'flex';
+    listContainer.style.display = 'flex';
+    taskContainer.style.minHeight = '110px';
+    taskBarLabel.style.fontSize = '12px';
+    taskContainer.style.minHeight = '91px';
+    taskContainer.style.resize = 'both';
+}
+expandButton.addEventListener('click', expandFunctionality);
 addTask.addEventListener('click', ()=>{
-    if(inputArea.textContent = ''){
+    if(inputArea.value === ''){
         inputArea.focus();
+        return;
     }else{
         const list = document.createElement('li');
         const span = document.createElement('span');
@@ -66,21 +75,17 @@ addTask.addEventListener('click', ()=>{
         list.appendChild(div);
         listHolder.appendChild(list);
         inputArea.value = '';
+        console.log(span);
         div.addEventListener('click', ()=>{
             listHolder.removeChild(list);
         });
         list.addEventListener('click', ()=>{
             span.style.textDecoration = 'line-through';
         })
-
-        expandButton.addEventListener('click', ()=>{
-            addTaskContainer.style.display = 'flex';
-            listContainer.style.display = 'flex';
-            taskContainer.style.minHeight = '110px';
-            taskBarLabel.style.fontSize = '12px';
-            list.style.width = '167px';
-            taskContainer.style.minHeight = '91px';
-        })
+        list.style.minWidth = '167px';
+        list.style.maxWidth = '362px';
+        expandButton.removeEventListener('click', expandFunctionality);
+        expandButton.addEventListener('click', expandFunctionality);
     }
 })
 
