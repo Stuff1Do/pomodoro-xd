@@ -494,6 +494,16 @@ span{
     padding: 6px;
     font-size: 11px;
 }
+.footer-bar{
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+}
+.fa-right-to-bracket{
+    font-size: 35px;
+    color: white;
+}
+
 @media only screen and (max-width: 490px){
     body{
         height: 100vh;

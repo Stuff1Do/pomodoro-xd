@@ -43,7 +43,7 @@ const inputPhoneBackground = document.querySelector('.phone-bg-options');
 minimizeButton.addEventListener('click', ()=>{
     addTaskContainer.style.display = 'none';
     listContainer.style.display = 'none';
-    taskContainer.style.minHeight = '16px';
+    taskContainer.style.minHeight = '12px';
     taskBarLabel.style.fontSize = '14px';
     taskContainer.style.resize = 'none';
     
