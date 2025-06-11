@@ -37,6 +37,7 @@ const listHolder = document.querySelector('.todo-task');
 const expandButton = document.querySelector('.expand-button');
 const individualList = document.querySelector('.list');
 const addTask = document.querySelector('.add-task');
+const garbageIcon = document.querySelector('.garbage');
 
 minimizeButton.addEventListener('click', ()=>{
     addTaskContainer.style.display = 'none';
@@ -64,6 +65,7 @@ addTask.addEventListener('click', ()=>{
         
         list.classList.add('list');
         icon.classList.add('fa-solid', 'fa-trash-can');
+        div.classList.add('garbage');
         span.textContent = inputArea.value;
         
         list.appendChild(span);
@@ -71,7 +73,12 @@ addTask.addEventListener('click', ()=>{
         list.appendChild(div);
         listHolder.appendChild(list);
         inputArea.value = '';
-        
+        div.addEventListener('click', ()=>{
+            listHolder.removeChild(list);
+        });
+        list.addEventListener('click', ()=>{
+            span.style.textDecoration = 'line-through';
+        })
     }
 })
 
@@ -81,6 +88,7 @@ inputArea.addEventListener('keydown', (e)=>{
         addTask.click();
     }
 });
+
 
 
 
