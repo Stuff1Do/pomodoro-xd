@@ -59,9 +59,16 @@ addTask.addEventListener('click', ()=>{
     }else{
         const list = document.createElement('li');
         const span = document.createElement('span');
+        const icon = document.createElement('i');
+        const div = document.createElement('div');
+        
         list.classList.add('list');
+        icon.classList.add('fa-solid', 'fa-trash-can');
         span.textContent = inputArea.value;
+        
         list.appendChild(span);
+        div.appendChild(icon);
+        list.appendChild(div);
         listHolder.appendChild(list);
         inputArea.value = '';
         
