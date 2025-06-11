@@ -398,11 +398,12 @@ input:checked + .button::before{
     margin-left: 8px;
     border-radius: 8px;
     resize: both;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-color: red;
     scrollbar-width: thin;
-    min-width: 170px;
-    min-height: 93px;
+    min-width: 196px;
+    min-height: 96px;
     max-width: 362px;
     max-height: 500px;
     opacity: 0.7;
@@ -413,13 +414,6 @@ input:checked + .button::before{
 }
 .taskbar-container:hover{
     opacity: 1;
-
-    .list{
-        font-size: 15px;
-    }
-    .to-do-label{
-        font-size: 14px !important;
-    }
 }
 .to-do-label{
     display: flex;
@@ -455,7 +449,17 @@ input:checked + .button::before{
     max-width: 362px;
     
 }
+span{
+    display: block;
+    overflow-wrap: break-word;
+    max-width: 362px;
+    min-width: 175px;
+}
 
+.fa-trash-can{
+    display: flex;
+    justify-content: flex-end;
+}
 .list-item{
     overflow-wrap: break-word;
     white-space: normal;
@@ -481,6 +485,7 @@ input:checked + .button::before{
     background-color: #70fd0a;
     border-radius: 20px;
     padding: 6px;
+    font-size: 11px;
 }
 @media only screen and (max-width: 490px){
     body{

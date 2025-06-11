@@ -42,7 +42,7 @@ const taskBarLabel = document.querySelector('.to-do-label');
 minimizeButton.addEventListener('click', ()=>{
     addTaskContainer.style.display = 'none';
     listContainer.style.display = 'none';
-    taskContainer.style.minHeight = '22px';
+    taskContainer.style.minHeight = '16px';
     taskBarLabel.style.fontSize = '14px';
     taskContainer.style.resize = 'none';
     
