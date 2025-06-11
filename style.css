@@ -271,6 +271,13 @@ input:checked + .button::before{
     gap: 4px;
 }
 
+.phone-bg-display{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    display: none;
+}
+
 .sound-display{
     display: flex;
     flex-direction: column;
@@ -392,7 +399,7 @@ input:checked + .button::before{
     display: flex;
     flex-direction: column;
     gap: 5px;
-    background-color: #ebe8e8;
+    background-color: white;
     padding: 8px;
     margin-top: 8px;
     margin-left: 8px;
@@ -491,7 +498,7 @@ span{
     body{
         height: 100vh;
     }
-    .content {
+    .content { 
         width: 80%;
         max-width: 900px;
       }
@@ -589,6 +596,25 @@ span{
         max-height: 300px;
         font-size: 14px;
     }
-    
 
+    .phone-bg-display{
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .display{
+        font-size: 12px;
+    }
+
+    .bg-options{
+        font-size: 12px;
+        width: 200px;
+    }
+
+    .display-page{
+        gap: 6px;
+    }
+    
+           
  }  
