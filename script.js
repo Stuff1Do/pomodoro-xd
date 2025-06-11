@@ -100,8 +100,18 @@ let offsetX;
 let offsetY;
 
 const move = (e) =>{  
+  const containerRect = taskContainer.getBoundingClientRect();
+  const parentWidth = window.innerWidth;
+  const parentHeight = window.innerHeight;
   const x = e.clientX - offsetX;
   const y = e.clientY - offsetY;
+  if(x < -20) x = 0;
+  if(y < -20) y = 0;
+  const maxX = parentWidth - containerRect.width;
+  const maxY = parentHeight - containerRect.height;
+
+  if(x > maxX+30) x = maxX;
+  if(y > maxY+30) y = maxY;
   taskContainer.style.left = `${x}px`;
   taskContainer.style.top = `${y}px`;
 }
