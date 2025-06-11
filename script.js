@@ -27,6 +27,58 @@ const checkPomo = document.querySelector('#checkpomo');
 const checkAudio = document.querySelector('#checksound');
 const footer = document.querySelector('.footer');
 const invalidSave = document.querySelector('.invalid-save');
+const taskContainer  = document.querySelector('.taskbar-container');
+const headerTaskbar = document.querySelector('.header-taskbar');
+const addTaskContainer = document.querySelector('.add-task-container');
+const inputArea = document.querySelector('#input-area');
+const minimizeButton = document.querySelector('.minimize-button');
+const listContainer = document.querySelector('.list-task');
+const listHolder = document.querySelector('.todo-task');
+const expandButton = document.querySelector('.expand-button');
+const individualList = document.querySelector('.list');
+const addTask = document.querySelector('.add-task');
+
+minimizeButton.addEventListener('click', ()=>{
+    addTaskContainer.style.display = 'none';
+    listContainer.style.display = 'none';
+    taskContainer.style.minHeight = '22px';
+
+})
+
+expandButton.addEventListener('click', ()=>{
+    addTaskContainer.style.display = 'flex';
+    listContainer.style.display = 'flex';
+    individualList.style.display = 'flex';
+    individualList.style.justifyContent = 'space-between';
+    taskContainer.style.minHeight = '110px';
+})
+
+addTask.addEventListener('click', ()=>{
+    if(inputArea.textContent = ''){
+        inputArea.focus();
+    }else{
+        const list = document.createElement('li');
+        const span = document.createElement('span');
+        list.classList.add('list');
+        span.textContent = inputArea.value;
+        list.appendChild(span);
+        listHolder.appendChild(list);
+        inputArea.value = '';
+        
+    }
+})
+
+inputArea.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' && !e.shiftKey){
+        e.preventDefault();
+        addTask.click();
+    }
+});
+
+
+
+
+
 modal.style.display = 'none';
 alertInvalid.style.display = 'none';
 invalidSave.style.margin = '0';
@@ -324,6 +376,15 @@ function startCurrentTimer(minutes, buttonstring, seconds, color, nowstate){
     maxTimer = seconds;
     currentState = nowstate;
 }
+
+//if(e.target.tagName != 'BUTTON') return;
+//const value = e.target.getAttribute('data-value');
+
+
+
+
+
+
 
 
 let pomoCtr = 0;
