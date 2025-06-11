@@ -38,6 +38,7 @@ const expandButton = document.querySelector('.expand-button');
 const addTask = document.querySelector('.add-task');
 const garbageIcon = document.querySelector('.garbage');
 const taskBarLabel = document.querySelector('.to-do-label');
+const inputPhoneBackground = document.querySelector('.phone-bg-options');
 
 minimizeButton.addEventListener('click', ()=>{
     addTaskContainer.style.display = 'none';
@@ -145,6 +146,7 @@ const defaultInputFieldPomodoro = 25;
 const defaultInputFieldShort = 5;
 const defaultInputFieldLong = 10;
 const defaultBackgroundImage = 'ghibli';
+const defaultPhoneBackground = 'none';
 const defaultSound = 'bellsound';
 const startString = "start";
 const pauseString = "pause";
@@ -158,6 +160,7 @@ let userInputPomodoro = inputPomodoro.value;
 let userInputShortBreak = inputShortBreak.value;
 let userInputLongBreak = inputLongBreak.value;
 let userInputBackground = inputBackground.value;
+let userInputPhoneBackground = inputPhoneBackground.value;
 let userInputSound = inputSound.value;
 let isCheckedAudio = checkAudio.checked;
 let isCheckedPomo = checkPomo.checked;
@@ -188,9 +191,10 @@ let inputFieldPomo = defaultInputFieldPomodoro;
 let inputFieldShort = defaultInputFieldShort;
 let inputFieldLong = defaultInputFieldLong;
 let inputSelectBackground = defaultBackgroundImage;
+let inputSelectPhoneBackground = defaultPhoneBackground;
 let inputSelectSound = defaultSound;
 
-
+console.log(userInputPhoneBackground);
 function convertToString(num){    
     return `${num}:00`;
 }
@@ -238,6 +242,7 @@ submit.addEventListener('click', ()=>{
         userInputShortBreak = inputShortBreak.value;
         userInputLongBreak = inputLongBreak.value;
         userInputBackground = inputBackground.value;
+        userInputPhoneBackground = inputPhoneBackground.value;
     
         userInputPomodoroSeconds = userInputPomodoro * 60;
         userInputShortBreakSeconds = userInputShortBreak * 60;
@@ -303,6 +308,18 @@ inputBackground.addEventListener('change', ()=>{
     document.body.style.backgroundImage = `url(./images/${userInputBackground}.jpg)`;
 });
 
+inputPhoneBackground.addEventListener('change', ()=>{
+    userInputPhoneBackground = inputPhoneBackground.value;
+    inputSelectPhoneBackground = userInputPhoneBackground;
+    if(userInputPhoneBackground === 'none'){
+        document.body.style.backgroundImage = `url(./images/${userInputBackground}.jpg)`;
+    }else{
+        document.body.style.backgroundImage = `url(./images/${userInputPhoneBackground}.jpg)`;
+    }
+    
+})
+
+
 resetAll.addEventListener('click', ()=>{
     shortBreakSeconds = defaultShortBreakSeconds;
     longBreakSeconds = defaultLongBreakSeconds;
@@ -312,11 +329,15 @@ resetAll.addEventListener('click', ()=>{
     pomodoroMinutes = defaultPomodoroString;
     shortBreakMinutes = defaultShortBreakString;
     longBreakMinutes = defaultLongBreakString;
-    inputBackground.value = defaultBackgroundImage  ;   
+    inputBackground.value = defaultBackgroundImage;
+    inputPhoneBackground.value = defaultPhoneBackground;   
     userInputBackground = defaultBackgroundImage;
+    userInputPhoneBackground = defaultPhoneBackground;
     inputSelectBackground = userInputBackground;
+    inputSelectPhoneBackground =userInputPhoneBackground;
     
     document.body.style.backgroundImage = `url(./images/${userInputBackground}.jpg)`;
+
     alertInvalid.style.display = 'none';
     inputPomodoro.value = 25;
     inputShortBreak.value = 5;
@@ -426,11 +447,6 @@ function startCurrentTimer(minutes, buttonstring, seconds, color, nowstate){
     maxTimer = seconds;
     currentState = nowstate;
 }
-
-//if(e.target.tagName != 'BUTTON') return;
-//const value = e.target.getAttribute('data-value');
-
-
 
 
 
