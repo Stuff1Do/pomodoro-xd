@@ -570,7 +570,139 @@ span{
     justify-content: flex-end;
     align-items: flex-start;
 }
-@media only screen and (max-width: 490px){
+
+
+@media only screen and (max-width: 400px){
+    body{
+        height: 100vh;
+    }
+    .content { 
+        width: 80%;
+        max-width: 900px;
+      }
+    
+      .state {
+        padding: 6px;
+        width: 92px;
+        font-size: 0.8rem;
+        font-weight: 800px;
+      }
+    
+      .timer {
+        font-size: 4.4rem;
+      }
+    
+
+      .modal{
+        max-width: 320px;
+        min-height:180px;
+        display: flex;
+        flex-direction: column;
+      } 
+
+      .modal-body{
+        display: flex;
+        flex: 1;
+      }
+
+      .modal-footer{
+        display: flex;
+        
+
+      }
+      .modal-left{
+        min-width: 100px;
+        max-height: 40px;
+      }
+      .start{
+        padding: 3px 6px;
+        font-size: 16px;
+        font-weight: 800;
+        width: 4.7rem;
+        height: auto;
+      }
+      .minutes{
+        width: 50px;
+        font-size: 15px;
+      }
+      .reset-container{
+        font-size: 32px;
+        padding: 0;
+      }
+      .settings-container{
+        font-size: 32px;
+      }
+
+      .timer-page{
+        font-size: 14px;
+      }
+
+      .clock{
+        font-size: 12px;
+      }
+
+      .reset-all{
+        padding: 6px 12px;  
+        font-size: 14px;
+    
+    
+    }
+    .close-modal{
+        padding: 6px 12px;
+        font-size: 14px;
+    
+    }
+
+    .close-modal-mark{
+        display: none;  
+    }
+    .save-changes{
+        padding: 6px 12px;
+        font-size: 14px;
+    
+    }
+    .footer-right-right{
+        margin-right: 20px;
+    }
+
+    
+    .taskbar-container{
+        margin-left: 0;
+        min-width: 196px;
+        max-width: 240px;
+        min-height: 115px;
+        max-height: 300px;
+        font-size: 14px;
+    }
+
+    .phone-bg-display{
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .display{
+        font-size: 12px;
+    }
+
+    .bg-options{
+        font-size: 12px;
+        width: 200px;
+    }
+
+    .display-page{
+        gap: 6px;
+    }
+    .activity-left{
+        display: none;
+    }
+
+    .footer-bar{
+        display: none;
+    }
+
+}
+@media only screen and (max-width: 490px) and (min-width: 401px){
     body{
         height: 100vh;
     }
@@ -666,9 +798,9 @@ span{
     
     .taskbar-container{
         margin-left: 0;
-        min-width: 160px;
+        min-width: 196px;
         max-width: 240px;
-        min-height: 100px;
+        min-height: 115px;
         max-height: 300px;
         font-size: 14px;
     }
@@ -699,3 +831,4 @@ span{
         display: none;
     }
 }  
+
