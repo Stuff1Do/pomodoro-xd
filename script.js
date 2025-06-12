@@ -47,7 +47,9 @@ const activityLeft = document.querySelector('.activity-left');
 const activityRight = document.querySelector('.activity-right');
 
 pipButton.addEventListener('click', async()=>{  
-
+    if(minimized){
+        return;     
+    }
     const pipWindow = await documentPictureInPicture.requestWindow();
 
     [...document.styleSheets].forEach((styleSheet) => {
@@ -135,12 +137,20 @@ inputArea.addEventListener('keydown', (e)=>{
     }
 });
 
-
+let minimized = false;
 minimizeContentButton.addEventListener('click', ()=>{
+    minimized = true;
     const displayState = document.createElement('div');
-    displayState.textContent = `${currentState}`;
-
-    content.appendChild(displayState);  
+    if(currentState === stateMainTimer){
+        displayState.textContent = 'Focus';
+    }else if(currentState == stateShortBreak){
+        displayState.textContent = 'Short Break';
+    }else{
+        displayState.textContent = 'Long Break';
+    }
+    
+    displayState.style.color = 'white';
+    stateButtons.appendChild(displayState);  
     content.style.maxWidth = '200px';
     content.style.background = 'rgba(0,0,0,.3)';
     content.style.backdropFilter = 'blur(7px)';
@@ -149,18 +159,19 @@ minimizeContentButton.addEventListener('click', ()=>{
     minimizeContentButton.style.fontSize = '12px';
     activityLeft.style.width = '27px';  
     activityRight.style.width = '27px';
+    resetContainer.style.marginLeft = '-5px';
     resetContainer.style.fontSize = '27px'; 
     resetContainer.style.gap = '12px';
     resetContainer.style.padding = '0px';   
-    stateButtons.style.display = 'none';
-    settingsContainer.style.display = 'none';    
+    mainTimer.style.display = 'none';    
+    shortBreak.style.display = 'none';
+    longBreak.style.display = 'none';    
+    settingsContainer.style.display = 'none';
     startButton.style.fontSize = '1.2rem';
-    startButton.style.textAlign = 'center';
     startButton.style.padding = '8px 15px'; 
     startButton.style.width = '70px';
     timer.style.fontSize = '4.25rem';
     content.style.minHeight = '100px';
-    content.style.dispay = 'block';
     content.style.flex = '0';
 
 })
