@@ -84,18 +84,27 @@ pipButton.addEventListener('click', async()=>{
 minimizeButton.addEventListener('click', ()=>{
     addTaskContainer.style.display = 'none';
     listContainer.style.display = 'none';
-    taskContainer.style.minHeight = '12px';
+    taskContainer.style.minWidth = '150px';
+    taskContainer.style.minHeight = '5px';
+    taskContainer.style.maxWidth = '10px';
+    taskContainer.style.maxHeight = '15px'
     taskBarLabel.style.fontSize = '14px';
     taskContainer.style.resize = 'none';
+    taskContainer.style.overflow = 'hidden';
     
 });
 let expandFunctionality = function(){
-    addTaskContainer.style.display = 'flex';
-    listContainer.style.display = 'flex';
-    taskContainer.style.minHeight = '110px';
+    addTaskContainer.style.display = '';
+    listContainer.style.display = '';
     taskBarLabel.style.fontSize = '12px';
-    taskContainer.style.minHeight = '91px';
+    taskContainer.style.minHeight = '115px';
+    taskContainer.style.minWidth = '196px';
+    taskContainer.style.maxWidth = '362px';
+    taskContainer.style.maxHeight = '500px';
     taskContainer.style.resize = 'both';
+    taskContainer.style.overflowY = 'auto';
+    taskContainer.style.overflowX = 'hidden';
+
 }
 expandButton.addEventListener('click', expandFunctionality);
 addTask.addEventListener('click', ()=>{
