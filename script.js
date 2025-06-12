@@ -150,7 +150,6 @@ inputArea.addEventListener('keydown', (e)=>{
 let minimized = false;
 let displayState = null;
 minimizeContentButton.addEventListener('click', ()=>{
-    console.log(minimized);
     
     if(minimized){
        
