@@ -45,6 +45,7 @@ const content = document.querySelector('.content');
 const stateButtons = document.querySelector('.options');
 const activityLeft = document.querySelector('.activity-left');
 const activityRight = document.querySelector('.activity-right');
+const flexContainer  = document.querySelector('.flex-container');
 
 pipButton.addEventListener('click', async()=>{  
     if(minimized){
@@ -138,42 +139,84 @@ inputArea.addEventListener('keydown', (e)=>{
 });
 
 let minimized = false;
+let displayState = null;
 minimizeContentButton.addEventListener('click', ()=>{
-    minimized = true;
-    const displayState = document.createElement('div');
-    if(currentState === stateMainTimer){
-        displayState.textContent = 'Focus';
-    }else if(currentState == stateShortBreak){
-        displayState.textContent = 'Short Break';
-    }else{
-        displayState.textContent = 'Long Break';
+    console.log(minimized);
+    
+    if(minimized){
+       
+        stateButtons.removeChild(displayState); 
+        content.style.maxWidth = '';
+        content.style.background = '';
+        content.style.backdropFilter = '';
+        content.style.padding = '';
+        content.style.borderRadius = '';  
+        minimizeContentButton.style.fontSize = '';
+        activityLeft.style.width = '';  
+        activityRight.style.width = '';
+        resetContainer.style.marginLeft = '';
+        resetContainer.style.fontSize = ''; 
+        resetContainer.style.gap = '';
+        resetContainer.style.padding = '';   
+        mainTimer.style.display = '';    
+        shortBreak.style.display = '';
+        longBreak.style.display = '';    
+        settingsContainer.style.display = '';
+        startButton.style.fontSize = '';
+        startButton.style.padding = ''; 
+        startButton.style.width = '';
+        timer.style.fontSize = '';
+        content.style.minHeight = '';
+        content.style.marginRight = '';
+        content.style.marginTop = '';
+        content.style.flex = '';
+        flexContainer.style.justifyContent = '';
+        flexContainer.style.alignItems = '';
+        minimized = false;
+
+    }else{    
+        displayState = document.createElement('div');
+        displayState.style.color = 'white'; 
+
+        if(currentState === stateMainTimer){
+            displayState.textContent = 'Focus';
+        }else if(currentState == stateShortBreak){
+            displayState.textContent = 'Short Break';
+        }else{
+            displayState.textContent = 'Long Break';
+        }
+        stateButtons.appendChild(displayState); 
+        content.style.maxWidth = '200px';
+        content.style.background = 'rgba(0,0,0,.3)';
+        content.style.backdropFilter = 'blur(7px)';
+        content.style.padding = '1rem 2rem';
+        content.style.borderRadius = '18px';  
+        minimizeContentButton.style.fontSize = '12px';
+        activityLeft.style.width = '27px';  
+        activityRight.style.width = '27px';
+        resetContainer.style.marginLeft = '-5px';
+        resetContainer.style.fontSize = '27px'; 
+        resetContainer.style.gap = '12px';
+        resetContainer.style.padding = '0px';   
+        mainTimer.style.display = 'none';    
+        shortBreak.style.display = 'none';
+        longBreak.style.display = 'none';    
+        settingsContainer.style.display = 'none';
+        startButton.style.fontSize = '1.2rem';
+        startButton.style.padding = '8px 15px'; 
+        startButton.style.width = '85px';
+        timer.style.fontSize = '4.25rem';
+        content.style.minHeight = '100px';
+        content.style.marginRight = '5px';
+        content.style.marginTop = '5px';
+        content.style.flex = '0';
+        flexContainer.style.justifyContent = 'flex-end';
+        flexContainer.style.alignItems = 'flex-start';
+        minimized = true;
     }
     
-    displayState.style.color = 'white';
-    stateButtons.appendChild(displayState);  
-    content.style.maxWidth = '200px';
-    content.style.background = 'rgba(0,0,0,.3)';
-    content.style.backdropFilter = 'blur(7px)';
-    content.style.padding = '1rem 2rem';
-    content.style.borderRadius = '18px';  
-    minimizeContentButton.style.fontSize = '12px';
-    activityLeft.style.width = '27px';  
-    activityRight.style.width = '27px';
-    resetContainer.style.marginLeft = '-5px';
-    resetContainer.style.fontSize = '27px'; 
-    resetContainer.style.gap = '12px';
-    resetContainer.style.padding = '0px';   
-    mainTimer.style.display = 'none';    
-    shortBreak.style.display = 'none';
-    longBreak.style.display = 'none';    
-    settingsContainer.style.display = 'none';
-    startButton.style.fontSize = '1.2rem';
-    startButton.style.padding = '8px 15px'; 
-    startButton.style.width = '70px';
-    timer.style.fontSize = '4.25rem';
-    content.style.minHeight = '100px';
-    content.style.flex = '0';
-
+    
+    
 })
 
 

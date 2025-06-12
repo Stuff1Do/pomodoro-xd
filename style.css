@@ -114,6 +114,7 @@ body{
     color: white;
     background: transparent;
     border: 0px;
+    padding: 0;
     cursor: pointer;
 
 }
@@ -518,6 +519,56 @@ span{
     width: 36px;
     height: auto;
 }
+
+.mini-content{
+    max-width: 200px;
+    background: rgba(0,0,0,.3);
+    backdrop-filter: blur(7px);
+    padding: 1rem 2rem;
+    border-radius: 18px;  
+    min-height: 100px;
+    margin-right: 5px;
+    margin-top: 5px;
+    flex: 0;
+}
+
+.mini-display-none{
+    display: none;
+}
+
+.mini-color{
+    color: white;
+}
+
+.mini-button-color{
+    font-size: 12px;
+}
+
+.mini-activity-width{
+    width: 27px;
+}
+
+.mini-reset-container{
+    margin-left: '-5px';
+    font-size: '27px'; 
+    gap: '12px';
+    padding: '0px';   
+}
+
+.mini-start-button{
+    font-size: '1.2rem';
+    padding: '8px 15px'; 
+    width: '70px';
+}
+
+.mini-timer{
+    font-size: 4.25rem;
+}
+
+.mini-flex-container{
+    justify-content: flex-end;
+    align-items: flex-start;
+}
 @media only screen and (max-width: 490px){
     body{
         height: 100vh;
@@ -573,6 +624,7 @@ span{
       }
       .reset-container{
         font-size: 32px;
+        padding: 0;
       }
       .settings-container{
         font-size: 32px;
