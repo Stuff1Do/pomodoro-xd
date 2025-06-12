@@ -664,7 +664,6 @@ span{
 
     
     .taskbar-container{
-        align-self: center;
         margin-left: 0;
         min-width: 160px;
         max-width: 240px;
@@ -691,17 +690,11 @@ span{
     .display-page{
         gap: 6px;
     }
-    
-           
- }  
-
-
- @media all and (display-mode: picture-in-picture) {
-    
-    .state{
-        font-size: 12px;
+    .activity-left{
+        display: none;
     }
-   .timer{
-    font-size: 15px;
-   } 
-  }
+
+    .footer-bar{
+        display: none;
+    }
+}  

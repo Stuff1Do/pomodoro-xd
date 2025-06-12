@@ -214,12 +214,7 @@ minimizeContentButton.addEventListener('click', ()=>{
         flexContainer.style.alignItems = 'flex-start';
         minimized = true;
     }
-    
-    
-    
 })
-
-
 
 let offsetX;
 let offsetY;
