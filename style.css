@@ -504,6 +504,10 @@ span{
     color: white;
 }
 
+.fa-window-maximize{
+    font-size: 2.3em;
+    color: white;
+}
 @media only screen and (max-width: 490px){
     body{
         height: 100vh;
@@ -628,3 +632,14 @@ span{
     
            
  }  
+
+
+ @media all and (display-mode: picture-in-picture) {
+    
+    .state{
+        font-size: 12px;
+    }
+   .timer{
+    font-size: 15px;
+   } 
+  }

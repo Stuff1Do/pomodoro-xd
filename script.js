@@ -39,6 +39,39 @@ const addTask = document.querySelector('.add-task');
 const garbageIcon = document.querySelector('.garbage');
 const taskBarLabel = document.querySelector('.to-do-label');
 const inputPhoneBackground = document.querySelector('.phone-bg-options');
+const pipButton = document.querySelector('.pip-button');
+
+pipButton.addEventListener('click', async()=>{
+    const content = document.querySelector('.content');
+
+    const pipWindow = await documentPictureInPicture.requestWindow();
+
+    [...document.styleSheets].forEach((styleSheet) => {
+        try {
+          const cssRules = [...styleSheet.cssRules].map((rule) => rule.cssText).join('');
+          const style = document.createElement('style');
+    
+          style.textContent = cssRules;
+          pipWindow.document.head.appendChild(style);
+        } catch (e) {
+          const link = document.createElement('link');
+    
+          link.rel = 'stylesheet';
+          link.type = styleSheet.type;
+          link.media = styleSheet.media;
+          link.href = styleSheet.href;
+          pipWindow.document.head.appendChild(link);
+        }
+      });
+    pipWindow.document.body.append(content);    
+
+    pipWindow.addEventListener("pagehide", (event) => {
+        const playerContainer = document.querySelector(".flex-container");
+        const pipPlayer = event.target.querySelector(".content");
+        playerContainer.append(pipPlayer);
+      });
+})
+
 
 minimizeButton.addEventListener('click', ()=>{
     addTaskContainer.style.display = 'none';
