@@ -120,6 +120,7 @@ body{
 
 
 .settings-container{
+    margin-left: -13px;
     font-size: 2.2em;
     background: transparent;
     border: 0px;
@@ -507,6 +508,15 @@ span{
 .fa-window-maximize{
     font-size: 2.3em;
     color: white;
+    width: 25px;
+    
+}
+
+.activity-left{
+    display: flex;
+    align-items: center;  
+    width: 36px;
+    height: auto;
 }
 @media only screen and (max-width: 490px){
     body{

@@ -40,9 +40,13 @@ const garbageIcon = document.querySelector('.garbage');
 const taskBarLabel = document.querySelector('.to-do-label');
 const inputPhoneBackground = document.querySelector('.phone-bg-options');
 const pipButton = document.querySelector('.pip-button');
+const minimizeContentButton = document.querySelector('.minimize-content');
+const content = document.querySelector('.content');
+const stateButtons = document.querySelector('.options');
+const activityLeft = document.querySelector('.activity-left');
+const activityRight = document.querySelector('.activity-right');
 
-pipButton.addEventListener('click', async()=>{
-    const content = document.querySelector('.content');
+pipButton.addEventListener('click', async()=>{  
 
     const pipWindow = await documentPictureInPicture.requestWindow();
 
@@ -63,6 +67,7 @@ pipButton.addEventListener('click', async()=>{
           pipWindow.document.head.appendChild(link);
         }
       });
+
     pipWindow.document.body.append(content);    
 
     pipWindow.addEventListener("pagehide", (event) => {
@@ -129,6 +134,38 @@ inputArea.addEventListener('keydown', (e)=>{
         addTask.click();
     }
 });
+
+
+minimizeContentButton.addEventListener('click', ()=>{
+    const displayState = document.createElement('div');
+    displayState.textContent = `${currentState}`;
+
+    content.appendChild(displayState);  
+    content.style.maxWidth = '200px';
+    content.style.background = 'rgba(0,0,0,.3)';
+    content.style.backdropFilter = 'blur(7px)';
+    content.style.padding = '1rem 2rem';
+    content.style.borderRadius = '18px';  
+    minimizeContentButton.style.fontSize = '12px';
+    activityLeft.style.width = '27px';  
+    activityRight.style.width = '27px';
+    resetContainer.style.fontSize = '27px'; 
+    resetContainer.style.gap = '12px';
+    resetContainer.style.padding = '0px';   
+    stateButtons.style.display = 'none';
+    settingsContainer.style.display = 'none';    
+    startButton.style.fontSize = '1.2rem';
+    startButton.style.textAlign = 'center';
+    startButton.style.padding = '8px 15px'; 
+    startButton.style.width = '70px';
+    timer.style.fontSize = '4.25rem';
+    content.style.minHeight = '100px';
+    content.style.dispay = 'block';
+    content.style.flex = '0';
+
+})
+
+
 
 let offsetX;
 let offsetY;
