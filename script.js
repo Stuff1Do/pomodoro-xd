@@ -47,6 +47,7 @@ const activityLeft = document.querySelector('.activity-left');
 const activityRight = document.querySelector('.activity-right');
 const flexContainer  = document.querySelector('.flex-container');
 const musicButton = document.querySelector('.music-button');
+const musicButtonContainer = document.querySelector('.footer-left-page');
 const musicContainer = document.querySelector('.music-container');
 const closeMusic = document.querySelector('.close-music');
 musicContainer.style.width = '0';
@@ -54,10 +55,12 @@ musicContainer.style.width = '0';
 
 musicButton.addEventListener('click', ()=>{
     musicContainer.style.width = '350px';
+    musicButtonContainer.style.display = 'none';
 })
 
 closeMusic.addEventListener('click', ()=>{
     musicContainer.style.width = '0';
+    musicButtonContainer.style.display = 'block';
 })
 
 
@@ -208,6 +211,7 @@ minimizeContentButton.addEventListener('click', ()=>{
             displayState.textContent = 'Long Break';
         }
         stateButtons.appendChild(displayState); 
+
         content.style.maxWidth = '200px';
         content.style.background = 'rgba(0,0,0,.3)';
         content.style.backdropFilter = 'blur(7px)';
