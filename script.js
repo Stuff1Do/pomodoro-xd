@@ -77,6 +77,47 @@ const pinkContainer = document.querySelector('.pink');
 const brownContainer = document.querySelector('.brown');
 const heavyRainContainer = document.querySelector('.heavy');
 const airContainer  = document.querySelector('.air');
+const musicTab = document.querySelector('.bg-music-header');
+const noiseTab = document.querySelector('.bg-noise-header');
+const importTab = document.querySelector('.import-music');
+const noiseBody = document.querySelector('.music-content');
+
+musicTab.addEventListener('click', ()=>{
+    noiseBody.style.display = 'none';
+    musicTab.style.color = 'white';
+    musicTab.style.textDecoration = 'underline';
+    noiseTab.style.color = '#818181';
+    noiseTab.style.textDecoration = 'none';
+    importTab.style.color = '#818181';
+    importTab.style.textDecoration = 'none';
+})
+
+noiseTab.addEventListener('click', ()=>{
+    noiseBody.style.display = '';
+    musicTab.style.color = '#818181';
+    musicTab.style.textDecoration = 'none';
+    noiseTab.style.color = 'white';
+    noiseTab.style.textDecoration = 'underline';
+    importTab.style.color = '#818181';
+    importTab.style.textDecoration = 'none';
+})
+
+importTab.addEventListener('click', ()=>{
+    importTab.style.color = 'white';
+    importTab.style.textDecoration = 'underline';
+    noiseBody.style.display = 'none';
+    musicTab.style.color = '#818181';
+    musicTab.style.textDecoration = 'none';
+    noiseTab.style.color = '#818181';
+    noiseTab.style.textDecoration = 'none';
+})
+
+
+
+
+
+
+
 
 musicContainer.style.width = '0';
 
@@ -467,7 +508,7 @@ minimizeContentButton.addEventListener('click', ()=>{
         }
         stateButtons.appendChild(displayState); 
 
-        content.style.maxWidth = '200px';
+        content.style.minWidth = '200px';
         content.style.background = 'rgba(0,0,0,.3)';
         content.style.backdropFilter = 'blur(7px)';
         content.style.padding = '1rem 2rem';
