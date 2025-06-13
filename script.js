@@ -68,6 +68,16 @@ const pinkSlider = document.querySelector('.pink-slider');
 const brownSlider = document.querySelector('.brown-slider');
 const heavyRainSlider = document.querySelector('.heavy-rain-slider');
 const conditionerSlider = document.querySelector('.conditioner-slider');
+const lightRainContainer = document.querySelector('.light');
+const fireContainer = document.querySelector('.fire');
+const whiteContainer = document.querySelector('.white');
+const oceanContainer = document.querySelector('.water');
+const libraryContainer = document.querySelector('.book');
+const pinkContainer = document.querySelector('.pink');
+const brownContainer = document.querySelector('.brown');
+const heavyRainContainer = document.querySelector('.heavy');
+const airContainer  = document.querySelector('.air');
+
 musicContainer.style.width = '0';
 
 rainSlider.style.display = 'none';
@@ -91,13 +101,44 @@ closeMusic.addEventListener('click', ()=>{
     musicButtonContainer.style.display = 'block';
 })
 
+const rain = new Audio('./sounds/lightrain.mp3');
+const fire = new Audio('./sounds/fireplace.mp3');
+const pink = new Audio('./sounds/pinknoise.mp3');
+const white = new Audio('./sounds/whitenoise.mp3');
+const water = new Audio('./sounds/waterfall.mp3');
+const brown = new Audio('./sounds/brownnoise.mp3');
+const book = new Audio('./sounds/library.mp3');
+const heavy = new Audio('./sounds/heavyrain.mp3');
+const air  = new Audio('./sounds/conditioner.mp3');
+
+function playAudio(sound){
+    sound.loop = true;
+    sound.play();
+}
+
+function pauseAudio(sound){
+    sound.pause();
+}
+
+function setVolume(sound, value){
+    sound.volume = value;
+}
+
 let rainClicked =false;
 lightRain.addEventListener('click', ()=>{
     if(rainClicked){
-        helperOpacityDisplay(lightRain, rainSlider, '0.4', 'none');
+        helperOpacityDisplay(lightRainContainer, rainSlider, '0.4', 'none');
+        pauseAudio(rain);
         rainClicked = false;
+        
     }else{
-        helperOpacityDisplay(lightRain, rainSlider, '1', '');
+        helperOpacityDisplay(lightRainContainer, rainSlider, '1', '');
+        playAudio(rain);
+        rainSlider.addEventListener('change', ()=>{
+            let lightRainVolume = rainSlider.value;
+            setVolume(rain, lightRainVolume);
+            
+        })
         rainClicked = true;
     }
 })
@@ -106,10 +147,17 @@ lightRain.addEventListener('click', ()=>{
 let fireClicked =false;
 fireplace.addEventListener('click', ()=>{
     if(fireClicked){
-        helperOpacityDisplay(fireplace, fireSlider, '0.4', 'none');
+        helperOpacityDisplay(fireContainer, fireSlider, '0.4', 'none');
+        pauseAudio(fire);
         fireClicked = false;
     }else{
-        helperOpacityDisplay(fireplace, fireSlider, '1', '');
+        helperOpacityDisplay(fireContainer, fireSlider, '1', '');
+        playAudio(fire);
+        fireSlider.addEventListener('change', ()=>{
+            let fireVolume = fireSlider.value;
+            setVolume(fire, fireVolume);
+            
+        })
         fireClicked = true;
     }
    
@@ -119,10 +167,17 @@ fireplace.addEventListener('click', ()=>{
 let whiteClicked =false;
 whiteNoise.addEventListener('click', ()=>{
     if(whiteClicked){
-        helperOpacityDisplay(whiteNoise, whiteSlider, '0.4', 'none');
+        helperOpacityDisplay(whiteContainer, whiteSlider, '0.4', 'none');
+        pauseAudio(white);
        whiteClicked = false;
     }else{
-        helperOpacityDisplay(whiteNoise, whiteSlider, '1', '');
+        helperOpacityDisplay(whiteContainer, whiteSlider, '1', '');
+        playAudio(white);
+        whiteSlider.addEventListener('change', ()=>{
+            let whiteVolume = whiteSlider.value;
+            setVolume(white, whiteVolume);
+            
+        })
         whiteClicked = true;
     }
    
@@ -131,11 +186,18 @@ whiteNoise.addEventListener('click', ()=>{
 let libraryClicked = false;
 library.addEventListener('click', ()=>{
     if(libraryClicked){
-        helperOpacityDisplay(library, librarySlider, '0.4', 'none');
+        helperOpacityDisplay(libraryContainer, librarySlider, '0.4', 'none');
+        pauseAudio(book);
         libraryClicked = false;
        
     }else{
-        helperOpacityDisplay(library, librarySlider, '1', '');
+        helperOpacityDisplay(libraryContainer, librarySlider, '1', '');
+        playAudio(book);
+        librarySlider.addEventListener('change', ()=>{
+            let bookVolume = librarySlider.value;
+            setVolume(book, bookVolume);
+            
+        })
         libraryClicked = true;
     }
    
@@ -144,10 +206,17 @@ library.addEventListener('click', ()=>{
 let oceanClicked = false;
 ocean.addEventListener('click', ()=>{
     if(oceanClicked){
-        helperOpacityDisplay(ocean, oceanSlider, '0.4', 'none');
+        helperOpacityDisplay(oceanContainer, oceanSlider, '0.4', 'none');
+        pauseAudio(water);
         oceanClicked = false;
     }else{
-        helperOpacityDisplay(ocean, oceanSlider, '1', '');
+        helperOpacityDisplay(oceanContainer, oceanSlider, '1', '');
+        playAudio(water);
+        oceanSlider.addEventListener('change', ()=>{
+            let waterVolume = oceanSlider.value;
+            setVolume(water, waterVolume);
+            
+        })
         oceanClicked = true;
     }
    
@@ -157,10 +226,18 @@ ocean.addEventListener('click', ()=>{
 let pinkClicked = false;
 pinkNoise.addEventListener('click', ()=>{
     if(pinkClicked){
-        helperOpacityDisplay(pinkNoise, pinkSlider, '0.4', 'none');
+        helperOpacityDisplay(pinkContainer, pinkSlider, '0.4', 'none');
+        pauseAudio(pink);
         pinkClicked = false;
     }else{
-        helperOpacityDisplay(pinkNoise, pinkSlider, '1', '');
+        helperOpacityDisplay(pinkContainer, pinkSlider, '1', '');
+        playAudio(pink);
+        pinkSlider.addEventListener('change', ()=>{
+            let pinkVolume = pinkSlider.value;
+            setVolume(pink, pinkVolume);
+
+            
+        })
         pinkClicked = true;
     }
    
@@ -169,10 +246,18 @@ pinkNoise.addEventListener('click', ()=>{
 let brownClicked = false;
 brownNoise.addEventListener('click', ()=>{
     if(brownClicked){
-        helperOpacityDisplay(brownNoise, brownSlider, '0.4', 'none');
+        helperOpacityDisplay(brownContainer, brownSlider, '0.4', 'none');
+        pauseAudio(brown);
         brownClicked = false;
     }else{
-        helperOpacityDisplay(brownNoise, brownSlider, '1', '');
+        helperOpacityDisplay(brownContainer, brownSlider, '1', '');
+        playAudio(brown);
+        brownSlider.addEventListener('change', ()=>{
+            let brownVolume = brownSlider.value;
+            setVolume(brown, brownVolume);
+
+            
+        })
         brownClicked = true;
     }
    
@@ -182,10 +267,18 @@ let heavyClicked = false;
 heavyRain.addEventListener('click', ()=>{
     
     if(heavyClicked){
-        helperOpacityDisplay(heavyRain, heavyRainSlider, '0.4', 'none');
+        helperOpacityDisplay(heavyRainContainer, heavyRainSlider, '0.4', 'none');
+        pauseAudio(heavy);
         heavyClicked = false;
     }else{
-        helperOpacityDisplay(heavyRain, heavyRainSlider, '1', '');
+        helperOpacityDisplay(heavyRainContainer, heavyRainSlider, '1', '');
+        playAudio(heavy);
+        heavyRainSlider.addEventListener('change', ()=>{
+            let heavyVolume = heavyRainSlider.value;
+            setVolume(heavy, heavyVolume);
+
+            
+        })
         heavyClicked = true;
     }
    
@@ -195,10 +288,16 @@ heavyRain.addEventListener('click', ()=>{
 let conditionerClicked = false;
 airConditioner.addEventListener('click', ()=>{
     if(conditionerClicked){
-        helperOpacityDisplay(airConditioner, conditionerSlider, '0.4', 'none');
+        helperOpacityDisplay(airContainer, conditionerSlider, '0.4', 'none');
+        pauseAudio(air);
         conditionerClicked = false;
     }else{
-        helperOpacityDisplay(airConditioner, conditionerSlider, '1', '');
+        helperOpacityDisplay(airContainer, conditionerSlider, '1', '');
+        playAudio(air);
+        conditionerSlider.addEventListener('change', ()=>{
+            let airVolume = conditionerSlider.value;
+            setVolume(air, airVolume);
+        })
         conditionerClicked = true;
     }
    
