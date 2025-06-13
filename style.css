@@ -645,7 +645,133 @@ span{
     accent-color: white;
 }
 
+.music-songs{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+}
+.music{
+    display: flex;
+    color: #f1f1f1;
+    gap: 15px;
+    
+}
+.title-author{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    font-size: 14px;
+    cursor: pointer;
+}
 
+.author{
+    color: #aaa;
+}
+.music-duration{
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    color: #aaa;
+}
+
+.header-options{
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+}
+
+.music-types{
+    background: #aaa;
+    padding: 3px;
+    
+}
+.search-bar{
+    display: flex;
+    justify-content: flex-start;
+    padding: 0px 3px;
+}
+.search-icon{
+    display: flex;
+    align-items: center;
+    color: black;
+    background-color: white;
+    border-right: 0px;
+    max-height: 25px;
+    padding: 4px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border: 0;
+    background: #aaa;
+}
+
+.search{
+    border-left: 0px;
+    padding: 6px;
+    border: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    min-width: 280px;
+    background: #aaa;
+}
+
+.music-songs{
+    overflow-y: scroll;
+}
+
+.music-songs::-webkit-scrollbar {
+   width: 7px;
+  }
+.music-songs::-webkit-scrollbar-track {
+    background: #aaa;
+    border-radius: 10px;
+  }
+  .music-songs::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+  
+  .music-songs::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+input:focus{
+    outline: none;
+}
+
+.cover-play{
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+}
+
+.base-img{
+    width: 100%;
+    display: block;
+}
+
+.play-icon{
+    cursor: pointer;  
+    position: absolute;
+    top: 4%;
+    left: 1%;
+    font-size: 15px;
+    padding: 13px 16.5px;
+    border: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+
+.music-1:hover .play-icon{
+    opacity: 1;
+}
+
+.play-icon:hover{
+    background: rgba(0, 0, 0, 0.5);
+}
 @media only screen and (max-width: 400px){
     body{
         height: 100vh;

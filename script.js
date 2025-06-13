@@ -81,9 +81,13 @@ const musicTab = document.querySelector('.bg-music-header');
 const noiseTab = document.querySelector('.bg-noise-header');
 const importTab = document.querySelector('.import-music');
 const noiseBody = document.querySelector('.music-content');
+const musicBody = document.querySelector('.music-songs');
+musicBody.style.display = 'none';
+
 
 musicTab.addEventListener('click', ()=>{
     noiseBody.style.display = 'none';
+    musicBody.style.display = '';
     musicTab.style.color = 'white';
     musicTab.style.textDecoration = 'underline';
     noiseTab.style.color = '#818181';
@@ -100,9 +104,11 @@ noiseTab.addEventListener('click', ()=>{
     noiseTab.style.textDecoration = 'underline';
     importTab.style.color = '#818181';
     importTab.style.textDecoration = 'none';
+    musicBody.style.display ='none';
 })
 
 importTab.addEventListener('click', ()=>{
+    musicBody.style.display = 'none';
     importTab.style.color = 'white';
     importTab.style.textDecoration = 'underline';
     noiseBody.style.display = 'none';
