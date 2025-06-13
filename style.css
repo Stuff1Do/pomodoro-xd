@@ -58,6 +58,7 @@ body{
     height: auto;
     font-size: 16px;
     font-weight: 800;
+    cursor: pointer;
 }
 
 .short-break{
@@ -127,6 +128,7 @@ body{
     background: transparent;
     border: 0px;
     color: white;
+    cursor: pointer;
 }
 
 @keyframes  spin{
@@ -395,6 +397,7 @@ input:checked + .button::before{
     display: flex;
     gap: 8px;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .taskbar-container{
@@ -501,7 +504,7 @@ span{
     position: absolute;
     bottom: 16px;
     right: 15px;
-    padding: 9px;
+    padding: 8px;
     background-color: white;
     border-radius: 8px;
 }
@@ -517,6 +520,7 @@ span{
 .fa-right-to-bracket{
     font-size: 19px;
     color: black;
+    cursor: pointer;
 }
 
 .fa-headphones{
@@ -524,13 +528,14 @@ span{
     color: black;
     width: 25px;
     left: 15px;
+    cursor: pointer;
 }
 
 .fa-window-maximize{
     font-size: 2.3em;
     color: white;
     width: 25px;
-
+    cursor: pointer;
 }
 
 .activity-left{
@@ -586,6 +591,15 @@ span{
 .bg-noise-header{
     color: white;
     text-decoration: underline;
+    cursor: pointer;
+}
+
+.bg-music-header{
+    cursor: pointer;
+}
+
+.import-music{
+    cursor: pointer;
 }
 .bg-noise-header:hover{
     color: #f1f1f1;
@@ -620,9 +634,11 @@ span{
     margin-bottom: 20px;    
     flex-basis: 20%;
     flex-grow: 1;
-    flex-shrink: 1;
     opacity: 0.4;
+    max-width: 350px;
+    max-height: 412px;  
 }
+
 
 .bg-slider{
     max-width: 50px;    
