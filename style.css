@@ -572,19 +572,6 @@ span{
 .import-music{
     min-width: fit-content  ;
 }
-.bg-noise-header{
-    
-    
-}
-
-.bg-music-header{
-    
-
-}
-
-.import-music-header{
-    
-}
 
 .bg-noise-header:hover{
     color: #f1f1f1;
@@ -594,6 +581,32 @@ span{
 }
 .import-music:hover{
     color: #f1f1f1;
+}
+
+.music-content{
+    padding: 50px;  
+    gap: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.noise-icon{
+    font-size: 40px;
+    text-align: center;
+}
+.sound-label{
+    text-align: center;
+    font-size: 11px;
+}
+.noise{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;    
+    flex-basis: 25%;
+    flex-grow: 1;
+    flex-shrink: 1;
 }
 @media only screen and (max-width: 400px){
     body{
