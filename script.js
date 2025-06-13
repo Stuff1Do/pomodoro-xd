@@ -162,10 +162,139 @@ const heavy = new Audio('./sounds/heavyrain.mp3');
 const air  = new Audio('./sounds/conditioner.mp3');
 
 const cry = new Audio('./sounds/cry.mp3');
+const songs = [
+    {
+        path: './sounds/pueblo.mp3',
+        displayName: 'Pueblo',
+        cover: './images/pueblo.jpeg',
+        author: 'Wave to Earth',
+        duration: '3:49',
+    },
+    {
+        path: './sounds/',
+        displayName: 'Silver Lining',
+        cover: './images/silverlining.jpg',
+        author: 'Grent Perez',
+        duration: '3:40',
+    },
+    {
+        path: './sounds/',
+        displayName: 'Reminder',
+        cover: './images/reminder.jpeg',
+        author: 'The Weeknd',
+        duration: '3:39',
+    },
+    {
+        path: './sounds/',
+        displayName: "Ba't Ganto ang Pag-ibig",
+        cover: './images/zack.jpg',
+        author: 'Zach Tabudlo',
+        duration: '3:14',
+
+    },
+    {
+        path: './sounds/',
+        displayName: "The Day You Said Goodnight",
+        cover: './images/hale.jpeg',
+        author: 'Hale',
+        duration: '4:52',
+    },
+    {
+       
+        path: './sounds/',
+        displayName: "Crashing",
+        cover: './images/crashing.jpg',
+        author: 'd4vd & Kali Uchis',
+        duration: '3:08',
+    },
+    {
+        path: './sounds/',
+        displayName: "blue",
+        cover: './images/blue.png',
+        author: 'yung kai',
+        duration: '3:35',
+    },
+    {
+        path: './sounds/',
+        displayName: "Sorrows",
+        cover: './images/sorrow.png',
+        author: 'Bryson Tiller',
+        duration: '3:14',
+    }
+]
+function createMusic(songs){
+    const audio = new Audio(`${songs}`);
+    return audio;
+}
+
+songs.forEach((songs)=>{
+    const musicDiv = document.createElement('div');
+    musicDiv.classList.add('music', 'music-1');
+
+    const coverPlayDiv  = document.createElement('div');
+    coverPlayDiv.classList.add('cover-play');
+
+    const img = document.createElement('img');
+    img.src = songs.cover;
+    img.width = 45;
+    img.height = 45;
+    img.classList.add('base-img');
+
+    const playIconDiv = document.createElement('div');
+    playIconDiv.classList.add('play-icon');
+
+    const playIcon = document.createElement('i');
+    playIcon.classList.add('song-state', 'fa-solid', 'fa-play');
+
+    playIconDiv.appendChild(playIcon);
+    coverPlayDiv.appendChild(playIconDiv);
+    coverPlayDiv.appendChild(img);
+
+    const titleAuthorDiv = document.createElement('div');
+    titleAuthorDiv.classList.add('title-author');
+
+    const titleDiv = document.createElement('div');
+    titleDiv.classList.add('title');
+    titleDiv.textContent = songs.displayName;
+    
+    const authorDiv = document.createElement('div');
+    authorDiv.classList.add('author');
+    authorDiv.textContent = songs.author;
+
+    titleAuthorDiv.appendChild(titleDiv);
+    titleAuthorDiv.appendChild(authorDiv);
+
+    const durationDiv = document.createElement('div');
+    durationDiv.classList.add('music-duration');
+    durationDiv.textContent = songs.duration;
+
+    musicDiv.appendChild(coverPlayDiv);
+    musicDiv.appendChild(titleAuthorDiv);
+    musicDiv.appendChild(durationDiv);
+
+    musicBody.appendChild(musicDiv); 
+    const audio = new Audio(songs.path);
+    let isPlaying =false;
+    playIconDiv.addEventListener('click', ()=>{
+        if(isPlaying){
+            audio.pause();
+            playIcon.classList.replace('fa-pause', 'fa-play');
+            isPlaying = false;
+        }else{
+            audio.play();
+            playIcon.classList.replace('fa-play', 'fa-pause');
+            isPlaying =true;
+        }
+    })
+    titleAuthorDiv.addEventListener('click', ()=>{
+        playOne.click();
+    })
+
+})
 
 
 
-let playing =false;
+
 playOne.addEventListener('click', ()=>{
     if(playing){
         cry.pause();

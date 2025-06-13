@@ -755,10 +755,10 @@ input:focus{
 .play-icon{
     cursor: pointer;  
     position: absolute;
-    top: 4%;
+    top: 1%;
     left: 1%;
     font-size: 17px;
-    padding: 12px 17px;
+    padding: 16px 17px;
     border: 0;
     opacity: 0;
     transition: opacity 0.3s ease;
