@@ -164,6 +164,13 @@ const air  = new Audio('./sounds/conditioner.mp3');
 const cry = new Audio('./sounds/cry.mp3');
 const songs = [
     {
+        path: './sounds/cry.mp3',
+        displayName: 'Cry',
+        cover: './images/cry.png',
+        author: 'Cigarettes after Sex',
+        duration: '4:17',
+    },
+    {
         path: './sounds/pueblo.mp3',
         displayName: 'Pueblo',
         cover: './images/pueblo.jpeg',
@@ -276,6 +283,7 @@ songs.forEach((songs)=>{
     const audio = new Audio(songs.path);
     let isPlaying =false;
     playIconDiv.addEventListener('click', ()=>{
+        
         if(isPlaying){
             audio.pause();
             playIcon.classList.replace('fa-pause', 'fa-play');
@@ -284,6 +292,7 @@ songs.forEach((songs)=>{
             audio.play();
             playIcon.classList.replace('fa-play', 'fa-pause');
             isPlaying =true;
+            songPlaying = true;
         }
     })
     
@@ -295,22 +304,6 @@ songs.forEach((songs)=>{
 
 
 
-
-playOne.addEventListener('click', ()=>{
-    if(playing){
-        cry.pause();
-        songState.classList.replace('fa-pause', 'fa-play');
-        playing = false;
-    }else{
-        cry.play();
-        songState.classList.replace('fa-play', 'fa-pause');
-        playing =true;
-    }
-    
-})
-titleAuthor.addEventListener('click', ()=>{
-    playOne.click();
-})
 function playAudio(sound){
     sound.loop = true;
     sound.play();

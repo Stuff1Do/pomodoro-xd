@@ -517,6 +517,17 @@ span{
     border-radius: 8px;
     background-color: white;   
 }
+
+.statistics{
+    position: inherit;
+    right: 50px;
+    bottom: 0.1px;
+    background-color: white;
+    padding: 8.4px;
+    border-radius: 8px;
+    cursor: pointer;
+
+}
 .fa-right-to-bracket{
     font-size: 19px;
     color: black;
