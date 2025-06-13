@@ -549,7 +549,7 @@ span{
     display: flex;
     flex-direction: column;
     position: absolute;
-    background-color: #444;
+    background-color: black;
     height: 100vh;
     width: 350px;
     overflow-x: hidden; 
@@ -757,14 +757,12 @@ input:focus{
     position: absolute;
     top: 4%;
     left: 1%;
-    font-size: 15px;
-    padding: 13px 16.5px;
+    font-size: 17px;
+    padding: 12px 17px;
     border: 0;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
-
-
 .music-1:hover .play-icon{
     opacity: 1;
 }

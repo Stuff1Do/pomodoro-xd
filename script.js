@@ -82,8 +82,11 @@ const noiseTab = document.querySelector('.bg-noise-header');
 const importTab = document.querySelector('.import-music');
 const noiseBody = document.querySelector('.music-content');
 const musicBody = document.querySelector('.music-songs');
-musicBody.style.display = 'none';
+const playOne = document.querySelector('.play-icon');
+const songState = document.querySelector('.song-state');
+const titleAuthor = document.querySelector('.title-author');
 
+musicBody.style.display = 'none';
 
 musicTab.addEventListener('click', ()=>{
     noiseBody.style.display = 'none';
@@ -158,6 +161,26 @@ const book = new Audio('./sounds/library.mp3');
 const heavy = new Audio('./sounds/heavyrain.mp3');
 const air  = new Audio('./sounds/conditioner.mp3');
 
+const cry = new Audio('./sounds/cry.mp3');
+
+
+
+let playing =false;
+playOne.addEventListener('click', ()=>{
+    if(playing){
+        cry.pause();
+        songState.classList.replace('fa-pause', 'fa-play');
+        playing = false;
+    }else{
+        cry.play();
+        songState.classList.replace('fa-play', 'fa-pause');
+        playing =true;
+    }
+    
+})
+titleAuthor.addEventListener('click', ()=>{
+    playOne.click();
+})
 function playAudio(sound){
     sound.loop = true;
     sound.play();
