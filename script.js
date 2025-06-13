@@ -46,6 +46,20 @@ const stateButtons = document.querySelector('.options');
 const activityLeft = document.querySelector('.activity-left');
 const activityRight = document.querySelector('.activity-right');
 const flexContainer  = document.querySelector('.flex-container');
+const musicButton = document.querySelector('.music-button');
+const musicContainer = document.querySelector('.music-container');
+const closeMusic = document.querySelector('.close-music');
+musicContainer.style.width = '0';
+
+
+musicButton.addEventListener('click', ()=>{
+    musicContainer.style.width = '350px';
+})
+
+closeMusic.addEventListener('click', ()=>{
+    musicContainer.style.width = '0';
+})
+
 
 pipButton.addEventListener('click', async()=>{  
     if(minimized){

@@ -499,19 +499,38 @@ span{
 }
 .footer-bar{
     position: absolute;
-    bottom: 10px;
+    bottom: 16px;
     right: 15px;
+    padding: 9px;
+    background-color: #2E2446;
+    border-radius: 8px;
+}
+.footer-left-page{
+    position: absolute;
+    bottom: 16px;
+    left: 15px;
+    padding: 8px;
+    width: 18px;
+    border-radius: 8px;
+    background-color: #2E2446;   
 }
 .fa-right-to-bracket{
-    font-size: 35px;
+    font-size: 19px;
     color: white;
+}
+
+.fa-headphones{
+    font-size: 19px;
+    color: white;
+    width: 25px;
+    left: 15px;
 }
 
 .fa-window-maximize{
     font-size: 2.3em;
     color: white;
     width: 25px;
-    
+
 }
 
 .activity-left{
@@ -521,57 +540,61 @@ span{
     height: auto;
 }
 
-.mini-content{
-    max-width: 200px;
-    background: rgba(0,0,0,.3);
-    backdrop-filter: blur(7px);
-    padding: 1rem 2rem;
-    border-radius: 18px;  
-    min-height: 100px;
-    margin-right: 5px;
-    margin-top: 5px;
-    flex: 0;
+.music-container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #444;
+    height: 100vh;
+    width: 350px;
+    overflow-x: hidden; 
+    transition: 0.4s;
 }
 
-.mini-display-none{
-    display: none;
+.music-header{
+    display: flex;
+    color: #818181;   
+    font-weight: 500;
+    font-size: 18px;
+    gap: 25px;
+    padding: 15px;
+    border-bottom: 1px solid black;
+    transition: 0.2s;
 }
 
-.mini-color{
+.fa-xmark{
+    font-size: 22px;
+}
+.close-music:hover{
     color: white;
 }
 
-.mini-button-color{
-    font-size: 12px;
+.import-music{
+    min-width: fit-content  ;
+}
+.bg-noise-header{
+    
+    
 }
 
-.mini-activity-width{
-    width: 27px;
+.bg-music-header{
+    
+
 }
 
-.mini-reset-container{
-    margin-left: '-5px';
-    font-size: '27px'; 
-    gap: '12px';
-    padding: '0px';   
+.import-music-header{
+    
 }
 
-.mini-start-button{
-    font-size: '1.2rem';
-    padding: '8px 15px'; 
-    width: '70px';
+.bg-noise-header:hover{
+    color: #f1f1f1;
 }
-
-.mini-timer{
-    font-size: 4.25rem;
+.bg-music-header:hover{
+    color: #f1f1f1;
 }
-
-.mini-flex-container{
-    justify-content: flex-end;
-    align-items: flex-start;
+.import-music:hover{
+    color: #f1f1f1;
 }
-
-
 @media only screen and (max-width: 400px){
     body{
         height: 100vh;
