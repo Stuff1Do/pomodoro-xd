@@ -171,21 +171,21 @@ const songs = [
         duration: '3:49',
     },
     {
-        path: './sounds/',
+        path: './sounds/silverlining.mp3',
         displayName: 'Silver Lining',
         cover: './images/silverlining.jpg',
         author: 'Grent Perez',
         duration: '3:40',
     },
     {
-        path: './sounds/',
+        path: './sounds/reminder.mp3',
         displayName: 'Reminder',
         cover: './images/reminder.jpeg',
         author: 'The Weeknd',
         duration: '3:39',
     },
     {
-        path: './sounds/',
+        path: './sounds/pagibig.mp3',
         displayName: "Ba't Ganto ang Pag-ibig",
         cover: './images/zack.jpg',
         author: 'Zach Tabudlo',
@@ -193,7 +193,7 @@ const songs = [
 
     },
     {
-        path: './sounds/',
+        path: './sounds/hale.mp3',
         displayName: "The Day You Said Goodnight",
         cover: './images/hale.jpeg',
         author: 'Hale',
@@ -201,21 +201,21 @@ const songs = [
     },
     {
        
-        path: './sounds/',
+        path: './sounds/crashing.mp3',
         displayName: "Crashing",
         cover: './images/crashing.jpg',
         author: 'd4vd & Kali Uchis',
         duration: '3:08',
     },
     {
-        path: './sounds/',
+        path: './sounds/blue.mp3',
         displayName: "blue",
         cover: './images/blue.png',
         author: 'yung kai',
         duration: '3:35',
     },
     {
-        path: './sounds/',
+        path: './sounds/sorrows.mp3',
         displayName: "Sorrows",
         cover: './images/sorrow.png',
         author: 'Bryson Tiller',
@@ -286,6 +286,7 @@ songs.forEach((songs)=>{
             isPlaying =true;
         }
     })
+    
     titleAuthorDiv.addEventListener('click', ()=>{
         playOne.click();
     })
