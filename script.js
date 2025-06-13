@@ -129,6 +129,7 @@ lightRain.addEventListener('click', ()=>{
     if(rainClicked){
         helperOpacityDisplay(lightRainContainer, rainSlider, '0.4', 'none');
         pauseAudio(rain);
+        lightRain.style.color = '';
         rainClicked = false;
         
     }else{
@@ -139,6 +140,7 @@ lightRain.addEventListener('click', ()=>{
             setVolume(rain, lightRainVolume);
             
         })
+        lightRain.style.color = '#f1f906';
         rainClicked = true;
     }
 })
@@ -149,6 +151,7 @@ fireplace.addEventListener('click', ()=>{
     if(fireClicked){
         helperOpacityDisplay(fireContainer, fireSlider, '0.4', 'none');
         pauseAudio(fire);
+        fireplace.style.color = '';
         fireClicked = false;
     }else{
         helperOpacityDisplay(fireContainer, fireSlider, '1', '');
@@ -158,6 +161,7 @@ fireplace.addEventListener('click', ()=>{
             setVolume(fire, fireVolume);
             
         })
+        fireplace.style.color = '#f78800';
         fireClicked = true;
     }
    
@@ -188,6 +192,7 @@ library.addEventListener('click', ()=>{
     if(libraryClicked){
         helperOpacityDisplay(libraryContainer, librarySlider, '0.4', 'none');
         pauseAudio(book);
+        library.style.color = '';
         libraryClicked = false;
        
     }else{
@@ -198,6 +203,7 @@ library.addEventListener('click', ()=>{
             setVolume(book, bookVolume);
             
         })
+        library.style.color = 'black';
         libraryClicked = true;
     }
    
@@ -208,6 +214,7 @@ ocean.addEventListener('click', ()=>{
     if(oceanClicked){
         helperOpacityDisplay(oceanContainer, oceanSlider, '0.4', 'none');
         pauseAudio(water);
+        ocean.style.color = '';
         oceanClicked = false;
     }else{
         helperOpacityDisplay(oceanContainer, oceanSlider, '1', '');
@@ -217,6 +224,7 @@ ocean.addEventListener('click', ()=>{
             setVolume(water, waterVolume);
             
         })
+        ocean.style.color = '#06a8f9';
         oceanClicked = true;
     }
    
@@ -228,6 +236,7 @@ pinkNoise.addEventListener('click', ()=>{
     if(pinkClicked){
         helperOpacityDisplay(pinkContainer, pinkSlider, '0.4', 'none');
         pauseAudio(pink);
+        pinkNoise.style.color = '';
         pinkClicked = false;
     }else{
         helperOpacityDisplay(pinkContainer, pinkSlider, '1', '');
@@ -235,9 +244,8 @@ pinkNoise.addEventListener('click', ()=>{
         pinkSlider.addEventListener('change', ()=>{
             let pinkVolume = pinkSlider.value;
             setVolume(pink, pinkVolume);
-
-            
         })
+        pinkNoise.style.color = '#f52bd6';
         pinkClicked = true;
     }
    
@@ -248,6 +256,7 @@ brownNoise.addEventListener('click', ()=>{
     if(brownClicked){
         helperOpacityDisplay(brownContainer, brownSlider, '0.4', 'none');
         pauseAudio(brown);
+        brownNoise.style.color = '';
         brownClicked = false;
     }else{
         helperOpacityDisplay(brownContainer, brownSlider, '1', '');
@@ -255,9 +264,8 @@ brownNoise.addEventListener('click', ()=>{
         brownSlider.addEventListener('change', ()=>{
             let brownVolume = brownSlider.value;
             setVolume(brown, brownVolume);
-
-            
         })
+        brownNoise.style.color = '#fab803';
         brownClicked = true;
     }
    
@@ -269,16 +277,16 @@ heavyRain.addEventListener('click', ()=>{
     if(heavyClicked){
         helperOpacityDisplay(heavyRainContainer, heavyRainSlider, '0.4', 'none');
         pauseAudio(heavy);
+        heavyRain.style.color = '';
         heavyClicked = false;
     }else{
         helperOpacityDisplay(heavyRainContainer, heavyRainSlider, '1', '');
         playAudio(heavy);
         heavyRainSlider.addEventListener('change', ()=>{
             let heavyVolume = heavyRainSlider.value;
-            setVolume(heavy, heavyVolume);
-
-            
+            setVolume(heavy, heavyVolume);  
         })
+        heavyRain.style.color = '#3803fa';
         heavyClicked = true;
     }
    
@@ -290,6 +298,7 @@ airConditioner.addEventListener('click', ()=>{
     if(conditionerClicked){
         helperOpacityDisplay(airContainer, conditionerSlider, '0.4', 'none');
         pauseAudio(air);
+        airConditioner.style.color = '';
         conditionerClicked = false;
     }else{
         helperOpacityDisplay(airContainer, conditionerSlider, '1', '');
@@ -298,6 +307,7 @@ airConditioner.addEventListener('click', ()=>{
             let airVolume = conditionerSlider.value;
             setVolume(air, airVolume);
         })
+        airConditioner.style.color = '#fa0387';
         conditionerClicked = true;
     }
    
