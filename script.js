@@ -50,7 +50,34 @@ const musicButton = document.querySelector('.music-button');
 const musicButtonContainer = document.querySelector('.footer-left-page');
 const musicContainer = document.querySelector('.music-container');
 const closeMusic = document.querySelector('.close-music');
-musicContainer.style.width = '0';
+const lightRain = document.querySelector('.light-rain');
+const fireplace = document.querySelector('.fireplace'); 
+const whiteNoise = document.querySelector('.white-noise');
+const ocean = document.querySelector('.ocean');
+const library = document.querySelector('.library');
+const pinkNoise = document.querySelector('.pink-noise');
+const brownNoise = document.querySelector('.brown-noise');
+const heavyRain =document.querySelector('.heavy-rain');
+const airConditioner = document.querySelector('.air-conditioner');
+const rainSlider = document.querySelector('.rain-slider');
+const fireSlider = document.querySelector('.fire-slider');
+const whiteSlider = document.querySelector('.white-slider');
+const oceanSlider = document.querySelector('.ocean-slider');
+const librarySlider = document.querySelector('.library-slider');
+const pinkSlider = document.querySelector('.pink-slider');
+const brownSlider = document.querySelector('.brown-slider');
+const heavyRainSlider = document.querySelector('.heavy-rain-slider');
+const conditionerSlider = document.querySelector('.conditioner-slider');
+
+rainSlider.style.display = 'none';
+fireSlider.style.display = 'none';
+whiteSlider.style.display = 'none';
+oceanSlider.style.display = 'none';
+librarySlider.style.display = 'none';
+pinkSlider.style.display = 'none';
+brownSlider.style.display = 'none';
+heavyRainSlider.style.display = 'none';
+conditionerSlider.style.display = 'none';
 
 
 musicButton.addEventListener('click', ()=>{
@@ -63,7 +90,129 @@ closeMusic.addEventListener('click', ()=>{
     musicButtonContainer.style.display = 'block';
 })
 
+let rainClicked =false;
+lightRain.addEventListener('click', ()=>{
+    if(rainClicked){
+        lightRain.style.opacity = '0.4';
+        rainSlider.style.display = 'none';
+        rainClicked = false;
+    }else{
+        lightRain.style.opacity = '1';
+        rainSlider.style.display = '';
+        rainClicked = true;
+    }
+})
 
+
+let fireClicked =false;
+fireplace.addEventListener('click', ()=>{
+    if(fireClicked){
+        fireplace.style.opacity = '0.4';
+        fireSlider.style.display = 'none';
+        fireClicked = false;
+    }else{
+        fireplace.style.opacity = '1';
+        fireSlider.style.display = '';
+        fireClicked = true;
+    }
+   
+})
+
+
+let whiteClicked =false;
+whiteNoise.addEventListener('click', ()=>{
+    if(whiteClicked){
+        helperOpacityDisplay(whiteNoise, whiteSlider, '0.4', 'none');
+       whiteClicked = false;
+    }else{
+        helperOpacityDisplay(whiteNoise, whiteSlider, '1', '');
+        whiteClicked = true;
+    }
+   
+})
+
+let libraryClicked = false;
+library.addEventListener('click', ()=>{
+    if(libraryClicked){
+        helperOpacityDisplay(library, librarySlider, '0.4', 'none');
+        libraryClicked = false;
+       
+    }else{
+        helperOpacityDisplay(library, librarySlider, '1', '');
+        libraryClicked = true;
+    }
+   
+})
+
+let oceanClicked = false;
+ocean.addEventListener('click', ()=>{
+    if(oceanClicked){
+        helperOpacityDisplay(ocean, oceanSlider, '0.4', 'none');
+        oceanClicked = false;
+    }else{
+        helperOpacityDisplay(ocean, oceanSlider, '1', '');
+        oceanClicked = true;
+    }
+   
+})
+
+
+let pinkClicked = false;
+pinkNoise.addEventListener('click', ()=>{
+    if(pinkClicked){
+        helperOpacityDisplay(pinkNoise, pinkSlider, '0.4', 'none');
+        pinkClicked = false;
+    }else{
+        helperOpacityDisplay(pinkNoise, pinkSlider, '1', '');
+        pinkClicked = true;
+    }
+   
+})
+
+let brownClicked = false;
+brownNoise.addEventListener('click', ()=>{
+    if(brownClicked){
+        helperOpacityDisplay(brownNoise, brownSlider, '0.4', 'none');
+        brownClicked = false;
+    }else{
+        helperOpacityDisplay(brownNoise, brownSlider, '1', '');
+        brownClicked = true;
+    }
+   
+})
+
+let heavyClicked = false;
+heavyRain.addEventListener('click', ()=>{
+    
+    if(heavyClicked){
+        helperOpacityDisplay(heavyRain, heavyRainSlider, '0.4', 'none');
+        heavyClicked = false;
+    }else{
+        helperOpacityDisplay(heavyRain, heavyRainSlider, '1', '');
+        heavyClicked = true;
+    }
+   
+})
+
+
+let conditionerClicked = false;
+airConditioner.addEventListener('click', ()=>{
+    if(conditionerClicked){
+        helperOpacityDisplay(airConditioner, conditionerSlider, '0.4', 'none');
+        conditionerClicked = false;
+    }else{
+        helperOpacityDisplay(airConditioner, conditionerSlider, '1', '');
+        conditionerClicked = true;
+    }
+   
+})
+
+
+
+function helperOpacityDisplay(noise, slider, opacity, display){
+    noise.style.opacity = opacity;
+    slider.style.display = display;
+}
 pipButton.addEventListener('click', async()=>{  
     if(minimized){
         return;     
@@ -556,6 +705,8 @@ function playMusic(sound){
         audio.currentTime = 0; 
       }, 10000); 
 }
+
+
 let checkPomoCtr = 0;
 checkPomo.addEventListener('click', ()=>{
     checkPomoCtr++;
