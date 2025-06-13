@@ -555,13 +555,23 @@ span{
     display: flex;
     color: #818181;   
     font-weight: 500;
-    font-size: 18px;
     gap: 25px;
-    padding: 15px;
+    padding: 15px 50px;
+    font-size: 17px;
+    gap: 76px;
     border-bottom: 1px solid black;
     transition: 0.2s;
 }
 
+.music-left{
+    display: flex;
+    gap: 15px;
+}
+
+.music-right{
+    display: flex;
+    justify-content: flex-end;
+}
 .fa-xmark{
     font-size: 22px;
 }
@@ -573,6 +583,10 @@ span{
     min-width: fit-content  ;
 }
 
+.bg-noise-header{
+    color: white;
+    text-decoration: underline;
+}
 .bg-noise-header:hover{
     color: #f1f1f1;
 }

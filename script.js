@@ -68,6 +68,7 @@ const pinkSlider = document.querySelector('.pink-slider');
 const brownSlider = document.querySelector('.brown-slider');
 const heavyRainSlider = document.querySelector('.heavy-rain-slider');
 const conditionerSlider = document.querySelector('.conditioner-slider');
+musicContainer.style.width = '0';
 
 rainSlider.style.display = 'none';
 fireSlider.style.display = 'none';
@@ -93,12 +94,10 @@ closeMusic.addEventListener('click', ()=>{
 let rainClicked =false;
 lightRain.addEventListener('click', ()=>{
     if(rainClicked){
-        lightRain.style.opacity = '0.4';
-        rainSlider.style.display = 'none';
+        helperOpacityDisplay(lightRain, rainSlider, '0.4', 'none');
         rainClicked = false;
     }else{
-        lightRain.style.opacity = '1';
-        rainSlider.style.display = '';
+        helperOpacityDisplay(lightRain, rainSlider, '1', '');
         rainClicked = true;
     }
 })
@@ -107,12 +106,10 @@ lightRain.addEventListener('click', ()=>{
 let fireClicked =false;
 fireplace.addEventListener('click', ()=>{
     if(fireClicked){
-        fireplace.style.opacity = '0.4';
-        fireSlider.style.display = 'none';
+        helperOpacityDisplay(fireplace, fireSlider, '0.4', 'none');
         fireClicked = false;
     }else{
-        fireplace.style.opacity = '1';
-        fireSlider.style.display = '';
+        helperOpacityDisplay(fireplace, fireSlider, '1', '');
         fireClicked = true;
     }
    
