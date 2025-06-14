@@ -565,6 +565,7 @@ span{
     width: 350px;
     overflow-x: hidden; 
     transition: 0.4s ease-in-out;
+    
 }
 
 .music-header{
@@ -727,26 +728,25 @@ span{
     background: #aaa;
 }
 
-.music-songs{
+.music-container{
     overflow-y: scroll;
 }
 
-.music-songs::-webkit-scrollbar {
+.music-container::-webkit-scrollbar {
    width: 7px;
   }
-.music-songs::-webkit-scrollbar-track {
+.music-container::-webkit-scrollbar-track {
     background: #aaa;
     border-radius: 10px;
   }
-  .music-songs::-webkit-scrollbar-thumb {
+  .music-container::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 10px;
   }
   
-  .music-songs::-webkit-scrollbar-thumb:hover {
+  .music-container::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-  
 input:focus{
     outline: none;
 }
@@ -766,10 +766,10 @@ input:focus{
 .play-icon{
     cursor: pointer;  
     position: absolute;
-    top: 1%;
-    left: 1%;
+    top: 0.1%;
+    left: 0.1%;
     font-size: 17px;
-    padding: 16px 17px;
+    padding: 16px 18px;
     border: 0;
     opacity: 0;
     transition: opacity 0.3s ease;

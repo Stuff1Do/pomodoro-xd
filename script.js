@@ -102,7 +102,7 @@ closeStat.addEventListener('click', ()=>{
 })
 
 musicBody.style.display = 'none';
-
+musicContainer.style.overflowY = 'hidden';
 musicTab.addEventListener('click', ()=>{
     noiseBody.style.display = 'none';
     musicBody.style.display = '';
@@ -112,6 +112,7 @@ musicTab.addEventListener('click', ()=>{
     noiseTab.style.textDecoration = 'none';
     importTab.style.color = '#818181';
     importTab.style.textDecoration = 'none';
+    musicContainer.style.overflowY = 'scroll';
 })
 
 noiseTab.addEventListener('click', ()=>{
@@ -123,6 +124,7 @@ noiseTab.addEventListener('click', ()=>{
     importTab.style.color = '#818181';
     importTab.style.textDecoration = 'none';
     musicBody.style.display ='none';
+    musicContainer.style.overflowY = 'hidden';
 })
 
 importTab.addEventListener('click', ()=>{
@@ -134,6 +136,7 @@ importTab.addEventListener('click', ()=>{
     musicTab.style.textDecoration = 'none';
     noiseTab.style.color = '#818181';
     noiseTab.style.textDecoration = 'none';
+    musicContainer.style.overflowY = 'hidden';
 })
 
 
