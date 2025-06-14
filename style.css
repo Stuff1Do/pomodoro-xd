@@ -781,6 +781,27 @@ input:focus{
 .play-icon:hover{
     background: rgba(0, 0, 0, 0.5);
 }
+
+.close-stat{
+    cursor: pointer;
+}
+
+.stat-modal{
+    display: flex;
+
+    flex-direction: column;
+    border: none;
+    outline: none;
+    background-color: white;
+    border-radius: 6px;
+    
+    width: 500px;
+    height: 500px;
+}
+.stat-header{
+    display: flex;
+    justify-content: flex-end;
+}
 @media only screen and (max-width: 400px){
     body{
         height: 100vh;

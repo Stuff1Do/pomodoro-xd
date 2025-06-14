@@ -85,6 +85,21 @@ const musicBody = document.querySelector('.music-songs');
 const playOne = document.querySelector('.play-icon');
 const songState = document.querySelector('.song-state');
 const titleAuthor = document.querySelector('.title-author');
+const openStats = document.querySelector('.statistics');
+const statModal = document.querySelector('.stat-modal');
+const closeStat = document.querySelector('.close-stat');
+statModal.style.display = 'none';
+
+openStats.addEventListener('click', ()=>{
+    statModal.style.display = '';
+    statModal.showModal();
+
+});
+
+closeStat.addEventListener('click', ()=>{
+    statModal.style.display ='none';
+    statModal.close();
+})
 
 musicBody.style.display = 'none';
 
@@ -161,7 +176,6 @@ const book = new Audio('./sounds/library.mp3');
 const heavy = new Audio('./sounds/heavyrain.mp3');
 const air  = new Audio('./sounds/conditioner.mp3');
 
-const cry = new Audio('./sounds/cry.mp3');
 const songs = [
     {
         path: './sounds/cry.mp3',
