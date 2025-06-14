@@ -774,7 +774,8 @@ input:focus{
     opacity: 0;
     transition: opacity 0.3s ease;
 }
-.music-1:hover .play-icon{
+.music-1:hover .play-icon,
+.play-icon.active{
     opacity: 1;
 }
 

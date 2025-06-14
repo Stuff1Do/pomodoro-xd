@@ -247,7 +247,9 @@ function createMusic(songs){
     const audio = new Audio(`${songs}`);
     return audio;
 }
-
+const audioElements = [];
+let currentAudio = null;
+let currentIcon = null;
 songs.forEach((songs)=>{
     const musicDiv = document.createElement('div');
     musicDiv.classList.add('music', 'music-1');
@@ -295,24 +297,37 @@ songs.forEach((songs)=>{
 
     musicBody.appendChild(musicDiv); 
     const audio = new Audio(songs.path);
-    let isPlaying =false;
-    playIconDiv.addEventListener('click', ()=>{
-        
-        if(isPlaying){
-            audio.pause();
-            playIcon.classList.replace('fa-pause', 'fa-play');
-            isPlaying = false;
-        }else{
+
+    audioElements.push({audio, icon: playIcon});
+    const playAudio = () => {
+        if (currentAudio && currentAudio !== audio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            if (currentIcon) {
+                currentIcon.classList.replace('fa-pause', 'fa-play');
+                currentIcon.parentElement.classList.remove('active');
+            }
+        }
+        if(audio.paused){
             audio.play();
             playIcon.classList.replace('fa-play', 'fa-pause');
-            isPlaying =true;
-            songPlaying = true;
+            playIconDiv.classList.add('active');
+            currentAudio = audio;
+            currentIcon = playIcon;
+        }else{
+            audio.pause();
+            playIcon.classList.replace('fa-pause', 'fa-play');
+            playIconDiv.classList.remove('active');
+            currentAudio = null;
+            currentIcon = null;
         }
-    })
-    
-    titleAuthorDiv.addEventListener('click', ()=>{
-        playOne.click();
-    })
+
+    }   
+
+    playIconDiv.addEventListener('click', playAudio);
+    titleAuthorDiv.addEventListener('click', playAudio);
+
+
 
 })
 
