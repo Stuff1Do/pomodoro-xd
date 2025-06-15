@@ -1,3 +1,8 @@
+import { logPomodoro } from './js/stats.js';
+import { showStats } from './js/stats.js';
+
+let sessionStartTime = null;
+
 const startButton = document.querySelector('.start');
 const timer = document.querySelector('.timer');
 const reset = document.querySelector('.reset');
@@ -82,24 +87,27 @@ const noiseTab = document.querySelector('.bg-noise-header');
 const importTab = document.querySelector('.import-music');
 const noiseBody = document.querySelector('.music-content');
 const musicBody = document.querySelector('.music-songs');
-const playOne = document.querySelector('.play-icon');
-const songState = document.querySelector('.song-state');
-const titleAuthor = document.querySelector('.title-author');
-const openStats = document.querySelector('.statistics');
 const statModal = document.querySelector('.stat-modal');
-const closeStat = document.querySelector('.close-stat');
+
 statModal.style.display = 'none';
-
-openStats.addEventListener('click', ()=>{
-    statModal.style.display = '';
-    statModal.showModal();
-
+document.addEventListener("DOMContentLoaded", () => {   
+    const statModal = document.querySelector('.stat-modal');
+    const openStats = document.querySelector('.statistics');
+    const closeStat = document.querySelector('.close-stat');
+    statModal.style.display = 'none';   
+        openStats.addEventListener('click', () => {
+            statModal.style.display = '';
+            statModal.showModal();
+            showStats();
+        });
+    
+        closeStat.addEventListener('click', () => {
+            statModal.style.display ='none';
+            statModal.close();
+            
+        });
 });
-
-closeStat.addEventListener('click', ()=>{
-    statModal.style.display ='none';
-    statModal.close();
-})
+    
 
 musicBody.style.display = 'none';
 musicContainer.style.overflowY = 'hidden';
@@ -1090,22 +1098,29 @@ startButton.addEventListener('click', () =>{
         startButton.textContent = startString; 
         startButton.style.backgroundColor = whiteButton;
         clearInterval(timeInterval); 
+        if (mainTimerClicked && sessionStartTime) {
+            const elapsed = (Date.now() - sessionStartTime) / 1000; // in seconds
+            if (elapsed >= 60 && maxTimer > 0) {
+                logPomodoro({ partial: true });
+            }
+        }
     }else {
         startButton.textContent = pauseString;
         startButton.style.backgroundColor = transButton;
         timeInterval = setInterval(() =>{
+                sessionStartTime = Date.now();
                 let time = --maxTimer; //decrement each second
 
                 let actualTimer= calculateTimer(time);
                 
+
                 timer.textContent = actualTimer;
                 document.title = `${actualTimer} | studyxd`;
                 if(maxTimer < 0){
                     if(mainTimerClicked){
-                        pomoCtr++;
+                        logPomodoro();
                     }
                     
-                    console.log(pomoCtr);
                     clearInterval(timeInterval);
                     maxTimer = 0;
                     document.title =  `studyxd`;

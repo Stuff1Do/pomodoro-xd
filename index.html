@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/19fe17faac.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="./images/icon2.png">
-    <script src="script.js" defer></script>
+    
     <title>studyxd</title>
 </head>
 <body>
@@ -127,14 +127,18 @@
         <div class="statistics"><i class="fa-solid fa-chart-simple"></i></div>
         <a class="pip-button"><i class="fa-solid fa-right-to-bracket"></i></a>
     </div>
-    <dialog id="stat-modal" class="stat-modal">
+    
+          <dialog id="stat-modal" class="stat-modal">
         <div class="stat-header">
             <div class="close-stat"><i class="fa-solid fa-xmark"></i></div>
         </div>
-        <div class="stat-body">
-            flfnalksfnlskfnasln
+        <div class="stat-body">            
+            <label class="heatmap-label"for="streak-display">Heatmap</label>
+            <div id="heatmap"class="heatmap"></div>
         </div>
     </dialog>
+    
+  
     <dialog id="modal" class="modal">
         <div class="modal-inner">
             <div class="modal-left">
@@ -233,6 +237,16 @@
                 <div class="close-modal-mark"><i class="fa-solid fa-circle-xmark"></i></div>
             </div>               
         </div>
-    </dialog>
+        </dialog>
+
+    <!-- 3) Firebase init -->
+    <script type="module" src="./js/firebase.js"></script>
+        
+    <!-- 4) stats.js -->
+    <script type="module" src="./js/stats.js"></script>
+
+    <!-- 5) script.js (calls showStats) -->
+    <script type="module" src="./script.js"></script>
+
 </body>
 </html>
