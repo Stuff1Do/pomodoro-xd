@@ -1,95 +1,173 @@
-import { logPomodoro } from './js/stats.js';
-import { showStats } from './js/stats.js';
+    import { logPomodoro } from './js/stats.js';
+    import { showStats } from './js/stats.js';
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js';
+    let sessionStartTime = null;
 
-let sessionStartTime = null;
+    const startButton = document.querySelector('.start');
+    const timer = document.querySelector('.timer');
+    const reset = document.querySelector('.reset');
+    const mainTimer = document.querySelector('.pomodoro');
+    const shortBreak = document.querySelector('.short-break');
+    const longBreak = document.querySelector('.long-break');
+    const resetContainer = document.querySelector('.reset-container');
+    const modal = document.querySelector('#modal');
+    const settingsContainer = document.querySelector('.settings-container');
+    const closeModal = document.querySelector('.close-modal');
+    const inputPomodoro = document.querySelector('#pomo-minutes');
+    const inputShortBreak = document.querySelector('#short-minutes');
+    const inputLongBreak = document.querySelector('#long-minutes');
+    const submit = document.querySelector('.save-changes');
+    const alertInvalid = document.querySelector('.show-invalid');
+    const resetAll = document.querySelector('.reset-all');
+    const closeMark = document.querySelector('.close-modal-mark');
+    const timerSettings = document.querySelector('.timer-settings');
+    const displaySettings = document.querySelector('.display-settings');
+    const optionSettings =  document.querySelector('.option-settings');
+    const timerPage = document.querySelector('.timer-page');
+    const displayPage = document.querySelector('.display-page');
+    const optionPage = document.querySelector('.option-page');
+    const inputBackground = document.querySelector('#bg-options');
+    const inputSound = document.querySelector('#sound-options');
+    const checkPomo = document.querySelector('#checkpomo');
+    const checkAudio = document.querySelector('#checksound');
+    const footer = document.querySelector('.footer');
+    const invalidSave = document.querySelector('.invalid-save');
+    const taskContainer  = document.querySelector('.taskbar-container');
+    const headerTaskbar = document.querySelector('.header-taskbar');
+    const addTaskContainer = document.querySelector('.add-task-container');
+    const inputArea = document.querySelector('#input-area');
+    const minimizeButton = document.querySelector('.minimize-button');
+    const listContainer = document.querySelector('.list-task');
+    const listHolder = document.querySelector('.todo-task');
+    const expandButton = document.querySelector('.expand-button');
+    const addTask = document.querySelector('.add-task');
+    const garbageIcon = document.querySelector('.garbage');
+    const taskBarLabel = document.querySelector('.to-do-label');
+    const inputPhoneBackground = document.querySelector('.phone-bg-options');
+    const pipButton = document.querySelector('.pip-button');
+    const minimizeContentButton = document.querySelector('.minimize-content');
+    const content = document.querySelector('.content');
+    const stateButtons = document.querySelector('.options');
+    const activityLeft = document.querySelector('.activity-left');
+    const activityRight = document.querySelector('.activity-right');
+    const flexContainer  = document.querySelector('.flex-container');
+    const musicButton = document.querySelector('.music-button');
+    const musicButtonContainer = document.querySelector('.footer-left-page');
+    const musicContainer = document.querySelector('.music-container');
+    const closeMusic = document.querySelector('.close-music');
+    const lightRain = document.querySelector('.light-rain');
+    const fireplace = document.querySelector('.fireplace'); 
+    const whiteNoise = document.querySelector('.white-noise');
+    const ocean = document.querySelector('.ocean');
+    const library = document.querySelector('.library');
+    const pinkNoise = document.querySelector('.pink-noise');
+    const brownNoise = document.querySelector('.brown-noise');
+    const heavyRain =document.querySelector('.heavy-rain');
+    const airConditioner = document.querySelector('.air-conditioner');
+    const rainSlider = document.querySelector('.rain-slider');
+    const fireSlider = document.querySelector('.fire-slider');
+    const whiteSlider = document.querySelector('.white-slider');
+    const oceanSlider = document.querySelector('.ocean-slider');
+    const librarySlider = document.querySelector('.library-slider');
+    const pinkSlider = document.querySelector('.pink-slider');
+    const brownSlider = document.querySelector('.brown-slider');
+    const heavyRainSlider = document.querySelector('.heavy-rain-slider');
+    const conditionerSlider = document.querySelector('.conditioner-slider');
+    const lightRainContainer = document.querySelector('.light');
+    const fireContainer = document.querySelector('.fire');
+    const whiteContainer = document.querySelector('.white');
+    const oceanContainer = document.querySelector('.water');
+    const libraryContainer = document.querySelector('.book');
+    const pinkContainer = document.querySelector('.pink');
+    const brownContainer = document.querySelector('.brown');
+    const heavyRainContainer = document.querySelector('.heavy');
+    const airContainer  = document.querySelector('.air');
+    const musicTab = document.querySelector('.bg-music-header');
+    const noiseTab = document.querySelector('.bg-noise-header');
+    const importTab = document.querySelector('.import-music');
+    const noiseBody = document.querySelector('.music-content');
+    const musicBody = document.querySelector('.music-songs');
+    const builtInSongs = document.querySelector('.built-in-songs');
+    const statModal = document.querySelector('.stat-modal');
+    const importBody = document.querySelector('.import-container');
+    const importButton = document.querySelector('.import-box');
+    const fileInput = document.querySelector('.file-input');
+    const importedBody = document.querySelector('.import-songs'); 
+    const musicTypes = document.querySelector('.music-types');
+      
+    
+    let musicType = 'rainyday';
+    musicTypes.addEventListener('change', ()=>{
+        musicType = musicTypes.value;
+       if(musicType != 'rainyday'){
+         builtInSongs.style.display = 'none';
+         createImportedTab();
+       }else{
+        builtInSongs.style.display = '';
+       }
+    })
+    statModal.style.display = 'none';
 
-const startButton = document.querySelector('.start');
-const timer = document.querySelector('.timer');
-const reset = document.querySelector('.reset');
-const mainTimer = document.querySelector('.pomodoro');
-const shortBreak = document.querySelector('.short-break');
-const longBreak = document.querySelector('.long-break');
-const resetContainer = document.querySelector('.reset-container');
-const modal = document.querySelector('#modal');
-const settingsContainer = document.querySelector('.settings-container');
-const closeModal = document.querySelector('.close-modal');
-const inputPomodoro = document.querySelector('#pomo-minutes');
-const inputShortBreak = document.querySelector('#short-minutes');
-const inputLongBreak = document.querySelector('#long-minutes');
-const submit = document.querySelector('.save-changes');
-const alertInvalid = document.querySelector('.show-invalid');
-const resetAll = document.querySelector('.reset-all');
-const closeMark = document.querySelector('.close-modal-mark');
-const timerSettings = document.querySelector('.timer-settings');
-const displaySettings = document.querySelector('.display-settings');
-const optionSettings =  document.querySelector('.option-settings');
-const timerPage = document.querySelector('.timer-page');
-const displayPage = document.querySelector('.display-page');
-const optionPage = document.querySelector('.option-page');
-const inputBackground = document.querySelector('#bg-options');
-const inputSound = document.querySelector('#sound-options');
-const checkPomo = document.querySelector('#checkpomo');
-const checkAudio = document.querySelector('#checksound');
-const footer = document.querySelector('.footer');
-const invalidSave = document.querySelector('.invalid-save');
-const taskContainer  = document.querySelector('.taskbar-container');
-const headerTaskbar = document.querySelector('.header-taskbar');
-const addTaskContainer = document.querySelector('.add-task-container');
-const inputArea = document.querySelector('#input-area');
-const minimizeButton = document.querySelector('.minimize-button');
-const listContainer = document.querySelector('.list-task');
-const listHolder = document.querySelector('.todo-task');
-const expandButton = document.querySelector('.expand-button');
-const addTask = document.querySelector('.add-task');
-const garbageIcon = document.querySelector('.garbage');
-const taskBarLabel = document.querySelector('.to-do-label');
-const inputPhoneBackground = document.querySelector('.phone-bg-options');
-const pipButton = document.querySelector('.pip-button');
-const minimizeContentButton = document.querySelector('.minimize-content');
-const content = document.querySelector('.content');
-const stateButtons = document.querySelector('.options');
-const activityLeft = document.querySelector('.activity-left');
-const activityRight = document.querySelector('.activity-right');
-const flexContainer  = document.querySelector('.flex-container');
-const musicButton = document.querySelector('.music-button');
-const musicButtonContainer = document.querySelector('.footer-left-page');
-const musicContainer = document.querySelector('.music-container');
-const closeMusic = document.querySelector('.close-music');
-const lightRain = document.querySelector('.light-rain');
-const fireplace = document.querySelector('.fireplace'); 
-const whiteNoise = document.querySelector('.white-noise');
-const ocean = document.querySelector('.ocean');
-const library = document.querySelector('.library');
-const pinkNoise = document.querySelector('.pink-noise');
-const brownNoise = document.querySelector('.brown-noise');
-const heavyRain =document.querySelector('.heavy-rain');
-const airConditioner = document.querySelector('.air-conditioner');
-const rainSlider = document.querySelector('.rain-slider');
-const fireSlider = document.querySelector('.fire-slider');
-const whiteSlider = document.querySelector('.white-slider');
-const oceanSlider = document.querySelector('.ocean-slider');
-const librarySlider = document.querySelector('.library-slider');
-const pinkSlider = document.querySelector('.pink-slider');
-const brownSlider = document.querySelector('.brown-slider');
-const heavyRainSlider = document.querySelector('.heavy-rain-slider');
-const conditionerSlider = document.querySelector('.conditioner-slider');
-const lightRainContainer = document.querySelector('.light');
-const fireContainer = document.querySelector('.fire');
-const whiteContainer = document.querySelector('.white');
-const oceanContainer = document.querySelector('.water');
-const libraryContainer = document.querySelector('.book');
-const pinkContainer = document.querySelector('.pink');
-const brownContainer = document.querySelector('.brown');
-const heavyRainContainer = document.querySelector('.heavy');
-const airContainer  = document.querySelector('.air');
-const musicTab = document.querySelector('.bg-music-header');
-const noiseTab = document.querySelector('.bg-noise-header');
-const importTab = document.querySelector('.import-music');
-const noiseBody = document.querySelector('.music-content');
-const musicBody = document.querySelector('.music-songs');
-const statModal = document.querySelector('.stat-modal');
+    const supabaseUrl = 'https://zhisanjsvlpqivufocri.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpoaXNhbmpzdmxwcWl2dWZvY3JpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAwMzg0MjIsImV4cCI6MjA2NTYxNDQyMn0.yzK_eyloMIK93aUNgM-nGWCocBEuEcgMTX9w-5ZnNfA';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+  
+      function createImportedTab(){
+        const { data } = supabase.storage
+            .from('musicuploafds')
+            .getPublicUrl('blue.mp3');
+      }
+    
+  // Create a button to trigger playback
+const playButton = document.createElement('button');
+playButton.textContent = 'Play Audio';
+playButton.style.width = '500px';
+document.body.appendChild(playButton);
 
-statModal.style.display = 'none';
+playButton.addEventListener('click', () => {
+  const audio = new Audio(data.publicUrl);
+  audio.controls = true;
+  document.body.appendChild(audio);
+  audio.play(); // This will now work since it's inside a user-initiated event
+});
+
+fileInput.onchange = async () => {
+    const file = fileInput.files[0];
+    if (!file) return alert('Please select an audio file.');
+    if (!file.type.startsWith('audio/')) return alert('Please select an audio file.');
+
+    const filePath = `${file.name}`; 
+
+    const { error } = await supabase.storage
+        .from('musicuploafds')
+        .upload(filePath, file, {
+            cacheControl: '3600',
+            upsert: false,
+        });
+
+    if (error) {
+        alert('Upload failed!');
+        console.error(error);
+    } else {
+        const { data } = supabase.storage
+            .from('musicuploafds')
+            .getPublicUrl(filePath);
+        console.log('Upload successful! File URL:', data.publicUrl);
+
+        /* 
+        const audio = new Audio(data.publicUrl);
+        audio.controls = true;
+        document.body.appendChild(audio);
+        */
+    }
+};
+
+
+importButton.addEventListener('click', () => {
+    fileInput.click();
+});
+
+    
 document.addEventListener("DOMContentLoaded", () => {   
     const statModal = document.querySelector('.stat-modal');
     const openStats = document.querySelector('.statistics');
@@ -110,8 +188,11 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
 musicBody.style.display = 'none';
+importBody.style.display = 'none';
 musicContainer.style.overflowY = 'hidden';
+
 musicTab.addEventListener('click', ()=>{
+    importBody.style.display = 'none';
     noiseBody.style.display = 'none';
     musicBody.style.display = '';
     musicTab.style.color = 'white';
@@ -124,6 +205,7 @@ musicTab.addEventListener('click', ()=>{
 })
 
 noiseTab.addEventListener('click', ()=>{
+    importBody.style.display = 'none';
     noiseBody.style.display = '';
     musicTab.style.color = '#818181';
     musicTab.style.textDecoration = 'none';
@@ -136,6 +218,7 @@ noiseTab.addEventListener('click', ()=>{
 })
 
 importTab.addEventListener('click', ()=>{
+    importBody.style.display = '';
     musicBody.style.display = 'none';
     importTab.style.color = 'white';
     importTab.style.textDecoration = 'underline';
@@ -166,10 +249,13 @@ brownSlider.style.display = 'none';
 heavyRainSlider.style.display = 'none';
 conditionerSlider.style.display = 'none';
 
-
 musicButton.addEventListener('click', ()=>{
-    musicContainer.style.width = '350px';
-    musicButtonContainer.style.display = 'none';
+    
+    
+        musicContainer.style.width = '350px';
+        musicButtonContainer.style.display = 'none';
+        
+   
 })
 
 closeMusic.addEventListener('click', ()=>{
@@ -254,10 +340,7 @@ const songs = [
         duration: '3:14',
     }
 ]
-function createMusic(songs){
-    const audio = new Audio(`${songs}`);
-    return audio;
-}
+
 const audioElements = [];
 let currentAudio = null;
 let currentIcon = null;
@@ -306,7 +389,7 @@ songs.forEach((songs)=>{
     musicDiv.appendChild(titleAuthorDiv);
     musicDiv.appendChild(durationDiv);
 
-    musicBody.appendChild(musicDiv); 
+    builtInSongs.appendChild(musicDiv); 
     const audio = new Audio(songs.path);
 
     audioElements.push({audio, icon: playIcon});
@@ -1112,7 +1195,6 @@ startButton.addEventListener('click', () =>{
                 let time = --maxTimer; //decrement each second
 
                 let actualTimer= calculateTimer(time);
-                
 
                 timer.textContent = actualTimer;
                 document.title = `${actualTimer} | studyxd`;
@@ -1151,9 +1233,6 @@ startButton.addEventListener('click', () =>{
                             mainTimerClicked = true; 
                             clickCtr = 0;
                         }               
-                       
-                            
-                        
                     }else{
                         
                         timer.textContent=`0:00`;
@@ -1161,9 +1240,6 @@ startButton.addEventListener('click', () =>{
                         startButton.style.backgroundColor = whiteButton;
                         clickCtr = 0;
                     }
-                   
-                    
-                    
                 }
             }, 1000)
             

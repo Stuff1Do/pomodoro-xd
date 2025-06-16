@@ -53,13 +53,11 @@ export async function showStats() {
         currentDate.setDate(currentDate.getDate() + 1);
     }
 
-    // Organize by week columns
     const weekColumns = [];
     let currentWeek = [];
 
-    // Fill initial empty days to start on Sunday
     for (let i = 0; i < days[0].getDay(); i++) {
-        currentWeek.push(null); // Empty box
+        currentWeek.push(null); 
     }
 
     days.forEach(day => {
@@ -70,7 +68,6 @@ export async function showStats() {
         }
     });
 
-    // Push last week if not full
     if (currentWeek.length > 0) {
         while (currentWeek.length < 7) {
             currentWeek.push(null);
@@ -78,16 +75,13 @@ export async function showStats() {
         weekColumns.push(currentWeek);
     }
 
-    // Convert stats array to a map for quick lookup
     const statMap = Object.fromEntries(
         stats.map(s => [s.date, s.sessions + s.partial])
     );
 
-    // Build the heatmap grid
     const grid = document.createElement('div');
     grid.classList.add('heatmap-grid');
 
-    // Track the starting index of each month
     const monthStartIndexes = {};
 
     weekColumns.forEach((week, index) => {
@@ -117,7 +111,6 @@ export async function showStats() {
                     box.style.backgroundColor = '#196127';
                 }
 
-                // Record month start
                 if (day.getDate() === 1 && !(day.getMonth() in monthStartIndexes)) {
                     monthStartIndexes[day.getMonth()] = index;
                 }
@@ -133,16 +126,13 @@ export async function showStats() {
 
     container.appendChild(grid);
 
-    // Create month labels row
     const monthRow = document.createElement('div');
     monthRow.classList.add('month-row');
 
-    // Prepare month labels aligned with week columns
     weekColumns.forEach((_, index) => {
         const label = document.createElement('div');
         label.classList.add('month-label');
 
-        // Check if this week starts a month
         const monthIndex = Object.values(monthStartIndexes).indexOf(index);
         if (monthIndex !== -1) {
             const monthName = new Date(2025, parseInt(Object.keys(monthStartIndexes)[monthIndex])).toLocaleString('default', { month: 'short' });

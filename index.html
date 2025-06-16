@@ -98,8 +98,21 @@
                     <option value="imported">Imported songs</option>
                 </select>
             </div>
+            <div class="built-in-songs">
+                
+            </div>
+        </div>
+        <div class="import-songs">
+
+        </div>
+        <div class="import-container">
+            <label class="import-label"for="import-box">Import file:</label>
+            
+            <div class="import-box"><i class="fa-solid fa-upload"><input type="file" id="file-input" class="file-input"></i></div>
+            <label class="import-label-bot"for="import-box">(file size must be 10mb or less)</label>
         </div>
     </div>
+    
     <div class="flex-container">
         <div class="content">
             <div class="options">
@@ -239,14 +252,17 @@
         </div>
         </dialog>
 
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- 3) Firebase init -->
-    <script type="module" src="./js/firebase.js"></script>
-        
-    <!-- 4) stats.js -->
-    <script type="module" src="./js/stats.js"></script>
+        <script type="module" src="./js/firebase.js"></script>
+            
+        <!-- 4) stats.js -->
+        <script type="module" src="./js/stats.js"></script>
 
-    <!-- 5) script.js (calls showStats) -->
-    <script type="module" src="./script.js"></script>
+        
+
+        <!-- 5) script.js (calls showStats) -->
+        <script type="module" src="./script.js"></script>
 
 </body>
 </html>

@@ -20,9 +20,6 @@ body{
 }
 
 
-
-
-
 .flex-container{
     display: flex;
     justify-content: center;
@@ -886,6 +883,56 @@ input:focus{
   .stat-modal::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+.import-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    flex-direction: column;
+    
+}
+.import-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #aaa;
+    flex-direction: column;
+    width:230px;
+    height: 90px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.import-box:hover{
+    background: #717070;
+}
+.fa-upload{
+    font-size: 24px;
+    position: absolute;
+    color: white;
+}
+.import-label{
+    color: white;
+    font-weight: 500;
+}
+
+.import-label-bot{
+    color: white;
+    opacity: 0.5;
+    font-size: 12px;
+}
+.file-input{
+    opacity: 0.5;
+    width: 0.1px;
+    height: 0.1px;
+    color: #aaa;
+    background: #aaa;
+}
+.built-in-songs{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 @media only screen and (max-width: 400px){
     body{
         height: 100vh;
