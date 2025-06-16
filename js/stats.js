@@ -1,4 +1,4 @@
-// Use Firestore modules from CDN
+
 import {
     doc,
     setDoc,
@@ -8,7 +8,6 @@ import {
     serverTimestamp
 } from 'https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js';
 
-// Firestore setup
 const db = window.db;
 const userId = 'test-user-1';
 function getToday() {

@@ -95,7 +95,8 @@
     const importedBody = document.querySelector('.import-songs')
     const musicTypes = document.querySelector('.music-types')
     const searchBar = document.querySelector('.search')
-
+    const openStats = document.querySelector('.statistics');
+    const statContainer = document.querySelector('.footer-mid-page');
     const builtInSection  = builtInSongs;      
     const importedSection = importedBody;      
     
@@ -422,11 +423,14 @@ conditionerSlider.style.display = 'none';
 musicButton.addEventListener('click', ()=>{
         musicContainer.style.width = '350px';
         musicButtonContainer.style.display = 'none';
+        statContainer.style.display = 'none';
+        
 })
 
 closeMusic.addEventListener('click', ()=>{
     musicContainer.style.width = '0';
     musicButtonContainer.style.display = 'block';
+    statContainer.style.display = '';
 
 })
 
