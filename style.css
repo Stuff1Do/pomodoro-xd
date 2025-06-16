@@ -933,6 +933,12 @@ input:focus{
     flex-direction: column;
     gap: 10px;
 }
+.import-songs{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+}
 @media only screen and (max-width: 400px){
     body{
         height: 100vh;

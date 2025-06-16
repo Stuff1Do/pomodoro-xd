@@ -101,9 +101,12 @@
         musicType = musicTypes.value;
        if(musicType != 'rainyday'){
          builtInSongs.style.display = 'none';
-         createImportedTab();
+         importedBody.style.display = '';
+         importedBody.innerHTML = '';
+         loadAllImportedSongs();
        }else{
         builtInSongs.style.display = '';
+        importedBody.style.display = 'none';
        }
     })
     statModal.style.display = 'none';
@@ -111,25 +114,129 @@
     const supabaseUrl = 'https://zhisanjsvlpqivufocri.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpoaXNhbmpzdmxwcWl2dWZvY3JpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAwMzg0MjIsImV4cCI6MjA2NTYxNDQyMn0.yzK_eyloMIK93aUNgM-nGWCocBEuEcgMTX9w-5ZnNfA';
     const supabase = createClient(supabaseUrl, supabaseKey);
-  
-      function createImportedTab(){
-        const { data } = supabase.storage
-            .from('musicuploafds')
-            .getPublicUrl('blue.mp3');
-      }
-    
-  // Create a button to trigger playback
-const playButton = document.createElement('button');
-playButton.textContent = 'Play Audio';
-playButton.style.width = '500px';
-document.body.appendChild(playButton);
+   async function loadAllImportedSongs() {
+  const { data, error } = await supabase
+    .storage
+    .from('musicuploafds')
+    .list('', { limit: 100 }); 
 
-playButton.addEventListener('click', () => {
-  const audio = new Audio(data.publicUrl);
-  audio.controls = true;
-  document.body.appendChild(audio);
-  audio.play(); // This will now work since it's inside a user-initiated event
-});
+  if (error) {
+    console.error('Error listing files:', error);
+    return;
+  }
+
+  console.log('Files in bucket:', data); 
+
+  data.forEach(file => {
+    if (file.name) {
+      createImportedTab(file.name);  
+    } else {
+      console.warn('File with missing name:', file);
+    }
+  });
+}
+    function formatDuration(seconds){
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = Math.floor(seconds % 60);
+        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    }
+      
+    let importedSongs = [];
+    async function createImportedTab(fileName) {
+        
+        console.log(`creating file for ${fileName}`);
+        const { data } = supabase
+          .storage
+          .from('musicuploafds')
+          .getPublicUrl(fileName);
+      
+        const musicDiv = document.createElement('div');
+        musicDiv.classList.add('music', 'music-1');
+      
+        const coverPlayDiv = document.createElement('div');
+        coverPlayDiv.classList.add('cover-play');
+      
+        const img = document.createElement('img');
+        img.src = './images/placeholder.jpg';
+        img.width = 45;
+        img.height = 45;
+        img.classList.add('base-img');
+      
+        const playIconDiv = document.createElement('div');
+        playIconDiv.classList.add('play-icon');
+      
+        const playIcon = document.createElement('i');
+        playIcon.classList.add('song-state', 'fa-solid', 'fa-play');
+      
+        playIconDiv.appendChild(playIcon);
+        coverPlayDiv.appendChild(playIconDiv);
+        coverPlayDiv.appendChild(img);
+      
+        const titleAuthorDiv = document.createElement('div');
+        titleAuthorDiv.classList.add('title-author');
+      
+        const titleDiv = document.createElement('div');
+        titleDiv.classList.add('title');
+        let split = fileName.split('.');
+        titleDiv.textContent = split[0];
+      
+        const authorDiv = document.createElement('div');
+        authorDiv.classList.add('author');
+        authorDiv.textContent = 'Unknown author';
+      
+        titleAuthorDiv.appendChild(titleDiv);
+        titleAuthorDiv.appendChild(authorDiv);
+      
+        const durationDiv = document.createElement('div');
+        durationDiv.classList.add('music-duration');
+        durationDiv.textContent = '3:00';
+      
+        musicDiv.appendChild(coverPlayDiv);
+        musicDiv.appendChild(titleAuthorDiv);
+        musicDiv.appendChild(durationDiv);
+      
+        importedBody.appendChild(musicDiv);
+      
+        const audio = new Audio(data.publicUrl);
+        audio.controls = true;
+        audio.addEventListener('loadedmetadata', () => {
+            const formattedDuration = formatDuration(audio.duration);
+            durationDiv.textContent = formattedDuration;
+        });
+      
+        importedSongs.push({ audio, icon: playIcon });
+      
+        const playAudio = () => {
+          if (currentAudio && currentAudio !== audio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            if (currentIcon) {
+              currentIcon.classList.replace('fa-pause', 'fa-play');
+              currentIcon.parentElement.classList.remove('active');
+            }
+          }
+      
+          if (audio.paused) {
+            audio.play();
+            playIcon.classList.replace('fa-play', 'fa-pause');
+            playIconDiv.classList.add('active');
+            currentAudio = audio;
+            currentIcon = playIcon;
+          } else {
+            audio.pause();
+            playIcon.classList.replace('fa-pause', 'fa-play');
+            playIconDiv.classList.remove('active');
+            currentAudio = null;
+            currentIcon = null;
+          }
+        };
+      
+        playIconDiv.addEventListener('click', playAudio);
+        titleAuthorDiv.addEventListener('click', playAudio);
+      }
+      
+
+  // Create a button to trigger playback
 
 fileInput.onchange = async () => {
     const file = fileInput.files[0];
@@ -153,6 +260,7 @@ fileInput.onchange = async () => {
             .from('musicuploafds')
             .getPublicUrl(filePath);
         console.log('Upload successful! File URL:', data.publicUrl);
+        createImportedTab(file.name);
 
         /* 
         const audio = new Audio(data.publicUrl);
@@ -192,6 +300,8 @@ importBody.style.display = 'none';
 musicContainer.style.overflowY = 'hidden';
 
 musicTab.addEventListener('click', ()=>{
+    importedBody.innerHTML = '';
+    loadAllImportedSongs();
     importBody.style.display = 'none';
     noiseBody.style.display = 'none';
     musicBody.style.display = '';
@@ -202,9 +312,12 @@ musicTab.addEventListener('click', ()=>{
     importTab.style.color = '#818181';
     importTab.style.textDecoration = 'none';
     musicContainer.style.overflowY = 'scroll';
+    importedBody.style.display = 'none';
+   
 })
 
 noiseTab.addEventListener('click', ()=>{
+    importedBody.style.display = 'none';
     importBody.style.display = 'none';
     noiseBody.style.display = '';
     musicTab.style.color = '#818181';
@@ -218,6 +331,7 @@ noiseTab.addEventListener('click', ()=>{
 })
 
 importTab.addEventListener('click', ()=>{
+    importedBody.style.display = 'none';
     importBody.style.display = '';
     musicBody.style.display = 'none';
     importTab.style.color = 'white';
