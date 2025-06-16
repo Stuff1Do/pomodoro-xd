@@ -149,10 +149,18 @@ body{
 
 }
 
+.side{
+    cursor: pointer;    
+}
+
+.fa-circle-xmark{
+    cursor: pointer;
+}
 .sidebar{
     color: white;
     border-right: 2px solid #444;
     padding-right: 5px;
+    cursor: pointer;
 }
 
 .timer-settings{
@@ -341,6 +349,7 @@ input:checked + .button::before{
     border-radius: 24px;
     padding: 8px 16px;  
     font-size: 15px;
+    cursor: pointer;
 
 
 }
@@ -351,6 +360,7 @@ input:checked + .button::before{
     border-radius: 24px;
     padding: 8px 15px;
     font-size: 15px;
+    cursor: pointer;
 
 }
 .close-modal-mark{
@@ -363,6 +373,7 @@ input:checked + .button::before{
     border-radius: 24px;
     padding: 8px 16px;
     font-size: 15px;
+    cursor: pointer;
 
 }
 .invalid-save{
@@ -505,6 +516,14 @@ span{
     background-color: white;
     border-radius: 8px;
 }
+.footer-mid-page{
+    position: absolute;
+    bottom: 16px;
+    padding: 7px 9px;
+    right: 60px;
+    background-color: white;
+    border-radius: 8px;
+}
 .footer-left-page{
     position: absolute;
     bottom: 16px;
@@ -516,12 +535,9 @@ span{
 }
 
 .statistics{
-    position: inherit;
-    right: 50px;
-    bottom: 0.1px;
     background-color: white;
-    padding: 8.4px;
     border-radius: 8px;
+    font-size: 19px;
     cursor: pointer;
 
 }
@@ -1063,11 +1079,14 @@ input:focus{
     .activity-left{
         display: none;
     }
-
     .footer-bar{
         display: none;
     }
 
+    .footer-mid-page{
+        right: 250px;
+        
+    }
 }
 @media only screen and (max-width: 490px) and (min-width: 401px){
     body{
@@ -1196,6 +1215,10 @@ input:focus{
 
     .footer-bar{
         display: none;
+    }
+    .footer-mid-page{
+        right: 10px;
+        
     }
 }  
 
