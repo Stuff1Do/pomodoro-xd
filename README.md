@@ -92,7 +92,7 @@ To run this locally:
 
 ## Credits
 
-- Created with ❤️ by a productivity enthusiast.
+- Created by a productivity enthusiast.
 - Icons by [Font Awesome](https://fontawesome.com/)
 - Fonts by [Google Fonts](https://fonts.google.com/)
 - Powered by [Supabase](https://supabase.com)
