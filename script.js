@@ -292,7 +292,6 @@
       }
       
 
-  // Create a button to trigger playback
 
 fileInput.onchange = async () => {
     const file = fileInput.files[0];
@@ -369,6 +368,7 @@ musicTab.addEventListener('click', ()=>{
     importTab.style.textDecoration = 'none';
     musicContainer.style.overflowY = 'scroll';
     importedBody.style.display = 'none';
+    
    
 })
 
@@ -420,17 +420,14 @@ heavyRainSlider.style.display = 'none';
 conditionerSlider.style.display = 'none';
 
 musicButton.addEventListener('click', ()=>{
-    
-    
         musicContainer.style.width = '350px';
         musicButtonContainer.style.display = 'none';
-        
-   
 })
 
 closeMusic.addEventListener('click', ()=>{
     musicContainer.style.width = '0';
     musicButtonContainer.style.display = 'block';
+
 })
 
 const rain = new Audio('./sounds/lightrain.mp3');
@@ -939,6 +936,13 @@ minimizeContentButton.addEventListener('click', ()=>{
         minimized = false;
 
     }else{    
+        content.animate([
+            { minWidth: minimized ? '200px' : '350px' },
+            { minWidth: minimized ? '350px' : '200px' }
+          ], {
+            duration: 100,
+            easing: 'ease'
+          });
         displayState = document.createElement('div');
         displayState.style.color = 'white'; 
 

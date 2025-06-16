@@ -570,6 +570,9 @@ span{
 }
 
 .music-container{
+    position: fixed;
+    top: 0;
+    left:0;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -577,7 +580,7 @@ span{
     height: 100vh;
     width: 350px;
     overflow-x: hidden; 
-    transition: 0.4s ease-in-out;
+    transition: 0.1s ease-in-out;
     
 }
 
@@ -955,6 +958,7 @@ input:focus{
     gap: 10px;
     padding: 15px;
 }
+
 @media only screen and (max-width: 400px){
     body{
         height: 100vh;
