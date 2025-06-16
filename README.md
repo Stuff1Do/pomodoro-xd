@@ -79,7 +79,8 @@ To run this locally:
 
 - **Frontend**: HTML5, CSS3, JavaScript (ES6)
 - **Icons & Fonts**: Font Awesome, Google Fonts (Roboto, Inter)
-- **Data Storage**: [Supabase](https://supabase.com) (for session statistics and music upload)
+- **Upload database**: [Supabase](https://supabase.com) (for music upload)
+- **Storage** [Firebase] (https://firebase.studio/)(for session data and statistics)
 - **Media Handling**: HTML5 Audio API, dynamic DOM manipulation
 
 ---
@@ -96,6 +97,6 @@ To run this locally:
 - Created by a productivity enthusiast.
 - Icons by [Font Awesome](https://fontawesome.com/)
 - Fonts by [Google Fonts](https://fonts.google.com/)
-- Powered by [Supabase](https://supabase.com)
+- Powered by [Supabase](https://supabase.com) and [Firebase] (https://firebase.studio/)
 - Backgrounds from [AlphaCoders](https://mobile.alphacoders.com/)
 
