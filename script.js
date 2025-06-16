@@ -94,7 +94,64 @@
     const fileInput = document.querySelector('.file-input');
     const importedBody = document.querySelector('.import-songs'); 
     const musicTypes = document.querySelector('.music-types');
+    const searchBar = document.querySelector('.search');
+
+    const builtInSection  = builtInSongs;      
+    const importedSection = importedBody;      
+    
+    function applyTypeFilter() {
+      if (musicType === 'rainyday') {
+        builtInSection.style.display   = '';
+        importedSection.style.display  = 'none';
+      } else {
+        builtInSection.style.display   = 'none';
+        importedSection.style.display  = '';
+        importedSection.innerHTML      = '';
+        loadAllImportedSongs();
+      }
+    }
+    
+    musicTypes.addEventListener('change', () => {
+      musicType = musicTypes.value;
+      searchBar.value = '';   
+      applyTypeFilter();
+    });
+    
+    searchBar.addEventListener('input', () => {
+        const term = searchBar.value.toLowerCase().trim();
       
+        if (!term) {
+          applyTypeFilter();
+      
+          builtInSection
+            .querySelectorAll('.music')
+            .forEach(item => item.style.display = '');
+      
+          importedSection
+            .querySelectorAll('.music')
+            .forEach(item => item.style.display = '');
+      
+          return;
+        }
+      
+        [builtInSection, importedSection].forEach(section => {
+          let matches = 0;
+      
+          section.querySelectorAll('.music').forEach(item => {
+            const title = item.querySelector('.title').textContent.toLowerCase();
+            if (title.includes(term)) {
+              item.style.display = '';
+              matches++;
+            } else {
+              item.style.display = 'none';
+            }
+          });
+      
+          section.style.display = matches > 0 ? '' : 'none';
+        });
+      });
+      
+    
     
     let musicType = 'rainyday';
     musicTypes.addEventListener('change', ()=>{
@@ -125,7 +182,7 @@
     return;
   }
 
-  console.log('Files in bucket:', data); 
+
 
   data.forEach(file => {
     if (file.name) {
@@ -143,8 +200,7 @@
       
     let importedSongs = [];
     async function createImportedTab(fileName) {
-        
-        console.log(`creating file for ${fileName}`);
+
         const { data } = supabase
           .storage
           .from('musicuploafds')
@@ -534,8 +590,6 @@ songs.forEach((songs)=>{
 
     playIconDiv.addEventListener('click', playAudio);
     titleAuthorDiv.addEventListener('click', playAudio);
-
-
 
 })
 
