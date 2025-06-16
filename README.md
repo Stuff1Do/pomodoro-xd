@@ -80,7 +80,7 @@ To run this locally:
 - **Frontend**: HTML5, CSS3, JavaScript (ES6)
 - **Icons & Fonts**: Font Awesome, Google Fonts (Roboto, Inter)
 - **Upload database**: [Supabase](https://supabase.com) (for music upload)
-- **Storage** [Firebase] (https://firebase.studio/)(for session data and statistics)
+- **Storage** [Firebase] (https://firebase.studio/) (for session data and statistics)
 - **Media Handling**: HTML5 Audio API, dynamic DOM manipulation
 
 ---
