@@ -42,11 +42,12 @@ To run this locally:
   - Pink Noise 
   - Brown Noise 
   - Heavy Rain 
-  - Air Conditioner ❄
+  - Air Conditioner 
 - Each sound includes:
   - On/Off toggle
   - Volume slider
   - Visual opacity feedback for active sounds
+-Each one can be stacked on each other for a caocophany of pleasant background noise
 
 ### Music Player
 - Dual-mode music library:
