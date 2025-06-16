@@ -92,9 +92,9 @@
     const importBody = document.querySelector('.import-container');
     const importButton = document.querySelector('.import-box');
     const fileInput = document.querySelector('.file-input');
-    const importedBody = document.querySelector('.import-songs'); 
-    const musicTypes = document.querySelector('.music-types');
-    const searchBar = document.querySelector('.search');
+    const importedBody = document.querySelector('.import-songs')
+    const musicTypes = document.querySelector('.music-types')
+    const searchBar = document.querySelector('.search')
 
     const builtInSection  = builtInSongs;      
     const importedSection = importedBody;      
