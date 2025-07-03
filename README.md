@@ -3,7 +3,6 @@
 
 **studyxd** is a productivity web application designed to help students and remote workers maintain focus and manage their time efficiently. Combining a Pomodoro timer, ambient noise controls, custom music player, task management system, and statistics tracker, studyxd is your all-in-one digital study companion.
 
-Dedicated to Sheena
 ---
 ## Installation
 
